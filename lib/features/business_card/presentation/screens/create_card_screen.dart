@@ -405,7 +405,23 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Card Theme', style: Theme.of(context).textTheme.titleMedium),
+        Row(
+          children: [
+            Text('Card Theme', style: Theme.of(context).textTheme.titleMedium),
+            const Spacer(),
+            TextButton.icon(
+              onPressed: () async {
+                final result = await context.push<String>('/template-gallery',
+                    extra: _selectedTemplateId);
+                if (result != null) {
+                  setState(() => _selectedTemplateId = result);
+                }
+              },
+              icon: const Icon(Icons.grid_view, size: 18),
+              label: const Text('Browse All'),
+            ),
+          ],
+        ),
         const SizedBox(height: 12),
         SizedBox(
           height: 80,

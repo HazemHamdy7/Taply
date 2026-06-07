@@ -1,0 +1,190 @@
+{
+  "id": "navy_silver_professional",
+  "name": "Navy Silver Professional",
+  "width": 1000,
+  "height": 600,
+  "clipRadius": 28,
+  "paintLayers": [
+    {
+      "type": "rect",
+      "fill": {
+        "kind": "linear",
+        "colors": ["#0D1B2A", "#1B2D45", "#0F2035"],
+        "angle": 160
+      }
+    },
+    {
+      "type": "rect",
+      "fill": {
+        "kind": "linear",
+        "colors": ["transparent", "#FFFFFF08", "transparent"],
+        "stops": [0, 0.5, 1],
+        "angle": 45
+      }
+    },
+    {
+      "type": "path",
+      "d": "M 680 0 L 780 0 L 680 600 L 580 600 Z",
+      "fill": "#1E345080"
+    },
+    {
+      "type": "path",
+      "d": "M 720 0 L 760 0 L 660 600 L 620 600 Z",
+      "fill": "#2A405C66"
+    },
+    {
+      "type": "line",
+      "x1": 30, "y1": 72, "x2": 650, "y2": 72,
+      "stroke": "#C8CFD880",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "line",
+      "x1": 30, "y1": 80, "x2": 650, "y2": 80,
+      "stroke": "#C8CFD840",
+      "strokeWidth": 0.5
+    },
+    {
+      "type": "line",
+      "x1": 30, "y1": 530, "x2": 650, "y2": 530,
+      "stroke": "#C8CFD860",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "deco_lines",
+      "x1": 660, "x2": 660, "count": 6, "spacing": 10,
+      "startY": 80, "endY": 520,
+      "stroke": "#C8CFD826",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rrect",
+      "x": 700, "y": 40, "w": 270, "h": 520,
+      "br": 16,
+      "stroke": "#C8CFD833",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "line",
+      "x1": 835, "y1": 100, "x2": 835, "y2": 500,
+      "stroke": "#C8CFD81A",
+      "strokeWidth": 1
+    },
+    {
+      "type": "circle",
+      "cx": 835, "cy": 280,
+      "r": 80,
+      "stroke": "#C8CFD826",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "circle",
+      "cx": 835, "cy": 280,
+      "r": 95,
+      "stroke": "#C8CFD814",
+      "strokeWidth": 0.5
+    },
+    {
+      "type": "line",
+      "x1": 30, "y1": 560, "x2": 550, "y2": 560,
+      "stroke": "#C8CFD840",
+      "strokeWidth": 0.5
+    },
+    {
+      "type": "chevron",
+      "cx": 40, "cy": 110, "height": 20,
+      "stroke": "#C8CFD8CC",
+      "strokeWidth": 2
+    }
+  ],
+  "widgetLayers": [
+    {
+      "type": "text",
+      "field": "fullName",
+      "x": 30, "y": 120,
+      "fontSize": 30, "color": "#FFFFFF", "fontWeight": "700",
+      "maxLines": 1,
+      "rtlX": 30
+    },
+    {
+      "type": "text",
+      "field": "companyName",
+      "x": 30, "y": 158,
+      "fontSize": 15, "color": "#C8CFD8CC", "fontWeight": "600",
+      "maxLines": 1,
+      "rtlX": 30
+    },
+    {
+      "type": "text",
+      "field": "tagline",
+      "x": 30, "y": 178,
+      "fontSize": 13, "color": "#C8CFD899", "fontWeight": "400",
+      "maxLines": 1,
+      "rtlX": 30
+    },
+    {
+      "type": "text",
+      "field": "jobTitle",
+      "x": 30, "y": 198,
+      "fontSize": 14, "color": "#C8CFD8", "fontWeight": "500",
+      "maxLines": 1,
+      "rtlX": 30
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber",
+      "x": 30, "y": 260,
+      "icon": "phone_outlined",
+      "iconColor": "#C8CFD8",
+      "fontSize": 14, "color": "#FFFFFFCC", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber2",
+      "x": 30, "y": 290,
+      "icon": "phone_outlined",
+      "iconColor": "#C8CFD8",
+      "fontSize": 14, "color": "#FFFFFFB3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "email",
+      "x": 30, "y": 320,
+      "icon": "email_outlined",
+      "iconColor": "#C8CFD8",
+      "fontSize": 14, "color": "#FFFFFFCC", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "website",
+      "x": 30, "y": 350,
+      "icon": "language_outlined",
+      "iconColor": "#C8CFD8",
+      "fontSize": 14, "color": "#FFFFFFB3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "address",
+      "x": 30, "y": 380,
+      "icon": "location_on_outlined",
+      "iconColor": "#C8CFD8",
+      "fontSize": 14, "color": "#FFFFFFCC", "fontWeight": "400",
+      "hideIfEmpty": true
+    },
+    {
+      "type": "text",
+      "field": "aboutMe",
+      "x": 30, "y": 430,
+      "fontSize": 12, "color": "#FFFFFF80", "fontWeight": "300",
+      "maxLines": 3
+    },
+    {
+      "type": "social_dots",
+      "x": 30, "y": 510,
+      "fields": ["linkedin", "facebook", "instagram", "x", "telegram"],
+      "colors": ["#0A66C2", "#1877F2", "#E4405F", "#000000", "#0088CC"],
+      "spacing": 14,
+      "dotSize": 10
+    }
+  ]
+}

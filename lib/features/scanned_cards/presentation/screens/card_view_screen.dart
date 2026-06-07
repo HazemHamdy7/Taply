@@ -6,6 +6,7 @@ import 'package:business_card/features/business_card/domain/entities/business_ca
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
 import 'package:business_card/features/scanned_cards/presentation/cubit/scanned_card_cubit.dart';
+import 'package:business_card/shared/export/widgets/export_bottom_sheet.dart';
 
 class CardViewScreen extends StatelessWidget {
   final BusinessCard card;
@@ -26,6 +27,13 @@ class CardViewScreen extends StatelessWidget {
           icon: const Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.share),
+            tooltip: 'Export',
+            onPressed: () => ExportBottomSheet.show(context, card),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:ndef/ndef.dart' as ndef;
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
+import 'package:business_card/shared/utils/card_url.dart';
 
 class NfcState {
   final NFCAvailability availability;
@@ -58,7 +58,8 @@ class NfcCubit extends Cubit<NfcState> {
       );
 
       final data = _cardToNdefPayload(card);
-      final record = ndef.TextRecord(text: data, language: 'en');
+      final uri = Uri.tryParse(data);
+      final record = uri != null ? ndef.UriRecord.fromString(data) : ndef.TextRecord(text: data, language: 'en');
       await FlutterNfcKit.writeNDEFRecords([record]);
       await FlutterNfcKit.finish(iosAlertMessage: 'Written successfully');
 
@@ -95,7 +96,9 @@ class NfcCubit extends Cubit<NfcState> {
 
       final record = records.first;
       String data;
-      if (record is ndef.TextRecord) {
+      if (record is ndef.UriRecord) {
+        data = record.uri?.toString() ?? '';
+      } else if (record is ndef.TextRecord) {
         data = record.text ?? '';
       } else {
         final payload = record.payload;
@@ -118,41 +121,13 @@ class NfcCubit extends Cubit<NfcState> {
   }
 
   String _cardToNdefPayload(BusinessCard card) {
-    final map = {
-      'id': card.id,
-      'fullName': card.fullName,
-      'jobTitle': card.jobTitle,
-      'companyName': card.companyName,
-      'tagline': card.tagline,
-      'mobileNumber': card.mobileNumber,
-      'mobileNumber2': card.mobileNumber2,
-      'whatsappNumber': card.whatsappNumber,
-      'email': card.email,
-      'website': card.website,
-      'linkedin': card.linkedin,
-      'facebook': card.facebook,
-      'instagram': card.instagram,
-      'telegram': card.telegram,
-      'youtube': card.youtube,
-      'x': card.x,
-      'address': card.address,
-      'aboutMe': card.aboutMe,
-      'templateId': card.templateId,
-    };
-    final json = jsonEncode(map);
-    final compressed = GZipCodec().encode(utf8.encode(json));
-    return 'BCARDZ:${base64Encode(compressed)}';
+    return CardUrl.encode(card);
   }
 
   BusinessCard _parseCardData(String data) {
-    if (data.startsWith('BCARDZ:')) {
-      try {
-        final compressed = base64Decode(data.substring(7));
-        final json = utf8.decode(GZipCodec().decode(compressed));
-        final map = Map<String, String>.from(jsonDecode(json));
-        return BusinessCard.fromMap(map);
-      } catch (_) {}
-    }
+    final result = CardUrl.decode(data);
+    if (result != null) return result.card;
+
     if (data.startsWith('BCARD:')) {
       try {
         final json = data.substring(6);

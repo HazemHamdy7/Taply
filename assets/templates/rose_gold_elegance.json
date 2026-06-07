@@ -1,0 +1,180 @@
+{
+  "id": "rose_gold_elegance",
+  "name": "Rose Gold Elegance",
+  "width": 1000,
+  "height": 600,
+  "clipRadius": 30,
+  "paintLayers": [
+    {
+      "type": "rect",
+      "fill": {
+        "kind": "linear",
+        "colors": ["#FCF6F0", "#F7EDE4", "#FEF9F4"],
+        "angle": 135
+      }
+    },
+    {
+      "type": "rrect",
+      "x": 14, "y": 14, "w": 972, "h": 572,
+      "br": 18,
+      "stroke": "#D4A0A0B3",
+      "strokeWidth": 2.5
+    },
+    {
+      "type": "rrect",
+      "x": 20, "y": 20, "w": 960, "h": 560,
+      "br": 12,
+      "stroke": "#D4A0A04D",
+      "strokeWidth": 1
+    },
+    {
+      "type": "corner_ornament",
+      "x": 14, "y": 14, "size": 70,
+      "left": true, "top": true,
+      "stroke": "#C98787",
+      "strokeWidth": 3
+    },
+    {
+      "type": "corner_ornament",
+      "x": 986, "y": 14, "size": 70,
+      "left": false, "top": true,
+      "stroke": "#C98787",
+      "strokeWidth": 3
+    },
+    {
+      "type": "corner_ornament",
+      "x": 14, "y": 586, "size": 70,
+      "left": true, "top": false,
+      "stroke": "#C98787",
+      "strokeWidth": 3
+    },
+    {
+      "type": "corner_ornament",
+      "x": 986, "y": 586, "size": 70,
+      "left": false, "top": false,
+      "stroke": "#C98787",
+      "strokeWidth": 3
+    },
+    {
+      "type": "line",
+      "x1": 60, "y1": 88, "x2": 400, "y2": 88,
+      "stroke": "#C9878766",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "line",
+      "x1": 600, "y1": 88, "x2": 940, "y2": 88,
+      "stroke": "#C9878766",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "circle",
+      "cx": 500, "cy": 88,
+      "r": 6,
+      "color": "#C9878780"
+    },
+    {
+      "type": "line",
+      "x1": 60, "y1": 518, "x2": 940, "y2": 518,
+      "stroke": "#C987874D",
+      "strokeWidth": 1
+    },
+    {
+      "type": "diamonds",
+      "count": 5,
+      "startX": 80, "spacing": 200,
+      "y": 518, "size": 3,
+      "color": "#C9878766"
+    }
+  ],
+  "widgetLayers": [
+    {
+      "type": "image",
+      "field": "profileImagePath",
+      "x": 780, "y": 260, "size": 160,
+      "shape": "circle",
+      "rtlX": 220
+    },
+    {
+      "type": "text",
+      "field": "fullName",
+      "x": 60, "y": 140,
+      "fontSize": 36, "color": "#3D1C1C", "fontWeight": "700",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "companyName",
+      "x": 60, "y": 182,
+      "fontSize": 16, "color": "#C98787", "fontWeight": "600",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "tagline",
+      "x": 60, "y": 206,
+      "fontSize": 14, "color": "#C98787CC", "fontWeight": "400",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "jobTitle",
+      "x": 60, "y": 228,
+      "fontSize": 15, "color": "#3D1C1CCC", "fontWeight": "500",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber",
+      "x": 60, "y": 340,
+      "icon": "phone_outlined",
+      "iconColor": "#C98787",
+      "fontSize": 14, "color": "#3D1C1C", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber2",
+      "x": 60, "y": 370,
+      "icon": "phone_outlined",
+      "iconColor": "#C98787",
+      "fontSize": 14, "color": "#3D1C1CCC", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "email",
+      "x": 60, "y": 400,
+      "icon": "email_outlined",
+      "iconColor": "#C98787",
+      "fontSize": 14, "color": "#3D1C1C", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "website",
+      "x": 60, "y": 430,
+      "icon": "language_outlined",
+      "iconColor": "#C98787",
+      "fontSize": 14, "color": "#3D1C1CCC", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "address",
+      "x": 60, "y": 460,
+      "icon": "location_on_outlined",
+      "iconColor": "#C98787",
+      "fontSize": 14, "color": "#3D1C1C", "fontWeight": "400",
+      "hideIfEmpty": true
+    },
+    {
+      "type": "social_dots",
+      "x": 60, "y": 508,
+      "fields": ["linkedin", "facebook", "instagram", "x"],
+      "colors": ["#0A66C2", "#1877F2", "#E4405F", "#000000"],
+      "spacing": 16,
+      "dotSize": 10
+    }
+  ]
+}

@@ -1,32 +1,14 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/scanned_cards/presentation/screens/card_view_screen.dart';
+import 'package:business_card/shared/utils/card_url.dart';
 
 BusinessCard? _qrDataToCard(String raw) {
-  if (raw.startsWith('BCARDZ:')) {
-    try {
-      final compressed = base64Decode(raw.substring(7));
-      final json = utf8.decode(GZipCodec().decode(compressed));
-      final map = Map<String, String>.from(jsonDecode(json));
-      return BusinessCard.fromMap(map);
-    } catch (_) {
-      return null;
-    }
-  }
-  if (raw.startsWith('BCARD:')) {
-    try {
-      final json = raw.substring(6);
-      final map = Map<String, String>.from(jsonDecode(json));
-      return BusinessCard.fromMap(map);
-    } catch (_) {
-      return null;
-    }
-  }
+  final result = CardUrl.decode(raw);
+  if (result != null) return result.card;
 
   final map = <String, String>{};
   for (final line in raw.split('\n')) {

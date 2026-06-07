@@ -1,0 +1,198 @@
+{
+  "id": "champagne_gold_prestige",
+  "name": "Champagne Gold Prestige",
+  "width": 1000,
+  "height": 600,
+  "clipRadius": 30,
+  "paintLayers": [
+    {
+      "type": "rect",
+      "fill": {
+        "kind": "linear",
+        "colors": ["#2D1B0E", "#3D2616", "#2A190D"],
+        "angle": 145
+      }
+    },
+    {
+      "type": "rect",
+      "fill": {
+        "kind": "radial",
+        "colors": ["transparent", "#00000033"],
+        "focalX": 0.5,
+        "focalY": 0.3,
+        "radius": 1.5
+      }
+    },
+    {
+      "type": "rrect",
+      "x": 18, "y": 18, "w": 964, "h": 564,
+      "br": 20,
+      "stroke": "#D4A55B",
+      "strokeWidth": 3
+    },
+    {
+      "type": "rrect",
+      "x": 28, "y": 28, "w": 944, "h": 544,
+      "br": 14,
+      "stroke": "#D4A55B80",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "rrect",
+      "x": 32, "y": 32, "w": 936, "h": 536,
+      "br": 10,
+      "stroke": "#D4A55B33",
+      "strokeWidth": 0.5
+    },
+    {
+      "type": "corner_ornament",
+      "x": 18, "y": 18, "size": 90,
+      "left": true, "top": true,
+      "stroke": "#D4A55B",
+      "strokeWidth": 3.5
+    },
+    {
+      "type": "corner_ornament",
+      "x": 982, "y": 18, "size": 90,
+      "left": false, "top": true,
+      "stroke": "#D4A55B",
+      "strokeWidth": 3.5
+    },
+    {
+      "type": "corner_ornament",
+      "x": 18, "y": 582, "size": 90,
+      "left": true, "top": false,
+      "stroke": "#D4A55B",
+      "strokeWidth": 3.5
+    },
+    {
+      "type": "corner_ornament",
+      "x": 982, "y": 582, "size": 90,
+      "left": false, "top": false,
+      "stroke": "#D4A55B",
+      "strokeWidth": 3.5
+    },
+    {
+      "type": "path",
+      "d": "M 130 330 L 180 370 L 130 410",
+      "stroke": "#D4A55B80",
+      "strokeWidth": 2
+    },
+    {
+      "type": "path",
+      "d": "M 155 332 L 205 372 L 155 412",
+      "stroke": "#D4A55B40",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "line",
+      "x1": 340, "y1": 480, "x2": 660, "y2": 480,
+      "stroke": "#D4A55B",
+      "strokeWidth": 2.5
+    },
+    {
+      "type": "diamonds",
+      "count": 5,
+      "startX": 100, "spacing": 180,
+      "y": 100, "size": 4,
+      "color": "#D4A55B66"
+    },
+    {
+      "type": "line",
+      "x1": 90, "y1": 520, "x2": 910, "y2": 520,
+      "stroke": "#D4A55B4D",
+      "strokeWidth": 1
+    }
+  ],
+  "widgetLayers": [
+    {
+      "type": "image",
+      "field": "profileImagePath",
+      "x": 310, "y": 260, "size": 130,
+      "shape": "circle",
+      "rtlX": 690
+    },
+    {
+      "type": "text",
+      "field": "fullName",
+      "x": 60, "y": 160,
+      "fontSize": 34, "color": "#F5EDE0", "fontWeight": "700",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "companyName",
+      "x": 60, "y": 200,
+      "fontSize": 16, "color": "#D4A55B", "fontWeight": "600",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "tagline",
+      "x": 60, "y": 222,
+      "fontSize": 14, "color": "#D4A55BCC", "fontWeight": "400",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "jobTitle",
+      "x": 60, "y": 244,
+      "fontSize": 15, "color": "#F5EDE0B3", "fontWeight": "500",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber",
+      "x": 60, "y": 340,
+      "icon": "phone_outlined",
+      "iconColor": "#D4A55B",
+      "fontSize": 14, "color": "#F5EDE0CC", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber2",
+      "x": 60, "y": 370,
+      "icon": "phone_outlined",
+      "iconColor": "#D4A55B",
+      "fontSize": 14, "color": "#F5EDE0B3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "email",
+      "x": 60, "y": 400,
+      "icon": "email_outlined",
+      "iconColor": "#D4A55B",
+      "fontSize": 14, "color": "#F5EDE0CC", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "website",
+      "x": 60, "y": 430,
+      "icon": "language_outlined",
+      "iconColor": "#D4A55B",
+      "fontSize": 14, "color": "#F5EDE0B3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "address",
+      "x": 60, "y": 460,
+      "icon": "location_on_outlined",
+      "iconColor": "#D4A55B",
+      "fontSize": 14, "color": "#F5EDE0CC", "fontWeight": "400",
+      "hideIfEmpty": true
+    },
+    {
+      "type": "info_column",
+      "x": 740, "y": 350,
+      "fields": ["linkedin", "facebook", "instagram"],
+      "spacing": 12,
+      "iconColor": "#D4A55B",
+      "fontSize": 12, "color": "#F5EDE099", "fontWeight": "400",
+      "icons": ["link", "facebook", "instagram"]
+    }
+  ]
+}

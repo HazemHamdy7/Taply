@@ -1,0 +1,212 @@
+{
+  "id": "forest_emerald",
+  "name": "Forest Emerald",
+  "width": 1000,
+  "height": 600,
+  "clipRadius": 28,
+  "paintLayers": [
+    {
+      "type": "rect",
+      "fill": {
+        "kind": "linear",
+        "colors": ["#0A1F14", "#0D2818", "#163A24"],
+        "angle": 135
+      }
+    },
+    {
+      "type": "rect",
+      "fill": {
+        "kind": "linear",
+        "colors": ["transparent", "#FFFFFF06", "transparent"],
+        "stops": [0, 0.3, 1],
+        "angle": 90
+      }
+    },
+    {
+      "type": "path",
+      "d": "M 40 30 L 60 10 L 80 30 L 60 50 Z",
+      "fill": "#D4A84033"
+    },
+    {
+      "type": "path",
+      "d": "M 60 15 L 80 35 L 60 55 L 40 35 Z",
+      "stroke": "#D4A8404D",
+      "strokeWidth": 0.5
+    },
+    {
+      "type": "line",
+      "x1": 90, "y1": 35, "x2": 960, "y2": 35,
+      "stroke": "#D4A8404D",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 50, "y": 70, "w": 4, "h": 460,
+      "fill": {
+        "kind": "linear",
+        "colors": ["#D4A84099", "#C995374D", "#D4A84099"],
+        "stops": [0, 0.5, 1],
+        "angle": 180
+      }
+    },
+    {
+      "type": "rect",
+      "x": 60, "y": 70, "w": 1.5, "h": 460,
+      "fill": "#D4A84026"
+    },
+    {
+      "type": "line",
+      "x1": 85, "y1": 70, "x2": 940, "y2": 70,
+      "stroke": "#D4A840",
+      "strokeWidth": 2
+    },
+    {
+      "type": "line",
+      "x1": 85, "y1": 80, "x2": 940, "y2": 80,
+      "stroke": "#D4A84066",
+      "strokeWidth": 0.5
+    },
+    {
+      "type": "line",
+      "x1": 85, "y1": 530, "x2": 940, "y2": 530,
+      "stroke": "#D4A840",
+      "strokeWidth": 2
+    },
+    {
+      "type": "line",
+      "x1": 85, "y1": 522, "x2": 940, "y2": 522,
+      "stroke": "#D4A84066",
+      "strokeWidth": 0.5
+    },
+    {
+      "type": "diamonds",
+      "count": 3,
+      "startX": 120, "spacing": 350,
+      "y": 550, "size": 5,
+      "color": "#D4A840"
+    },
+    {
+      "type": "path",
+      "d": "M 940 90 L 980 90 L 980 510 L 940 510 Z",
+      "fill": "#D4A8400D"
+    },
+    {
+      "type": "deco_lines",
+      "x1": 950, "x2": 950, "count": 10, "spacing": 6,
+      "startY": 100, "endY": 500,
+      "stroke": "#D4A8401A",
+      "strokeWidth": 1
+    },
+    {
+      "type": "rect",
+      "x": 750, "y": 190, "w": 170, "h": 220,
+      "br": 16,
+      "stroke": "#D4A84033",
+      "strokeWidth": 1.5
+    },
+    {
+      "type": "circle",
+      "cx": 835, "cy": 300,
+      "r": 75,
+      "stroke": "#D4A84080",
+      "strokeWidth": 2
+    }
+  ],
+  "widgetLayers": [
+    {
+      "type": "text",
+      "field": "fullName",
+      "x": 85, "y": 115,
+      "fontSize": 34, "color": "#F5F0E8", "fontWeight": "700",
+      "maxLines": 1,
+      "rtlX": 85
+    },
+    {
+      "type": "text",
+      "field": "companyName",
+      "x": 85, "y": 155,
+      "fontSize": 16, "color": "#D4A840", "fontWeight": "600",
+      "maxLines": 1,
+      "rtlX": 85
+    },
+    {
+      "type": "text",
+      "field": "tagline",
+      "x": 85, "y": 178,
+      "fontSize": 14, "color": "#D4A840CC", "fontWeight": "400",
+      "maxLines": 1,
+      "rtlX": 85
+    },
+    {
+      "type": "text",
+      "field": "jobTitle",
+      "x": 85, "y": 200,
+      "fontSize": 15, "color": "#F5F0E8CC", "fontWeight": "500",
+      "maxLines": 1,
+      "rtlX": 85
+    },
+    {
+      "type": "image",
+      "field": "profileImagePath",
+      "x": 835, "y": 300, "size": 150,
+      "shape": "circle",
+      "rtlX": 165
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber",
+      "x": 85, "y": 280,
+      "icon": "phone_outlined",
+      "iconColor": "#D4A840",
+      "fontSize": 14, "color": "#F5F0E8CC", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber2",
+      "x": 85, "y": 310,
+      "icon": "phone_outlined",
+      "iconColor": "#D4A840",
+      "fontSize": 14, "color": "#F5F0E8B3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "email",
+      "x": 85, "y": 340,
+      "icon": "email_outlined",
+      "iconColor": "#D4A840",
+      "fontSize": 14, "color": "#F5F0E8CC", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "website",
+      "x": 85, "y": 370,
+      "icon": "language_outlined",
+      "iconColor": "#D4A840",
+      "fontSize": 14, "color": "#F5F0E8B3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "address",
+      "x": 85, "y": 400,
+      "icon": "location_on_outlined",
+      "iconColor": "#D4A840",
+      "fontSize": 14, "color": "#F5F0E8CC", "fontWeight": "400",
+      "hideIfEmpty": true
+    },
+    {
+      "type": "social_dots",
+      "x": 85, "y": 460,
+      "fields": ["linkedin", "facebook", "instagram", "x"],
+      "colors": ["#0A66C2", "#1877F2", "#E4405F", "#FFFFFF"],
+      "spacing": 14,
+      "dotSize": 10
+    },
+    {
+      "type": "text",
+      "field": "aboutMe",
+      "x": 85, "y": 500,
+      "fontSize": 11, "color": "#F5F0E866", "fontWeight": "300",
+      "maxLines": 2
+    }
+  ]
+}

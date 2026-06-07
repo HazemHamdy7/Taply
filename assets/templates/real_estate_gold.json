@@ -1,0 +1,163 @@
+{
+  "id": "real_estate_gold",
+  "name": "Real Estate Gold",
+  "width": 1000,
+  "height": 600,
+  "clipRadius": 30,
+  "paintLayers": [
+    {
+      "type": "rect",
+      "fill": "#09162E"
+    },
+    {
+      "type": "grid",
+      "stepX": 40, "stepY": 40,
+      "color": "#FFFFFF08",
+      "strokeWidth": 0.5
+    },
+    {
+      "type": "gradient_rect",
+      "x": 30, "y": 80, "w": 45, "h": 440,
+      "fill": {
+        "kind": "linear",
+        "colors": ["#C99552", "#E8C97A", "#B88632", "#D4A85C"],
+        "stops": [0, 0.3, 0.6, 1],
+        "angle": 180
+      }
+    },
+    {
+      "type": "path",
+      "d": "M 20 80 L 85 80 L 95 60 L 10 60 Z",
+      "fill": {
+        "kind": "linear",
+        "colors": ["#C99552", "#E8C97A", "#B88632", "#D4A85C"],
+        "stops": [0, 0.3, 0.6, 1],
+        "angle": 180
+      }
+    },
+    {
+      "type": "path",
+      "d": "M 20 520 L 85 520 L 95 540 L 10 540 Z",
+      "fill": {
+        "kind": "linear",
+        "colors": ["#C99552", "#E8C97A", "#B88632", "#D4A85C"],
+        "stops": [0, 0.3, 0.6, 1],
+        "angle": 180
+      }
+    },
+    {
+      "type": "fluting",
+      "startX": 37, "count": 3, "step": 11,
+      "y1": 82, "y2": 518,
+      "stroke": "#00000026",
+      "strokeWidth": 1
+    },
+    {
+      "type": "line",
+      "x1": 130, "y1": 55, "x2": 970, "y2": 55,
+      "stroke": "#C9955299",
+      "strokeWidth": 2
+    },
+    {
+      "type": "line",
+      "x1": 130, "y1": 70, "x2": 970, "y2": 70,
+      "stroke": "#C995524D",
+      "strokeWidth": 1
+    },
+    {
+      "type": "deco_lines",
+      "x1": 950, "x2": 950, "count": 8, "spacing": 4,
+      "startY": 100, "endY": 500,
+      "stroke": "#C9955226",
+      "strokeWidth": 1
+    },
+    {
+      "type": "line",
+      "x1": 130, "y1": 550, "x2": 970, "y2": 550,
+      "stroke": "#C9955266",
+      "strokeWidth": 2
+    }
+  ],
+  "widgetLayers": [
+    {
+      "type": "image",
+      "field": "profileImagePath",
+      "x": 770, "y": 400, "size": 240,
+      "shape": "circle",
+      "rtlX": 350
+    },
+    {
+      "type": "text",
+      "field": "fullName",
+      "x": 130, "y": 140,
+      "fontSize": 34, "color": "#FFFFFF", "fontWeight": "700",
+      "maxLines": 1,
+      "rtlX": 500
+    },
+    {
+      "type": "text",
+      "field": "companyName",
+      "x": 130, "y": 180,
+      "fontSize": 16, "color": "#C99552", "fontWeight": "600",
+      "maxLines": 1,
+      "rtlX": 500
+    },
+    {
+      "type": "text",
+      "field": "tagline",
+      "x": 130, "y": 205,
+      "fontSize": 14, "color": "#C99552", "fontWeight": "400",
+      "maxLines": 1,
+      "rtlX": 500
+    },
+    {
+      "type": "text",
+      "field": "jobTitle",
+      "x": 130, "y": 228,
+      "fontSize": 15, "color": "#FFFFFFB3", "fontWeight": "500",
+      "maxLines": 1,
+      "rtlX": 500
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber",
+      "x": 130, "y": 270,
+      "icon": "phone_outlined",
+      "iconColor": "#C99552",
+      "fontSize": 14, "color": "#FFFFFFB3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "mobileNumber2",
+      "x": 130, "y": 300,
+      "icon": "phone_outlined",
+      "iconColor": "#C99552",
+      "fontSize": 14, "color": "#FFFFFFB3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "email",
+      "x": 130, "y": 330,
+      "icon": "email_outlined",
+      "iconColor": "#C99552",
+      "fontSize": 14, "color": "#FFFFFFB3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "website",
+      "x": 130, "y": 360,
+      "icon": "language_outlined",
+      "iconColor": "#C99552",
+      "fontSize": 14, "color": "#FFFFFFB3", "fontWeight": "400"
+    },
+    {
+      "type": "contact_row",
+      "field": "address",
+      "x": 130, "y": 390,
+      "icon": "location_on_outlined",
+      "iconColor": "#C99552",
+      "fontSize": 14, "color": "#FFFFFFB3", "fontWeight": "400",
+      "hideIfEmpty": true
+    }
+  ]
+}

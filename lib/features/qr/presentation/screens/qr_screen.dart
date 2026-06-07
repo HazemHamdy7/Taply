@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,33 +7,9 @@ import 'package:gal/gal.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
+import 'package:business_card/shared/utils/card_url.dart';
 
-String _cardToQrData(BusinessCard c) {
-  final map = <String, String>{
-    'id': c.id ?? '',
-    'fullName': c.fullName,
-    'jobTitle': c.jobTitle,
-    'companyName': c.companyName,
-    'tagline': c.tagline,
-    'mobileNumber': c.mobileNumber,
-    'mobileNumber2': c.mobileNumber2,
-    'whatsappNumber': c.whatsappNumber,
-    'email': c.email,
-    'website': c.website,
-    'linkedin': c.linkedin,
-    'facebook': c.facebook,
-    'instagram': c.instagram,
-    'telegram': c.telegram,
-    'youtube': c.youtube,
-    'x': c.x,
-    'address': c.address,
-    'aboutMe': c.aboutMe,
-    'templateId': c.templateId,
-  };
-  final json = jsonEncode(map);
-  final compressed = GZipCodec().encode(utf8.encode(json));
-  return 'BCARDZ:${base64Encode(compressed)}';
-}
+String _cardToQrData(BusinessCard c) => CardUrl.encode(c);
 
 class QRScreen extends StatefulWidget {
   const QRScreen({super.key});

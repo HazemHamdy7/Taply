@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
+import 'package:business_card/shared/export/widgets/export_bottom_sheet.dart';
 
 class CardPreviewScreen extends StatefulWidget {
   const CardPreviewScreen({super.key});
@@ -90,6 +91,15 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
             icon: const Icon(Icons.nfc),
             onPressed: () => context.push('/nfc'),
             tooltip: 'NFC',
+          ),
+          IconButton(
+            icon: const Icon(Icons.share),
+            onPressed: () {
+              final state = context.read<BusinessCardCubit>().state;
+              final card = _singleCard ?? state.selectedCard;
+              if (card != null) ExportBottomSheet.show(context, card);
+            },
+            tooltip: 'Export',
           ),
           IconButton(
             icon: const Icon(Icons.settings),

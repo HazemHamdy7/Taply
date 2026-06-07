@@ -1,0 +1,100 @@
+{
+  "id": "black_orange_premium",
+  "name": "Black Orange Premium",
+  "width": 1000,
+  "height": 600,
+  "clipRadius": 30,
+  "paintLayers": [
+    {
+      "type": "rect",
+      "fill": "#0A0A0A"
+    },
+    {
+      "type": "rect",
+      "fill": {
+        "kind": "linear",
+        "colors": ["#F7B5470F", "transparent", "#F7B54708"],
+        "stops": [0, 0.5, 1],
+        "angle": 135
+      }
+    },
+    {
+      "type": "particles",
+      "count": 300,
+      "seed": 42,
+      "color": "#F7B547",
+      "minRadius": 0.3,
+      "maxRadius": 3.8,
+      "minAlpha": 0.15,
+      "maxAlpha": 0.7
+    },
+    {
+      "type": "glow_bar",
+      "y": 520, "height": 80,
+      "color": "#F7B547",
+      "alpha": 0.12
+    },
+    {
+      "type": "line",
+      "x1": 30, "y1": 55, "x2": 970, "y2": 55,
+      "stroke": "#F7B54766",
+      "strokeWidth": 2
+    },
+    {
+      "type": "line",
+      "x1": 30, "y1": 545, "x2": 970, "y2": 545,
+      "stroke": "#F7B54766",
+      "strokeWidth": 2
+    }
+  ],
+  "widgetLayers": [
+    {
+      "type": "image",
+      "field": "profileImagePath",
+      "x": 160, "y": 200, "size": 150,
+      "shape": "circle",
+      "rtlX": 840
+    },
+    {
+      "type": "text",
+      "field": "fullName",
+      "x": 300, "y": 120,
+      "fontSize": 30, "color": "#FFFFFF", "fontWeight": "700",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "companyName",
+      "x": 300, "y": 156,
+      "fontSize": 14, "color": "#FFFFFF99", "fontWeight": "500",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "tagline",
+      "x": 300, "y": 176,
+      "fontSize": 14, "color": "#F7931E", "fontWeight": "400",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "text",
+      "field": "jobTitle",
+      "x": 300, "y": 198,
+      "fontSize": 16, "color": "#F7931E", "fontWeight": "600",
+      "maxLines": 1,
+      "rtlX": 60
+    },
+    {
+      "type": "info_column",
+      "x": 300, "y": 240,
+      "fields": ["mobileNumber", "mobileNumber2", "email", "website", "address"],
+      "spacing": 10,
+      "iconColor": "#F7931E",
+      "fontSize": 14, "color": "#FFFFFFB3", "fontWeight": "400",
+      "icons": ["phone_outlined", "phone_outlined", "email_outlined", "language_outlined", "location_on_outlined"]
+    }
+  ]
+}
