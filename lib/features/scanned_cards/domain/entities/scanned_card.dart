@@ -1,6 +1,7 @@
-class BusinessCard {
-  final String? id;
-  final String? profileImagePath;
+import 'package:business_card/features/business_card/domain/entities/business_card.dart';
+
+class ScannedCard {
+  final String id;
   final String fullName;
   final String jobTitle;
   final String companyName;
@@ -19,10 +20,12 @@ class BusinessCard {
   final String address;
   final String aboutMe;
   final String templateId;
+  final String? profileImagePath;
+  final DateTime scanDate;
+  final bool isFavorite;
 
-  const BusinessCard({
-    this.id,
-    this.profileImagePath,
+  const ScannedCard({
+    required this.id,
     this.fullName = '',
     this.jobTitle = '',
     this.companyName = '',
@@ -41,11 +44,38 @@ class BusinessCard {
     this.address = '',
     this.aboutMe = '',
     this.templateId = 'default',
+    this.profileImagePath,
+    required this.scanDate,
+    this.isFavorite = false,
   });
 
-  BusinessCard copyWith({
+  BusinessCard toBusinessCard() {
+    return BusinessCard(
+      id: id,
+      fullName: fullName,
+      jobTitle: jobTitle,
+      companyName: companyName,
+      tagline: tagline,
+      mobileNumber: mobileNumber,
+      mobileNumber2: mobileNumber2,
+      whatsappNumber: whatsappNumber,
+      email: email,
+      website: website,
+      linkedin: linkedin,
+      facebook: facebook,
+      instagram: instagram,
+      telegram: telegram,
+      youtube: youtube,
+      x: x,
+      address: address,
+      aboutMe: aboutMe,
+      templateId: templateId,
+      profileImagePath: profileImagePath,
+    );
+  }
+
+  ScannedCard copyWith({
     String? id,
-    String? profileImagePath,
     String? fullName,
     String? jobTitle,
     String? companyName,
@@ -64,11 +94,13 @@ class BusinessCard {
     String? address,
     String? aboutMe,
     String? templateId,
+    String? profileImagePath,
+    DateTime? scanDate,
+    bool? isFavorite,
     bool clearImage = false,
   }) {
-    return BusinessCard(
+    return ScannedCard(
       id: id ?? this.id,
-      profileImagePath: clearImage ? null : (profileImagePath ?? this.profileImagePath),
       fullName: fullName ?? this.fullName,
       jobTitle: jobTitle ?? this.jobTitle,
       companyName: companyName ?? this.companyName,
@@ -87,56 +119,9 @@ class BusinessCard {
       address: address ?? this.address,
       aboutMe: aboutMe ?? this.aboutMe,
       templateId: templateId ?? this.templateId,
-    );
-  }
-
-  Map<String, String> toMap() {
-    return {
-      'id': id ?? '',
-      'profileImagePath': profileImagePath ?? '',
-      'fullName': fullName,
-      'jobTitle': jobTitle,
-      'companyName': companyName,
-      'tagline': tagline,
-      'mobileNumber': mobileNumber,
-      'mobileNumber2': mobileNumber2,
-      'whatsappNumber': whatsappNumber,
-      'email': email,
-      'website': website,
-      'linkedin': linkedin,
-      'facebook': facebook,
-      'instagram': instagram,
-      'telegram': telegram,
-      'youtube': youtube,
-      'x': x,
-      'address': address,
-      'aboutMe': aboutMe,
-      'templateId': templateId,
-    };
-  }
-
-  factory BusinessCard.fromMap(Map<String, String> map) {
-    return BusinessCard(
-      id: map['id'],
-      profileImagePath: map['profileImagePath']?.isEmpty == true ? null : map['profileImagePath'],
-      fullName: map['fullName'] ?? '',
-      jobTitle: map['jobTitle'] ?? '',
-      companyName: map['companyName'] ?? '',
-      tagline: map['tagline'] ?? '',
-      mobileNumber: map['mobileNumber'] ?? '',
-      mobileNumber2: map['mobileNumber2'] ?? '',
-      whatsappNumber: map['whatsappNumber'] ?? '',
-      email: map['email'] ?? '',
-      website: map['website'] ?? '',
-      linkedin: map['linkedin'] ?? '',
-      facebook: map['facebook'] ?? '',
-      instagram: map['instagram'] ?? '',
-      telegram: map['telegram'] ?? '',
-      youtube: map['youtube'] ?? '',
-      x: map['x'] ?? '',
-      address: map['address'] ?? '',
-      aboutMe: map['aboutMe'] ?? '',
-      templateId: map['templateId'] ?? 'default',
+      profileImagePath: clearImage ? null : (profileImagePath ?? this.profileImagePath),
+      scanDate: scanDate ?? this.scanDate,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 }

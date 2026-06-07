@@ -4,8 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
+import 'package:business_card/features/business_card/domain/entities/card_template.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
+import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
+import 'package:business_card/shared/data/country_codes.dart';
 import 'package:business_card/shared/widgets/app_text_field.dart';
+import 'package:business_card/shared/widgets/phone_field.dart';
 
 class CreateCardScreen extends StatefulWidget {
   final BusinessCard? existingCard;
@@ -21,9 +25,11 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
   final _imagePicker = ImagePicker();
 
   late final TextEditingController _fullNameCtrl;
+  late final TextEditingController _taglineCtrl;
   late final TextEditingController _jobTitleCtrl;
   late final TextEditingController _companyNameCtrl;
   late final TextEditingController _mobileCtrl;
+  late final TextEditingController _mobileCtrl2;
   late final TextEditingController _whatsappCtrl;
   late final TextEditingController _emailCtrl;
   late final TextEditingController _websiteCtrl;
@@ -31,46 +37,119 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
   late final TextEditingController _facebookCtrl;
   late final TextEditingController _instagramCtrl;
   late final TextEditingController _telegramCtrl;
+  late final TextEditingController _youtubeCtrl;
+  late final TextEditingController _xCtrl;
   late final TextEditingController _addressCtrl;
   late final TextEditingController _aboutMeCtrl;
 
   String? _profileImagePath;
+  String _selectedTemplateId = 'default';
+  CountryCode _mobileCountry = countryCodes.firstWhere((c) => c.dialCode == '+20');
+  CountryCode _mobile2Country = countryCodes.firstWhere((c) => c.dialCode == '+20');
+  CountryCode _whatsappCountry = countryCodes.firstWhere((c) => c.dialCode == '+20');
+
+  BusinessCard get _previewCard => BusinessCard(
+        id: widget.existingCard?.id ?? '',
+        profileImagePath: _profileImagePath,
+        fullName: _fullNameCtrl.text,
+        tagline: _taglineCtrl.text,
+        jobTitle: _jobTitleCtrl.text,
+        companyName: _companyNameCtrl.text,
+        mobileNumber: _prefixed(_mobileCountry, _mobileCtrl.text),
+        mobileNumber2: _prefixed(_mobile2Country, _mobileCtrl2.text),
+        whatsappNumber: _prefixed(_whatsappCountry, _whatsappCtrl.text),
+        email: _emailCtrl.text,
+        website: _websiteCtrl.text,
+        linkedin: _linkedinCtrl.text,
+        facebook: _facebookCtrl.text,
+        instagram: _instagramCtrl.text,
+        telegram: _telegramCtrl.text,
+        youtube: _youtubeCtrl.text,
+        x: _xCtrl.text,
+        address: _addressCtrl.text,
+        aboutMe: _aboutMeCtrl.text,
+        templateId: _selectedTemplateId,
+      );
+
+  String _prefixed(CountryCode code, String local) {
+    final trimmed = local.trim();
+    if (trimmed.isEmpty) return '';
+    final cleaned = trimmed.startsWith('0') ? trimmed.substring(1) : trimmed;
+    return '${code.dialCode}$cleaned';
+  }
+
+  String _stripCode(String full, CountryCode _) {
+    if (full.isEmpty) return '';
+    for (final c in countryCodes) {
+      if (full.startsWith(c.dialCode)) return full.substring(c.dialCode.length);
+    }
+    // No dial code found — treat the whole string as local number
+    return full;
+  }
+
+  CountryCode _findCode(String full) {
+    for (final c in countryCodes) {
+      if (full.startsWith(c.dialCode)) return c;
+    }
+    return countryCodes.firstWhere((c) => c.dialCode == '+20');
+  }
 
   @override
   void initState() {
     super.initState();
     final c = widget.existingCard;
     _fullNameCtrl = TextEditingController(text: c?.fullName ?? '');
+    _taglineCtrl = TextEditingController(text: c?.tagline ?? '');
     _jobTitleCtrl = TextEditingController(text: c?.jobTitle ?? '');
     _companyNameCtrl = TextEditingController(text: c?.companyName ?? '');
-    _mobileCtrl = TextEditingController(text: c?.mobileNumber ?? '');
-    _whatsappCtrl = TextEditingController(text: c?.whatsappNumber ?? '');
+    _mobileCtrl = TextEditingController(text: _stripCode(c?.mobileNumber ?? '', _mobileCountry));
+    _mobileCtrl2 = TextEditingController(text: '');
+    _whatsappCtrl = TextEditingController(text: _stripCode(c?.whatsappNumber ?? '', _whatsappCountry));
     _emailCtrl = TextEditingController(text: c?.email ?? '');
     _websiteCtrl = TextEditingController(text: c?.website ?? '');
     _linkedinCtrl = TextEditingController(text: c?.linkedin ?? '');
     _facebookCtrl = TextEditingController(text: c?.facebook ?? '');
     _instagramCtrl = TextEditingController(text: c?.instagram ?? '');
     _telegramCtrl = TextEditingController(text: c?.telegram ?? '');
+    _youtubeCtrl = TextEditingController(text: c?.youtube ?? '');
+    _xCtrl = TextEditingController(text: c?.x ?? '');
     _addressCtrl = TextEditingController(text: c?.address ?? '');
     _aboutMeCtrl = TextEditingController(text: c?.aboutMe ?? '');
     _profileImagePath = c?.profileImagePath;
+    _selectedTemplateId = c?.templateId ?? 'default';
+    if (c != null) {
+      _mobileCountry = _findCode(c.mobileNumber);
+      _whatsappCountry = _findCode(c.whatsappNumber);
+      _mobileCtrl.text = _stripCode(c.mobileNumber, _mobileCountry);
+      _whatsappCtrl.text = _stripCode(c.whatsappNumber, _whatsappCountry);
+    }
+
+    // Listen to all controllers for live preview rebuild
+    final controllers = [
+      _fullNameCtrl, _taglineCtrl, _jobTitleCtrl, _companyNameCtrl,
+      _mobileCtrl, _mobileCtrl2, _whatsappCtrl, _emailCtrl, _websiteCtrl,
+      _linkedinCtrl, _facebookCtrl, _instagramCtrl, _telegramCtrl,
+      _youtubeCtrl, _xCtrl, _addressCtrl, _aboutMeCtrl,
+    ];
+    for (final ctrl in controllers) {
+      ctrl.addListener(_onFieldChanged);
+    }
   }
+
+  void _onFieldChanged() => setState(() {});
 
   @override
   void dispose() {
-    _fullNameCtrl.dispose();
-    _jobTitleCtrl.dispose();
-    _companyNameCtrl.dispose();
-    _mobileCtrl.dispose();
-    _whatsappCtrl.dispose();
-    _emailCtrl.dispose();
-    _websiteCtrl.dispose();
-    _linkedinCtrl.dispose();
-    _facebookCtrl.dispose();
-    _instagramCtrl.dispose();
-    _telegramCtrl.dispose();
-    _addressCtrl.dispose();
-    _aboutMeCtrl.dispose();
+    final controllers = [
+      _fullNameCtrl, _taglineCtrl, _jobTitleCtrl, _companyNameCtrl,
+      _mobileCtrl, _mobileCtrl2, _whatsappCtrl, _emailCtrl, _websiteCtrl,
+      _linkedinCtrl, _facebookCtrl, _instagramCtrl, _telegramCtrl,
+      _youtubeCtrl, _xCtrl, _addressCtrl, _aboutMeCtrl,
+    ];
+    for (final ctrl in controllers) {
+      ctrl.removeListener(_onFieldChanged);
+      ctrl.dispose();
+    }
     super.dispose();
   }
 
@@ -120,29 +199,34 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
     );
   }
 
-  void _save() {
+  Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
 
     final card = BusinessCard(
       id: widget.existingCard?.id ?? DateTime.now().millisecondsSinceEpoch.toString(),
       profileImagePath: _profileImagePath,
       fullName: _fullNameCtrl.text.trim(),
+      tagline: _taglineCtrl.text.trim(),
       jobTitle: _jobTitleCtrl.text.trim(),
       companyName: _companyNameCtrl.text.trim(),
-      mobileNumber: _mobileCtrl.text.trim(),
-      whatsappNumber: _whatsappCtrl.text.trim(),
+      mobileNumber: _prefixed(_mobileCountry, _mobileCtrl.text),
+      mobileNumber2: _prefixed(_mobile2Country, _mobileCtrl2.text),
+      whatsappNumber: _prefixed(_whatsappCountry, _whatsappCtrl.text),
       email: _emailCtrl.text.trim(),
       website: _websiteCtrl.text.trim(),
       linkedin: _linkedinCtrl.text.trim(),
       facebook: _facebookCtrl.text.trim(),
       instagram: _instagramCtrl.text.trim(),
       telegram: _telegramCtrl.text.trim(),
+      youtube: _youtubeCtrl.text.trim(),
+      x: _xCtrl.text.trim(),
       address: _addressCtrl.text.trim(),
       aboutMe: _aboutMeCtrl.text.trim(),
+      templateId: _selectedTemplateId,
     );
 
-    context.read<BusinessCardCubit>().saveCard(card);
-    context.go('/card-preview');
+    await context.read<BusinessCardCubit>().saveCard(card);
+    if (mounted) context.go('/');
   }
 
   @override
@@ -157,6 +241,10 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
           key: _formKey,
           child: Column(
             children: [
+              _buildLivePreview(),
+              const SizedBox(height: 20),
+              _buildTemplatePicker(),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: _showImagePicker,
                 child: CircleAvatar(
@@ -183,6 +271,12 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
               ),
               const SizedBox(height: 12),
               AppTextField(
+                controller: _taglineCtrl,
+                label: 'Tagline',
+                prefixIcon: const Icon(Icons.short_text),
+              ),
+              const SizedBox(height: 12),
+              AppTextField(
                 controller: _jobTitleCtrl,
                 label: 'Job Title',
                 prefixIcon: const Icon(Icons.work),
@@ -194,18 +288,28 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
                 prefixIcon: const Icon(Icons.business),
               ),
               const SizedBox(height: 12),
-              AppTextField(
+              PhoneField(
                 controller: _mobileCtrl,
                 label: 'Mobile Number',
-                keyboardType: TextInputType.phone,
-                prefixIcon: const Icon(Icons.phone),
+                icon: Icons.phone,
+                selectedCountry: _mobileCountry,
+                onCountryChanged: (c) => setState(() => _mobileCountry = c),
               ),
               const SizedBox(height: 12),
-              AppTextField(
+              PhoneField(
+                controller: _mobileCtrl2,
+                label: 'Mobile Number 2',
+                icon: Icons.phone,
+                selectedCountry: _mobile2Country,
+                onCountryChanged: (c) => setState(() => _mobile2Country = c),
+              ),
+              const SizedBox(height: 12),
+              PhoneField(
                 controller: _whatsappCtrl,
                 label: 'WhatsApp Number',
-                keyboardType: TextInputType.phone,
-                prefixIcon: const Icon(Icons.chat),
+                icon: Icons.chat,
+                selectedCountry: _whatsappCountry,
+                onCountryChanged: (c) => setState(() => _whatsappCountry = c),
               ),
               const SizedBox(height: 12),
               AppTextField(
@@ -247,6 +351,18 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
               ),
               const SizedBox(height: 12),
               AppTextField(
+                controller: _youtubeCtrl,
+                label: 'YouTube',
+                prefixIcon: const Icon(Icons.videocam),
+              ),
+              const SizedBox(height: 12),
+              AppTextField(
+                controller: _xCtrl,
+                label: 'X (Twitter)',
+                prefixIcon: const Icon(Icons.alternate_email),
+              ),
+              const SizedBox(height: 12),
+              AppTextField(
                 controller: _addressCtrl,
                 label: 'Address',
                 prefixIcon: const Icon(Icons.location_on),
@@ -268,6 +384,76 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildLivePreview() {
+    return Column(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BusinessCardWidget(
+            card: _previewCard,
+            width: MediaQuery.of(context).size.width - 32,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTemplatePicker() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Card Theme', style: Theme.of(context).textTheme.titleMedium),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 80,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: CardTemplate.all.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            itemBuilder: (context, index) {
+              final t = CardTemplate.all[index];
+              final selected = t.id == _selectedTemplateId;
+              return GestureDetector(
+                onTap: () => setState(() => _selectedTemplateId = t.id),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  width: 70,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    gradient: LinearGradient(
+                      colors: t.gradientColors,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    border: selected
+                        ? Border.all(color: Theme.of(context).colorScheme.primary, width: 3)
+                        : null,
+                    boxShadow: selected
+                        ? [BoxShadow(color: t.gradientColors.first.withValues(alpha: 0.4), blurRadius: 8)]
+                        : null,
+                  ),
+                  child: Center(
+                    child: Text(
+                      t.name,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: t.textColor,
+                        fontSize: 9,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

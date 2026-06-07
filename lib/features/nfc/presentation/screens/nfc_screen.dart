@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/nfc/presentation/cubit/nfc_cubit.dart';
+import 'package:business_card/features/scanned_cards/presentation/screens/card_view_screen.dart';
 
 class NfcScreen extends StatelessWidget {
   const NfcScreen({super.key});
@@ -53,7 +54,18 @@ class NfcScreen extends StatelessWidget {
           }
 
           if (state.readCard != null) {
-            return _buildReadCard(context, theme, state.readCard!);
+            final card = state.readCard!;
+            final localCard = context.read<BusinessCardCubit>().state.selectedCard;
+            final isOwnCard = localCard != null && localCard.fullName == card.fullName;
+            final displayCard = isOwnCard ? localCard : card;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => CardViewScreen(card: displayCard, showSave: !isOwnCard),
+                ),
+              ).then((_) => context.read<NfcCubit>().clearState());
+            });
+            return const SizedBox.shrink();
           }
 
           return _buildActions(context, theme, state);
@@ -63,7 +75,7 @@ class NfcScreen extends StatelessWidget {
   }
 
   Widget _buildActions(BuildContext context, ThemeData theme, NfcState state) {
-    final hasCard = context.read<BusinessCardCubit>().hasCard;
+    final hasCard = context.read<BusinessCardCubit>().state.cards.isNotEmpty;
     final isBusy = state.isPolling;
 
     return Center(
@@ -90,7 +102,7 @@ class NfcScreen extends StatelessWidget {
                   onPressed: isBusy
                       ? null
                       : () {
-                          final card = context.read<BusinessCardCubit>().state.card;
+                          final card = context.read<BusinessCardCubit>().state.selectedCard;
                           if (card != null) {
                             context.read<NfcCubit>().writeCard(card);
                           }
@@ -112,52 +124,6 @@ class NfcScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildReadCard(BuildContext context, ThemeData theme, dynamic card) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          Icon(Icons.person, size: 60, color: theme.colorScheme.primary),
-          const SizedBox(height: 16),
-          Text(card.fullName, style: theme.textTheme.headlineSmall),
-          if (card.jobTitle.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            Text(card.jobTitle, style: theme.textTheme.titleMedium),
-          ],
-          if (card.companyName.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            Text(card.companyName, style: theme.textTheme.bodyLarge),
-          ],
-          const SizedBox(height: 24),
-          if (card.mobileNumber.isNotEmpty)
-            _readInfoTile(Icons.phone, card.mobileNumber),
-          if (card.whatsappNumber.isNotEmpty)
-            _readInfoTile(Icons.chat, card.whatsappNumber),
-          if (card.email.isNotEmpty)
-            _readInfoTile(Icons.email, card.email),
-          if (card.website.isNotEmpty)
-            _readInfoTile(Icons.language, card.website),
-          if (card.address.isNotEmpty)
-            _readInfoTile(Icons.location_on, card.address),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () => context.read<NfcCubit>().clearState(),
-            child: const Text('Done'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _readInfoTile(IconData icon, String text) {
-    return Card(
-      child: ListTile(
-        leading: Icon(icon),
-        title: Text(text),
       ),
     );
   }

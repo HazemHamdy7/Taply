@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,32 +10,29 @@ import 'package:business_card/features/business_card/domain/entities/business_ca
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 
 String _cardToQrData(BusinessCard c) {
-  final lines = <String>[
-    'BEGIN:VCARD',
-    'VERSION:3.0',
-    if (c.fullName.isNotEmpty) 'FN:${c.fullName}',
-    if (c.jobTitle.isNotEmpty) 'TITLE:${c.jobTitle}',
-    if (c.companyName.isNotEmpty) 'ORG:${c.companyName}',
-    if (c.mobileNumber.isNotEmpty) 'TEL;TYPE=CELL:${c.mobileNumber}',
-    if (c.whatsappNumber.isNotEmpty) 'TEL;TYPE=OTHER:${c.whatsappNumber}',
-    if (c.email.isNotEmpty) 'EMAIL:${c.email}',
-    if (c.website.isNotEmpty) 'URL:${c.website}',
-    if (c.address.isNotEmpty) 'ADR;TYPE=WORK:;;${c.address}',
-    if (c.linkedin.isNotEmpty ||
-        c.facebook.isNotEmpty ||
-        c.instagram.isNotEmpty ||
-        c.telegram.isNotEmpty ||
-        c.aboutMe.isNotEmpty)
-      'NOTE:${[
-        if (c.linkedin.isNotEmpty) 'LinkedIn: ${c.linkedin}',
-        if (c.facebook.isNotEmpty) 'Facebook: ${c.facebook}',
-        if (c.instagram.isNotEmpty) 'Instagram: ${c.instagram}',
-        if (c.telegram.isNotEmpty) 'Telegram: ${c.telegram}',
-        if (c.aboutMe.isNotEmpty) c.aboutMe,
-      ].join('\\n')}',
-    'END:VCARD',
-  ];
-  return lines.join('\n');
+  final map = <String, String>{
+    'id': c.id ?? '',
+    'fullName': c.fullName,
+    'jobTitle': c.jobTitle,
+    'companyName': c.companyName,
+    'tagline': c.tagline,
+    'mobileNumber': c.mobileNumber,
+    'mobileNumber2': c.mobileNumber2,
+    'whatsappNumber': c.whatsappNumber,
+    'email': c.email,
+    'website': c.website,
+    'linkedin': c.linkedin,
+    'facebook': c.facebook,
+    'instagram': c.instagram,
+    'telegram': c.telegram,
+    'youtube': c.youtube,
+    'x': c.x,
+    'address': c.address,
+    'aboutMe': c.aboutMe,
+    'templateId': c.templateId,
+  };
+  map.remove('id');
+  return 'BCARD:${jsonEncode(map)}';
 }
 
 class QRScreen extends StatefulWidget {
@@ -94,7 +92,7 @@ class _QRScreenState extends State<QRScreen> {
       ),
       body: BlocBuilder<BusinessCardCubit, BusinessCardState>(
         builder: (context, state) {
-          final card = state.card;
+          final card = state.selectedCard;
 
           if (card == null) {
             return Center(

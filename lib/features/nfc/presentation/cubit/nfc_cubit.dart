@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:ndef/ndef.dart' as ndef;
@@ -116,35 +117,38 @@ class NfcCubit extends Cubit<NfcState> {
   }
 
   String _cardToNdefPayload(BusinessCard card) {
-    final lines = <String>[
-      'BEGIN:VCARD',
-      'VERSION:3.0',
-      if (card.fullName.isNotEmpty) 'FN:${card.fullName}',
-      if (card.jobTitle.isNotEmpty) 'TITLE:${card.jobTitle}',
-      if (card.companyName.isNotEmpty) 'ORG:${card.companyName}',
-      if (card.mobileNumber.isNotEmpty) 'TEL;TYPE=CELL:${card.mobileNumber}',
-      if (card.whatsappNumber.isNotEmpty) 'TEL;TYPE=OTHER:${card.whatsappNumber}',
-      if (card.email.isNotEmpty) 'EMAIL:${card.email}',
-      if (card.website.isNotEmpty) 'URL:${card.website}',
-      if (card.address.isNotEmpty) 'ADR;TYPE=WORK:;;${card.address}',
-      if (card.linkedin.isNotEmpty ||
-          card.facebook.isNotEmpty ||
-          card.instagram.isNotEmpty ||
-          card.telegram.isNotEmpty ||
-          card.aboutMe.isNotEmpty)
-        'NOTE:${[
-          if (card.linkedin.isNotEmpty) 'LinkedIn: ${card.linkedin}',
-          if (card.facebook.isNotEmpty) 'Facebook: ${card.facebook}',
-          if (card.instagram.isNotEmpty) 'Instagram: ${card.instagram}',
-          if (card.telegram.isNotEmpty) 'Telegram: ${card.telegram}',
-          if (card.aboutMe.isNotEmpty) card.aboutMe,
-        ].join('\\n')}',
-      'END:VCARD',
-    ];
-    return lines.join('\n');
+    final map = {
+      'fullName': card.fullName,
+      'jobTitle': card.jobTitle,
+      'companyName': card.companyName,
+      'tagline': card.tagline,
+      'mobileNumber': card.mobileNumber,
+      'mobileNumber2': card.mobileNumber2,
+      'whatsappNumber': card.whatsappNumber,
+      'email': card.email,
+      'website': card.website,
+      'linkedin': card.linkedin,
+      'facebook': card.facebook,
+      'instagram': card.instagram,
+      'telegram': card.telegram,
+      'youtube': card.youtube,
+      'x': card.x,
+      'address': card.address,
+      'aboutMe': card.aboutMe,
+      'templateId': card.templateId,
+    };
+    return 'BCARD:${jsonEncode(map)}';
   }
 
   BusinessCard _parseCardData(String data) {
+    if (data.startsWith('BCARD:')) {
+      try {
+        final json = data.substring(6);
+        final map = Map<String, String>.from(jsonDecode(json));
+        return BusinessCard.fromMap(map);
+      } catch (_) {}
+    }
+
     final map = <String, String>{};
     for (final line in data.split('\n')) {
       final trimmed = line.trim();

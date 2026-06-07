@@ -1,27 +1,21 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
+part of 'scanned_card_model.dart';
 
-part of 'business_card_model.dart';
-
-// **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
-
-class BusinessCardModelAdapter extends TypeAdapter<BusinessCardModel> {
+class ScannedCardModelAdapter extends TypeAdapter<ScannedCardModel> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  BusinessCardModel read(BinaryReader reader) {
+  ScannedCardModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return BusinessCardModel(
-      id: fields[0] as String?,
-      profileImagePath: fields[1] as String?,
-      fullName: (fields[2] as String?) ?? '',
-      jobTitle: (fields[3] as String?) ?? '',
-      companyName: (fields[4] as String?) ?? '',
+    return ScannedCardModel(
+      id: (fields[0] as String?) ?? '',
+      fullName: (fields[1] as String?) ?? '',
+      jobTitle: (fields[2] as String?) ?? '',
+      companyName: (fields[3] as String?) ?? '',
+      tagline: (fields[4] as String?) ?? '',
       mobileNumber: (fields[5] as String?) ?? '',
       whatsappNumber: (fields[6] as String?) ?? '',
       email: (fields[7] as String?) ?? '',
@@ -30,30 +24,32 @@ class BusinessCardModelAdapter extends TypeAdapter<BusinessCardModel> {
       facebook: (fields[10] as String?) ?? '',
       instagram: (fields[11] as String?) ?? '',
       telegram: (fields[12] as String?) ?? '',
-      address: (fields[13] as String?) ?? '',
-      aboutMe: (fields[14] as String?) ?? '',
-      tagline: (fields[15] as String?) ?? '',
-      youtube: (fields[16] as String?) ?? '',
-      x: (fields[17] as String?) ?? '',
-      templateId: (fields[18] as String?) ?? 'default',
-      mobileNumber2: (fields[19] as String?) ?? '',
+      youtube: (fields[13] as String?) ?? '',
+      x: (fields[14] as String?) ?? '',
+      address: (fields[15] as String?) ?? '',
+      aboutMe: (fields[16] as String?) ?? '',
+      templateId: (fields[17] as String?) ?? 'default',
+      profileImagePath: fields[18] as String?,
+      scanDate: (fields[19] as DateTime?) ?? DateTime.now(),
+      isFavorite: (fields[20] as bool?) ?? false,
+      mobileNumber2: (fields[21] as String?) ?? '',
     );
   }
 
   @override
-  void write(BinaryWriter writer, BusinessCardModel obj) {
+  void write(BinaryWriter writer, ScannedCardModel obj) {
     writer
-      ..writeByte(20)
+      ..writeByte(22)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.profileImagePath)
-      ..writeByte(2)
       ..write(obj.fullName)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.jobTitle)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.companyName)
+      ..writeByte(4)
+      ..write(obj.tagline)
       ..writeByte(5)
       ..write(obj.mobileNumber)
       ..writeByte(6)
@@ -71,18 +67,22 @@ class BusinessCardModelAdapter extends TypeAdapter<BusinessCardModel> {
       ..writeByte(12)
       ..write(obj.telegram)
       ..writeByte(13)
-      ..write(obj.address)
-      ..writeByte(14)
-      ..write(obj.aboutMe)
-      ..writeByte(15)
-      ..write(obj.tagline)
-      ..writeByte(16)
       ..write(obj.youtube)
-      ..writeByte(17)
+      ..writeByte(14)
       ..write(obj.x)
-      ..writeByte(18)
+      ..writeByte(15)
+      ..write(obj.address)
+      ..writeByte(16)
+      ..write(obj.aboutMe)
+      ..writeByte(17)
       ..write(obj.templateId)
+      ..writeByte(18)
+      ..write(obj.profileImagePath)
       ..writeByte(19)
+      ..write(obj.scanDate)
+      ..writeByte(20)
+      ..write(obj.isFavorite)
+      ..writeByte(21)
       ..write(obj.mobileNumber2);
   }
 
@@ -92,7 +92,7 @@ class BusinessCardModelAdapter extends TypeAdapter<BusinessCardModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is BusinessCardModelAdapter &&
+      other is ScannedCardModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
