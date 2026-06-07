@@ -1,12 +1,41 @@
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gal/gal.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
-import 'package:business_card/features/qr/presentation/cubit/qr_cubit.dart';
+
+String _cardToQrData(BusinessCard c) {
+  final lines = <String>[
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    if (c.fullName.isNotEmpty) 'FN:${c.fullName}',
+    if (c.jobTitle.isNotEmpty) 'TITLE:${c.jobTitle}',
+    if (c.companyName.isNotEmpty) 'ORG:${c.companyName}',
+    if (c.mobileNumber.isNotEmpty) 'TEL;TYPE=CELL:${c.mobileNumber}',
+    if (c.whatsappNumber.isNotEmpty) 'TEL;TYPE=OTHER:${c.whatsappNumber}',
+    if (c.email.isNotEmpty) 'EMAIL:${c.email}',
+    if (c.website.isNotEmpty) 'URL:${c.website}',
+    if (c.address.isNotEmpty) 'ADR;TYPE=WORK:;;${c.address}',
+    if (c.linkedin.isNotEmpty ||
+        c.facebook.isNotEmpty ||
+        c.instagram.isNotEmpty ||
+        c.telegram.isNotEmpty ||
+        c.aboutMe.isNotEmpty)
+      'NOTE:${[
+        if (c.linkedin.isNotEmpty) 'LinkedIn: ${c.linkedin}',
+        if (c.facebook.isNotEmpty) 'Facebook: ${c.facebook}',
+        if (c.instagram.isNotEmpty) 'Instagram: ${c.instagram}',
+        if (c.telegram.isNotEmpty) 'Telegram: ${c.telegram}',
+        if (c.aboutMe.isNotEmpty) c.aboutMe,
+      ].join('\\n')}',
+    'END:VCARD',
+  ];
+  return lines.join('\n');
+}
 
 class QRScreen extends StatefulWidget {
   const QRScreen({super.key});
@@ -17,25 +46,35 @@ class QRScreen extends StatefulWidget {
 
 class _QRScreenState extends State<QRScreen> {
   final _qrKey = GlobalKey();
-  Uint8List? _qrBytes;
+  bool _isSaving = false;
 
-  @override
-  void initState() {
-    super.initState();
-    final cardCubit = context.read<BusinessCardCubit>();
-    final card = cardCubit.state.card;
-    if (card != null) {
-      context.read<QrCubit>().loadCard(card);
-    }
-  }
-
-  Future<void> _captureQr() async {
+  Future<void> _saveQrImage() async {
     final boundary = _qrKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
     if (boundary == null) return;
     final image = await boundary.toImage(pixelRatio: 3.0);
     final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     if (byteData == null) return;
-    _qrBytes = byteData.buffer.asUint8List();
+
+    setState(() => _isSaving = true);
+
+    try {
+      await Gal.putImageBytes(
+        byteData.buffer.asUint8List(),
+        name: 'business_card_qr_${DateTime.now().millisecondsSinceEpoch}',
+      );
+
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('QR Code saved to gallery')),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error saving: $e')),
+      );
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
   }
 
   @override
@@ -43,15 +82,26 @@ class _QRScreenState extends State<QRScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('QR Code')),
-      body: BlocBuilder<QrCubit, QrState>(
+      appBar: AppBar(
+        title: const Text('QR Code'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.qr_code_scanner),
+            tooltip: 'Scan QR',
+            onPressed: () => context.push('/qr-scanner'),
+          ),
+        ],
+      ),
+      body: BlocBuilder<BusinessCardCubit, BusinessCardState>(
         builder: (context, state) {
-          if (state.card == null) {
+          final card = state.card;
+
+          if (card == null) {
             return Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.qr_code_2, size: 80),
+                  Icon(Icons.qr_code_2, size: 80, color: theme.disabledColor),
                   const SizedBox(height: 16),
                   const Text('No card data available'),
                   const SizedBox(height: 16),
@@ -64,6 +114,8 @@ class _QRScreenState extends State<QRScreen> {
             );
           }
 
+          final qrData = _cardToQrData(card);
+
           return SingleChildScrollView(
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -73,86 +125,46 @@ class _QRScreenState extends State<QRScreen> {
                     padding: const EdgeInsets.all(24),
                     child: RepaintBoundary(
                       key: _qrKey,
-                      child: QrImageView(
-                        data: context.read<QrCubit>().qrData,
-                        version: QrVersions.auto,
-                        size: 250,
-                        eyeStyle: QrEyeStyle(
-                          eyeShape: QrEyeShape.square,
-                          color: theme.colorScheme.primary,
-                        ),
-                        dataModuleStyle: QrDataModuleStyle(
-                          dataModuleShape: QrDataModuleShape.square,
-                          color: theme.colorScheme.primary,
+                      child: Container(
+                        color: Colors.white,
+                        padding: const EdgeInsets.all(16),
+                        child: QrImageView(
+                          data: qrData,
+                          version: QrVersions.auto,
+                          size: 300,
+                          eyeStyle: const QrEyeStyle(
+                            eyeShape: QrEyeShape.square,
+                            color: Colors.black,
+                          ),
+                          dataModuleStyle: const QrDataModuleStyle(
+                            dataModuleShape: QrDataModuleShape.square,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 24),
-                Text(
-                  state.card!.fullName,
-                  style: theme.textTheme.titleLarge,
-                ),
-                if (state.card!.companyName.isNotEmpty)
-                  Text(
-                    state.card!.companyName,
-                    style: theme.textTheme.bodyMedium,
-                  ),
+                Text(card.fullName, style: theme.textTheme.titleLarge),
+                if (card.companyName.isNotEmpty)
+                  Text(card.companyName, style: theme.textTheme.bodyMedium),
                 const SizedBox(height: 32),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _QrActionButton(
-                      icon: Icons.save_alt,
-                      label: 'Save',
-                      onTap: () async {
-                        await _captureQr();
-                        if (_qrBytes != null && context.mounted) {
-                          context.read<QrCubit>().saveQrImage(_qrKey);
-                        }
-                      },
-                    ),
-                    _QrActionButton(
-                      icon: Icons.share,
-                      label: 'Share',
-                      onTap: () async {
-                        await _captureQr();
-                        if (_qrBytes != null && context.mounted) {
-                          context.read<QrCubit>().shareQrImage(_qrBytes!);
-                        }
-                      },
-                    ),
-                  ],
+                ElevatedButton.icon(
+                  onPressed: _isSaving ? null : _saveQrImage,
+                  icon: _isSaving
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.save_alt),
+                  label: const Text('Save QR'),
                 ),
               ],
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class _QrActionButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-
-  const _QrActionButton({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      onPressed: onTap,
-      icon: Icon(icon),
-      label: Text(label),
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(130, 48),
       ),
     );
   }

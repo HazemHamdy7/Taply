@@ -116,46 +116,69 @@ class NfcCubit extends Cubit<NfcState> {
   }
 
   String _cardToNdefPayload(BusinessCard card) {
-    return [
-      'FN:${card.fullName}',
-      'JT:${card.jobTitle}',
-      'CO:${card.companyName}',
-      'MB:${card.mobileNumber}',
-      'WA:${card.whatsappNumber}',
-      'EM:${card.email}',
-      'WE:${card.website}',
-      'LI:${card.linkedin}',
-      'FB:${card.facebook}',
-      'IG:${card.instagram}',
-      'TG:${card.telegram}',
-      'AD:${card.address}',
-      'AB:${card.aboutMe}',
-    ].join('|');
+    final lines = <String>[
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      if (card.fullName.isNotEmpty) 'FN:${card.fullName}',
+      if (card.jobTitle.isNotEmpty) 'TITLE:${card.jobTitle}',
+      if (card.companyName.isNotEmpty) 'ORG:${card.companyName}',
+      if (card.mobileNumber.isNotEmpty) 'TEL;TYPE=CELL:${card.mobileNumber}',
+      if (card.whatsappNumber.isNotEmpty) 'TEL;TYPE=OTHER:${card.whatsappNumber}',
+      if (card.email.isNotEmpty) 'EMAIL:${card.email}',
+      if (card.website.isNotEmpty) 'URL:${card.website}',
+      if (card.address.isNotEmpty) 'ADR;TYPE=WORK:;;${card.address}',
+      if (card.linkedin.isNotEmpty ||
+          card.facebook.isNotEmpty ||
+          card.instagram.isNotEmpty ||
+          card.telegram.isNotEmpty ||
+          card.aboutMe.isNotEmpty)
+        'NOTE:${[
+          if (card.linkedin.isNotEmpty) 'LinkedIn: ${card.linkedin}',
+          if (card.facebook.isNotEmpty) 'Facebook: ${card.facebook}',
+          if (card.instagram.isNotEmpty) 'Instagram: ${card.instagram}',
+          if (card.telegram.isNotEmpty) 'Telegram: ${card.telegram}',
+          if (card.aboutMe.isNotEmpty) card.aboutMe,
+        ].join('\\n')}',
+      'END:VCARD',
+    ];
+    return lines.join('\n');
   }
 
   BusinessCard _parseCardData(String data) {
-    final fields = data.split('|');
-    String get(String prefix) {
-      for (final f in fields) {
-        if (f.startsWith(prefix)) return f.substring(3);
-      }
-      return '';
+    final map = <String, String>{};
+    for (final line in data.split('\n')) {
+      final trimmed = line.trim();
+      if (trimmed.isEmpty ||
+          trimmed == 'BEGIN:VCARD' ||
+          trimmed == 'END:VCARD' ||
+          trimmed.startsWith('VERSION:')) continue;
+
+      final idx = trimmed.indexOf(':');
+      if (idx == -1) continue;
+
+      final key = trimmed.substring(0, idx);
+      final value = trimmed.substring(idx + 1).trim();
+
+      final prop = key.split(';').first;
+      map[prop] = value;
     }
 
+    final fullName = map['FN'] ?? '';
+    final note = map['NOTE'] ?? '';
+
     return BusinessCard(
-      fullName: get('FN:'),
-      jobTitle: get('JT:'),
-      companyName: get('CO:'),
-      mobileNumber: get('MB:'),
-      whatsappNumber: get('WA:'),
-      email: get('EM:'),
-      website: get('WE:'),
-      linkedin: get('LI:'),
-      facebook: get('FB:'),
-      instagram: get('IG:'),
-      telegram: get('TG:'),
-      address: get('AD:'),
-      aboutMe: get('AB:'),
+      fullName: fullName,
+      jobTitle: map['TITLE'] ?? '',
+      companyName: map['ORG'] ?? '',
+      mobileNumber:
+          map['TEL'] != null ? map['TEL']!.split('\\n').first : '',
+      email: map['EMAIL'] ?? '',
+      website: map['URL'] ?? '',
+      address: map['ADR']
+              ?.replaceAll(RegExp(r'^;+'), '')
+              .replaceAll(';', ', ') ??
+          '',
+      aboutMe: note,
     );
   }
 

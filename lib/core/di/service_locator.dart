@@ -6,7 +6,6 @@ import 'package:business_card/features/business_card/data/models/business_card_m
 import 'package:business_card/features/business_card/data/repositories/business_card_repository_impl.dart';
 import 'package:business_card/features/business_card/domain/repositories/business_card_repository.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
-import 'package:business_card/features/qr/presentation/cubit/qr_cubit.dart';
 import 'package:business_card/features/nfc/presentation/cubit/nfc_cubit.dart';
 import 'package:business_card/features/settings/presentation/cubit/settings_cubit.dart';
 
@@ -39,7 +38,6 @@ void _initRepositories() {
 
 void _initCubits() {
   sl.registerLazySingleton(() => BusinessCardCubit(sl()));
-  sl.registerLazySingleton(() => QrCubit());
   sl.registerLazySingleton(() => NfcCubit());
   sl.registerLazySingleton(() => SettingsCubit(sl()));
 }
