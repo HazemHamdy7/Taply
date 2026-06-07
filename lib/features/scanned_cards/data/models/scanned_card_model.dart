@@ -73,8 +73,12 @@ class ScannedCardModel extends ScannedCard {
   @HiveField(21)
   final String mobileNumber2;
 
+  @HiveField(22)
+  final String cardId;
+
   const ScannedCardModel({
     required this.id,
+    this.cardId = '',
     this.fullName = '',
     this.jobTitle = '',
     this.companyName = '',
@@ -98,6 +102,7 @@ class ScannedCardModel extends ScannedCard {
     this.mobileNumber2 = '',
   }) : super(
           id: id,
+          cardId: cardId,
           fullName: fullName,
           jobTitle: jobTitle,
           companyName: companyName,
@@ -124,6 +129,7 @@ class ScannedCardModel extends ScannedCard {
   factory ScannedCardModel.fromEntity(ScannedCard entity) {
     return ScannedCardModel(
       id: entity.id,
+      cardId: entity.cardId,
       fullName: entity.fullName,
       jobTitle: entity.jobTitle,
       companyName: entity.companyName,
@@ -151,6 +157,7 @@ class ScannedCardModel extends ScannedCard {
   ScannedCard toEntity() {
     return ScannedCard(
       id: id,
+      cardId: cardId,
       fullName: fullName,
       jobTitle: jobTitle,
       companyName: companyName,

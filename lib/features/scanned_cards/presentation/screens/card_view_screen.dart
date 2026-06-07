@@ -92,6 +92,7 @@ class CardViewScreen extends StatelessWidget {
   Future<void> _saveCard(BuildContext context) async {
     final scanned = ScannedCard(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
+      cardId: card.id ?? '',
       fullName: card.fullName,
       jobTitle: card.jobTitle,
       companyName: card.companyName,

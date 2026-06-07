@@ -2,6 +2,7 @@ import 'package:business_card/features/business_card/domain/entities/business_ca
 
 class ScannedCard {
   final String id;
+  final String cardId;
   final String fullName;
   final String jobTitle;
   final String companyName;
@@ -26,6 +27,7 @@ class ScannedCard {
 
   const ScannedCard({
     required this.id,
+    this.cardId = '',
     this.fullName = '',
     this.jobTitle = '',
     this.companyName = '',
@@ -76,6 +78,7 @@ class ScannedCard {
 
   ScannedCard copyWith({
     String? id,
+    String? cardId,
     String? fullName,
     String? jobTitle,
     String? companyName,
@@ -101,6 +104,7 @@ class ScannedCard {
   }) {
     return ScannedCard(
       id: id ?? this.id,
+      cardId: cardId ?? this.cardId,
       fullName: fullName ?? this.fullName,
       jobTitle: jobTitle ?? this.jobTitle,
       companyName: companyName ?? this.companyName,

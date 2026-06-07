@@ -73,6 +73,7 @@ class ScannedCardRepositoryImpl implements ScannedCardRepository {
   @override
   Future<bool> existsByData(ScannedCard card) async {
     final all = _box.values.toList();
+    if (card.cardId.isNotEmpty && all.any((c) => c.cardId == card.cardId)) return true;
     return all.any((c) =>
       c.fullName == card.fullName &&
       c.mobileNumber == card.mobileNumber &&

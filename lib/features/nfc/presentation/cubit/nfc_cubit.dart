@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:ndef/ndef.dart' as ndef;
@@ -118,6 +119,7 @@ class NfcCubit extends Cubit<NfcState> {
 
   String _cardToNdefPayload(BusinessCard card) {
     final map = {
+      'id': card.id,
       'fullName': card.fullName,
       'jobTitle': card.jobTitle,
       'companyName': card.companyName,
@@ -137,10 +139,20 @@ class NfcCubit extends Cubit<NfcState> {
       'aboutMe': card.aboutMe,
       'templateId': card.templateId,
     };
-    return 'BCARD:${jsonEncode(map)}';
+    final json = jsonEncode(map);
+    final compressed = GZipCodec().encode(utf8.encode(json));
+    return 'BCARDZ:${base64Encode(compressed)}';
   }
 
   BusinessCard _parseCardData(String data) {
+    if (data.startsWith('BCARDZ:')) {
+      try {
+        final compressed = base64Decode(data.substring(7));
+        final json = utf8.decode(GZipCodec().decode(compressed));
+        final map = Map<String, String>.from(jsonDecode(json));
+        return BusinessCard.fromMap(map);
+      } catch (_) {}
+    }
     if (data.startsWith('BCARD:')) {
       try {
         final json = data.substring(6);

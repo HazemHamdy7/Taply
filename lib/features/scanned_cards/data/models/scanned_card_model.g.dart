@@ -12,6 +12,7 @@ class ScannedCardModelAdapter extends TypeAdapter<ScannedCardModel> {
     };
     return ScannedCardModel(
       id: (fields[0] as String?) ?? '',
+      cardId: (fields[22] as String?) ?? '',
       fullName: (fields[1] as String?) ?? '',
       jobTitle: (fields[2] as String?) ?? '',
       companyName: (fields[3] as String?) ?? '',
@@ -39,7 +40,7 @@ class ScannedCardModelAdapter extends TypeAdapter<ScannedCardModel> {
   @override
   void write(BinaryWriter writer, ScannedCardModel obj) {
     writer
-      ..writeByte(22)
+      ..writeByte(23)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -83,7 +84,9 @@ class ScannedCardModelAdapter extends TypeAdapter<ScannedCardModel> {
       ..writeByte(20)
       ..write(obj.isFavorite)
       ..writeByte(21)
-      ..write(obj.mobileNumber2);
+      ..write(obj.mobileNumber2)
+      ..writeByte(22)
+      ..write(obj.cardId);
   }
 
   @override

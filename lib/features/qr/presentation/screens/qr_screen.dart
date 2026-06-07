@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -31,8 +32,9 @@ String _cardToQrData(BusinessCard c) {
     'aboutMe': c.aboutMe,
     'templateId': c.templateId,
   };
-  map.remove('id');
-  return 'BCARD:${jsonEncode(map)}';
+  final json = jsonEncode(map);
+  final compressed = GZipCodec().encode(utf8.encode(json));
+  return 'BCARDZ:${base64Encode(compressed)}';
 }
 
 class QRScreen extends StatefulWidget {
