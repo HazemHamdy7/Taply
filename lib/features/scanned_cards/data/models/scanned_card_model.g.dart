@@ -34,13 +34,14 @@ class ScannedCardModelAdapter extends TypeAdapter<ScannedCardModel> {
       scanDate: (fields[19] as DateTime?) ?? DateTime.now(),
       isFavorite: (fields[20] as bool?) ?? false,
       mobileNumber2: (fields[21] as String?) ?? '',
+      categoryIds: (fields[23] as List?)?.cast<String>() ?? const [],
     );
   }
 
   @override
   void write(BinaryWriter writer, ScannedCardModel obj) {
     writer
-      ..writeByte(23)
+      ..writeByte(24)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -86,7 +87,9 @@ class ScannedCardModelAdapter extends TypeAdapter<ScannedCardModel> {
       ..writeByte(21)
       ..write(obj.mobileNumber2)
       ..writeByte(22)
-      ..write(obj.cardId);
+      ..write(obj.cardId)
+      ..writeByte(23)
+      ..write(obj.categoryIds);
   }
 
   @override

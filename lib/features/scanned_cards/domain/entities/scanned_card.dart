@@ -24,6 +24,7 @@ class ScannedCard {
   final String? profileImagePath;
   final DateTime scanDate;
   final bool isFavorite;
+  final List<String> categoryIds;
 
   const ScannedCard({
     required this.id,
@@ -49,6 +50,7 @@ class ScannedCard {
     this.profileImagePath,
     required this.scanDate,
     this.isFavorite = false,
+    this.categoryIds = const [],
   });
 
   BusinessCard toBusinessCard() {
@@ -100,6 +102,7 @@ class ScannedCard {
     String? profileImagePath,
     DateTime? scanDate,
     bool? isFavorite,
+    List<String>? categoryIds,
     bool clearImage = false,
   }) {
     return ScannedCard(
@@ -126,6 +129,7 @@ class ScannedCard {
       profileImagePath: clearImage ? null : (profileImagePath ?? this.profileImagePath),
       scanDate: scanDate ?? this.scanDate,
       isFavorite: isFavorite ?? this.isFavorite,
+      categoryIds: categoryIds ?? this.categoryIds,
     );
   }
 }

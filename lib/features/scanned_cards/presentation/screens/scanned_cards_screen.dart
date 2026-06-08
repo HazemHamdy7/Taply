@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
+import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
+import 'package:business_card/features/categories/presentation/widgets/category_chips_bar.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
 import 'package:business_card/features/scanned_cards/presentation/cubit/scanned_card_cubit.dart';
 import 'package:business_card/features/scanned_cards/presentation/screens/card_view_screen.dart';
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
+import 'package:business_card/features/categories/presentation/screens/category_manager_screen.dart';
 
 class ScannedCardsScreen extends StatefulWidget {
   const ScannedCardsScreen({super.key});
@@ -21,6 +24,7 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ScannedCardCubit>().load();
+      context.read<CategoryCubit>().load();
     });
   }
 
@@ -38,32 +42,90 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 30, 16, 8),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.searchScannedCards,
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: _searchController.text.isNotEmpty
-                    ? IconButton(
-                        icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          _searchController.clear();
-                          context.read<ScannedCardCubit>().search('');
-                        },
-                      )
-                    : null,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+            padding: const EdgeInsets.fromLTRB(16, 30, 16, 4),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText: AppLocalizations.of(context)!.searchScannedCards,
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: _searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                _searchController.clear();
+                                context.read<ScannedCardCubit>().search('');
+                              },
+                            )
+                          : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                    ),
+                    onChanged: (q) =>
+                        context.read<ScannedCardCubit>().search(q),
+                  ),
                 ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
+                const SizedBox(width: 8),
+                PopupMenuButton<String>(
+                  icon: const Icon(Icons.sort),
+                  tooltip: 'Sort',
+                  onSelected: (value) {
+                    switch (value) {
+                      case 'date':
+                        context
+                            .read<ScannedCardCubit>()
+                            .sortBy(SortMode.date);
+                      case 'name':
+                        context
+                            .read<ScannedCardCubit>()
+                            .sortBy(SortMode.name);
+                      case 'category':
+                        context
+                            .read<ScannedCardCubit>()
+                            .sortBy(SortMode.category);
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    const PopupMenuItem(
+                      value: 'date',
+                      child: Text('Sort by Date'),
+                    ),
+                    const PopupMenuItem(
+                      value: 'name',
+                      child: Text('Sort by Name'),
+                    ),
+                    const PopupMenuItem(
+                      value: 'category',
+                      child: Text('Sort by Category'),
+                    ),
+                  ],
                 ),
-              ),
-              onChanged: (q) => context.read<ScannedCardCubit>().search(q),
+                IconButton(
+                  icon: const Icon(Icons.label_outline),
+                  tooltip: 'Manage Categories',
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => BlocProvider.value(
+                          value: context.read<CategoryCubit>(),
+                          child: const CategoryManagerScreen(),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
           ),
+          const CategoryChipsBar(),
+          const SizedBox(height: 4),
           Expanded(
             child: BlocBuilder<ScannedCardCubit, ScannedCardState>(
               builder: (context, state) {
@@ -163,51 +225,67 @@ class _ScannedCardTile extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          card.fullName.isNotEmpty ? card.fullName : AppLocalizations.of(context)!.unknown,
-                          style: theme.textTheme.titleSmall?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        if (card.companyName.isNotEmpty)
-                          Text(
-                            card.companyName,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.textTheme.bodySmall?.color
-                                  ?.withValues(alpha: 0.6),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              card.fullName.isNotEmpty
+                                  ? card.fullName
+                                  : AppLocalizations.of(context)!.unknown,
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
-                          ),
-                      ],
+                            if (card.companyName.isNotEmpty)
+                              Text(
+                                card.companyName,
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: theme.textTheme.bodySmall?.color
+                                      ?.withValues(alpha: 0.6),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                      Text(
+                        _formatDate(card.scanDate),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.disabledColor,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          card.isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: card.isFavorite ? Colors.red : null,
+                          size: 20,
+                        ),
+                        onPressed: () => context
+                            .read<ScannedCardCubit>()
+                            .toggleFavorite(card.id),
+                        visualDensity: VisualDensity.compact,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.delete_outline, size: 20),
+                        onPressed: () => _confirmDelete(context),
+                        visualDensity: VisualDensity.compact,
+                      ),
+                    ],
+                  ),
+                  if (card.categoryIds.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: _CategoryLabels(
+                        categoryIds: card.categoryIds,
+                      ),
                     ),
-                  ),
-                  Text(
-                    _formatDate(card.scanDate),
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.disabledColor,
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      card.isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: card.isFavorite ? Colors.red : null,
-                      size: 20,
-                    ),
-                    onPressed: () => context
-                        .read<ScannedCardCubit>()
-                        .toggleFavorite(card.id),
-                    visualDensity: VisualDensity.compact,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.delete_outline, size: 20),
-                    onPressed: () => _confirmDelete(context),
-                    visualDensity: VisualDensity.compact,
-                  ),
                 ],
               ),
             ),
@@ -224,7 +302,12 @@ class _ScannedCardTile extends StatelessWidget {
   void _showDetail(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => CardViewScreen(card: card.toBusinessCard(), showSave: false),
+        builder: (_) => CardViewScreen(
+          card: card.toBusinessCard(),
+          showSave: false,
+          scannedCardId: card.id,
+          categoryIds: card.categoryIds,
+        ),
       ),
     );
   }
@@ -236,7 +319,9 @@ class _ScannedCardTile extends StatelessWidget {
         title: Text(AppLocalizations.of(ctx)!.deleteCard),
         content: Text(
           AppLocalizations.of(ctx)!.deleteCardConfirm(
-            card.fullName.isNotEmpty ? card.fullName : AppLocalizations.of(ctx)!.card,
+            card.fullName.isNotEmpty
+                ? card.fullName
+                : AppLocalizations.of(ctx)!.card,
           ),
         ),
         actions: [
@@ -249,10 +334,57 @@ class _ScannedCardTile extends StatelessWidget {
               context.read<ScannedCardCubit>().delete(card.id);
               Navigator.of(ctx).pop();
             },
-            child: Text(AppLocalizations.of(ctx)!.delete, style: const TextStyle(color: Colors.red)),
+            child: Text(
+              AppLocalizations.of(ctx)!.delete,
+              style: const TextStyle(color: Colors.red),
+            ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _CategoryLabels extends StatelessWidget {
+  final List<String> categoryIds;
+  const _CategoryLabels({required this.categoryIds});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return BlocBuilder<CategoryCubit, CategoryState>(
+      builder: (context, catState) {
+        final names = categoryIds
+            .map((id) => catState.categories
+                .where((c) => c.id == id)
+                .map((c) => c.name)
+                .firstOrNull)
+            .where((n) => n != null)
+            .toList();
+
+        if (names.isEmpty) return const SizedBox.shrink();
+
+        return Wrap(
+          spacing: 4,
+          runSpacing: 2,
+          children: names.take(3).map((name) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primaryContainer.withValues(alpha: 0.6),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                name!,
+                style: TextStyle(
+                  fontSize: 11,
+                  color: theme.colorScheme.onPrimaryContainer,
+                ),
+              ),
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }

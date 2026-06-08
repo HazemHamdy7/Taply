@@ -5,6 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
+import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
+import 'package:business_card/features/categories/presentation/widgets/category_picker_sheet.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
 import 'package:business_card/features/scanned_cards/presentation/cubit/scanned_card_cubit.dart';
 import 'package:business_card/shared/export/widgets/export_bottom_sheet.dart';
@@ -12,8 +14,16 @@ import 'package:business_card/shared/export/widgets/export_bottom_sheet.dart';
 class CardViewScreen extends StatelessWidget {
   final BusinessCard card;
   final bool showSave;
+  final String? scannedCardId;
+  final List<String> categoryIds;
 
-  const CardViewScreen({super.key, required this.card, this.showSave = true});
+  const CardViewScreen({
+    super.key,
+    required this.card,
+    this.showSave = true,
+    this.scannedCardId,
+    this.categoryIds = const [],
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +33,9 @@ class CardViewScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: Text(card.fullName.isNotEmpty ? card.fullName : AppLocalizations.of(context)!.card),
+        title: Text(card.fullName.isNotEmpty
+            ? card.fullName
+            : AppLocalizations.of(context)!.card),
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
@@ -48,6 +60,13 @@ class CardViewScreen extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: BusinessCardWidget(card: card, width: cardWidth),
             ),
+            if (scannedCardId != null) ...[
+              const SizedBox(height: 12),
+              _CategoriesSection(
+                scannedCardId: scannedCardId!,
+                categoryIds: categoryIds,
+              ),
+            ],
             if (card.tagline.isNotEmpty || card.aboutMe.isNotEmpty) ...[
               const SizedBox(height: 16),
               Card(
@@ -65,7 +84,8 @@ class CardViewScreen extends StatelessWidget {
                         if (card.tagline.isNotEmpty) const SizedBox(height: 8),
                         Text(card.aboutMe,
                             style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurface.withValues(alpha: 0.7))),
+                                color: theme.colorScheme.onSurface
+                                    .withValues(alpha: 0.7))),
                       ],
                     ],
                   ),
@@ -79,7 +99,9 @@ class CardViewScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
-                  onPressed: () async { await _saveCard(context); },
+                  onPressed: () async {
+                    await _saveCard(context);
+                  },
                   icon: const Icon(Icons.save),
                   label: Text(AppLocalizations.of(context)!.saveCard),
                 ),
@@ -122,16 +144,21 @@ class CardViewScreen extends StatelessWidget {
       templateId: card.templateId,
       scanDate: DateTime.now(),
     );
-    final saved = await context.read<ScannedCardCubit>().saveIfNotExists(scanned);
+    final saved =
+        await context.read<ScannedCardCubit>().saveIfNotExists(scanned);
     if (!context.mounted) return;
     if (saved) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.cardSaved), duration: const Duration(seconds: 2)),
+        SnackBar(
+            content: Text(AppLocalizations.of(context)!.cardSaved),
+            duration: const Duration(seconds: 2)),
       );
       context.goNamed('home', extra: 1);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.cardAlreadySaved), duration: const Duration(seconds: 2)),
+        SnackBar(
+            content: Text(AppLocalizations.of(context)!.cardAlreadySaved),
+            duration: const Duration(seconds: 2)),
       );
     }
   }
@@ -139,18 +166,40 @@ class CardViewScreen extends StatelessWidget {
   Widget _actionsSection(BuildContext context, ThemeData theme) {
     final tiles = <Widget>[];
     final loc = AppLocalizations.of(context)!;
-    _addTile(tiles, Icons.phone_outlined, loc.call, card.mobileNumber, () => _launch('tel:${card.mobileNumber}'));
-    _addTile(tiles, Icons.phone_outlined, loc.call2, card.mobileNumber2, () => _launch('tel:${card.mobileNumber2}'));
-    _addTile(tiles, Icons.chat_outlined, loc.whatsapp, card.whatsappNumber, () => _launch('https://wa.me/${card.whatsappNumber.replaceAll('+', '').replaceAll(' ', '')}'));
-    _addTile(tiles, Icons.email_outlined, loc.emailLabel, card.email, () => _launch('mailto:${card.email}'));
-    _addTile(tiles, Icons.language_outlined, loc.websiteLabel, card.website, () => _launch(_normalizeUrl(card.website)));
-    _addTile(tiles, Icons.location_on_outlined, loc.address, card.address, () => _launch('https://maps.google.com/?q=${Uri.encodeComponent(card.address)}'));
-    _addTile(tiles, Icons.person_outlined, loc.linkedin, card.linkedin, () => _launch(_normalizeUrl(card.linkedin)));
-    _addTile(tiles, Icons.facebook_outlined, loc.facebook, card.facebook, () => _launch(_normalizeUrl(card.facebook)));
-    _addTile(tiles, Icons.camera_alt_outlined, loc.instagram, card.instagram, () => _launch(_normalizeUrl(card.instagram)));
-    _addTile(tiles, Icons.send_outlined, loc.telegram, card.telegram, () => _launch(_normalizeUrl(card.telegram)));
-    _addTile(tiles, Icons.play_circle_outlined, loc.youtube, card.youtube, () => _launch(_normalizeUrl(card.youtube)));
-    _addTile(tiles, Icons.alternate_email_outlined, loc.xTwitter, card.x, () => _launch(_normalizeUrl(card.x)));
+    _addTile(tiles, Icons.phone_outlined, loc.call, card.mobileNumber,
+        () => _launch('tel:${card.mobileNumber}'));
+    _addTile(tiles, Icons.phone_outlined, loc.call2, card.mobileNumber2,
+        () => _launch('tel:${card.mobileNumber2}'));
+    _addTile(
+        tiles,
+        Icons.chat_outlined,
+        loc.whatsapp,
+        card.whatsappNumber,
+        () => _launch(
+            'https://wa.me/${card.whatsappNumber.replaceAll('+', '').replaceAll(' ', '')}'));
+    _addTile(tiles, Icons.email_outlined, loc.emailLabel, card.email,
+        () => _launch('mailto:${card.email}'));
+    _addTile(tiles, Icons.language_outlined, loc.websiteLabel, card.website,
+        () => _launch(_normalizeUrl(card.website)));
+    _addTile(
+        tiles,
+        Icons.location_on_outlined,
+        loc.address,
+        card.address,
+        () => _launch(
+            'https://maps.google.com/?q=${Uri.encodeComponent(card.address)}'));
+    _addTile(tiles, Icons.person_outlined, loc.linkedin, card.linkedin,
+        () => _launch(_normalizeUrl(card.linkedin)));
+    _addTile(tiles, Icons.facebook_outlined, loc.facebook, card.facebook,
+        () => _launch(_normalizeUrl(card.facebook)));
+    _addTile(tiles, Icons.camera_alt_outlined, loc.instagram, card.instagram,
+        () => _launch(_normalizeUrl(card.instagram)));
+    _addTile(tiles, Icons.send_outlined, loc.telegram, card.telegram,
+        () => _launch(_normalizeUrl(card.telegram)));
+    _addTile(tiles, Icons.play_circle_outlined, loc.youtube, card.youtube,
+        () => _launch(_normalizeUrl(card.youtube)));
+    _addTile(tiles, Icons.alternate_email_outlined, loc.xTwitter, card.x,
+        () => _launch(_normalizeUrl(card.x)));
 
     if (tiles.isEmpty) return const SizedBox.shrink();
 
@@ -159,7 +208,8 @@ class CardViewScreen extends StatelessWidget {
     );
   }
 
-  void _addTile(List<Widget> list, IconData icon, String label, String value, VoidCallback onTap) {
+  void _addTile(List<Widget> list, IconData icon, String label, String value,
+      VoidCallback onTap) {
     if (value.isEmpty) return;
     list.add(ListTile(
       leading: Icon(icon, color: Colors.grey.shade600),
@@ -184,5 +234,118 @@ class CardViewScreen extends StatelessWidget {
     if (url.isEmpty) return url;
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
     return 'https://$url';
+  }
+}
+
+class _CategoriesSection extends StatelessWidget {
+  final String scannedCardId;
+
+  const _CategoriesSection({
+    required this.scannedCardId,
+    required List<String> categoryIds,
+  }) : _initialCategoryIds = categoryIds;
+
+  final List<String> _initialCategoryIds;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.label_outline,
+                    size: 18, color: theme.colorScheme.primary),
+                const SizedBox(width: 8),
+                Text(
+                  'Categories',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const Spacer(),
+                TextButton.icon(
+                  onPressed: () => _editCategories(context),
+                  icon: const Icon(Icons.edit, size: 16),
+                  label: const Text('Edit'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            BlocBuilder<ScannedCardCubit, ScannedCardState>(
+              builder: (context, cardState) {
+                final card = cardState.cards
+                    .where((c) => c.id == scannedCardId)
+                    .firstOrNull;
+                final ids = card?.categoryIds ?? _initialCategoryIds;
+
+                return BlocBuilder<CategoryCubit, CategoryState>(
+                  builder: (context, catState) {
+                    if (ids.isEmpty) {
+                      return Text(
+                        'No categories assigned',
+                        style: TextStyle(
+                          color: theme.disabledColor,
+                          fontSize: 13,
+                        ),
+                      );
+                    }
+
+                    final names = ids
+                        .map((id) => catState.categories
+                            .where((c) => c.id == id)
+                            .map((c) => c.name)
+                            .firstOrNull)
+                        .where((n) => n != null)
+                        .toList();
+
+                    return Wrap(
+                      spacing: 6,
+                      runSpacing: 4,
+                      children: names.map((name) {
+                        return Chip(
+                          label:
+                              Text(name!, style: const TextStyle(fontSize: 12)),
+                          visualDensity: VisualDensity.compact,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          backgroundColor: theme.colorScheme.primaryContainer
+                              .withValues(alpha: 0.6),
+                          labelStyle: TextStyle(
+                            color: theme.colorScheme.onPrimaryContainer,
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _editCategories(BuildContext context) {
+    final cardState = context.read<ScannedCardCubit>().state;
+    final card =
+        cardState.cards.where((c) => c.id == scannedCardId).firstOrNull;
+    final currentIds = card?.categoryIds ?? _initialCategoryIds;
+
+    CategoryPickerSheet.show(
+      context,
+      selectedIds: currentIds,
+      onChanged: (selected) {
+        context
+            .read<ScannedCardCubit>()
+            .updateCategories(scannedCardId, selected);
+      },
+    );
   }
 }

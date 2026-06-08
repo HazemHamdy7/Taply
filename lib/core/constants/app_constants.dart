@@ -4,6 +4,7 @@ class AppConstants {
   static const String cardKey = 'business_card';
   static const String settingsBoxName = 'settings_box';
   static const String hiveScannedBoxName = 'scanned_cards_box';
+  static const String categoriesBoxName = 'categories_box';
   static const String themeKey = 'theme_mode';
   static const String languageKey = 'language_code';
 }

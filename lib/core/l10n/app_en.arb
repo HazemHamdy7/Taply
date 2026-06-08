@@ -112,5 +112,20 @@
   "searchCountry": "Search country...",
   "card": "Card",
   "close": "Close",
-  "deleteCardConfirm": "Delete \"{name}\" card?"
+  "deleteCardConfirm": "Delete \"{name}\" card?",
+  "categories": "Categories",
+  "manageCategories": "Manage Categories",
+  "allCategories": "All",
+  "newCategory": "New Category",
+  "renameCategory": "Rename Category",
+  "deleteCategory": "Delete Category",
+  "deleteCategoryConfirm": "Delete \"{name}\" category?",
+  "categoryName": "Category name",
+  "assignCategories": "Assign Categories",
+  "noCategoriesAssigned": "No categories assigned",
+  "noCategoriesAvailable": "No categories available. Create one first.",
+  "sortByDate": "Sort by Date",
+  "sortByName": "Sort by Name",
+  "sortByCategory": "Sort by Category",
+  "categoryDefault": "Default"
 }

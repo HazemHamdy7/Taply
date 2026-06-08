@@ -757,6 +757,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete \"{name}\" card?'**
   String deleteCardConfirm(Object name);
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @manageCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Categories'**
+  String get manageCategories;
+
+  /// No description provided for @allCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get allCategories;
+
+  /// No description provided for @newCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'New Category'**
+  String get newCategory;
+
+  /// No description provided for @renameCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename Category'**
+  String get renameCategory;
+
+  /// No description provided for @deleteCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Category'**
+  String get deleteCategory;
+
+  /// No description provided for @deleteCategoryConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete \"{name}\" category?'**
+  String deleteCategoryConfirm(Object name);
+
+  /// No description provided for @categoryName.
+  ///
+  /// In en, this message translates to:
+  /// **'Category name'**
+  String get categoryName;
+
+  /// No description provided for @assignCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign Categories'**
+  String get assignCategories;
+
+  /// No description provided for @noCategoriesAssigned.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories assigned'**
+  String get noCategoriesAssigned;
+
+  /// No description provided for @noCategoriesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories available. Create one first.'**
+  String get noCategoriesAvailable;
+
+  /// No description provided for @sortByDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by Date'**
+  String get sortByDate;
+
+  /// No description provided for @sortByName.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by Name'**
+  String get sortByName;
+
+  /// No description provided for @sortByCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by Category'**
+  String get sortByCategory;
+
+  /// No description provided for @categoryDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get categoryDefault;
 }
 
 class _AppLocalizationsDelegate

@@ -6,6 +6,10 @@ import 'package:business_card/features/business_card/data/models/business_card_m
 import 'package:business_card/features/business_card/data/repositories/business_card_repository_impl.dart';
 import 'package:business_card/features/business_card/domain/repositories/business_card_repository.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
+import 'package:business_card/features/categories/data/models/category_model.dart';
+import 'package:business_card/features/categories/data/repositories/category_repository_impl.dart';
+import 'package:business_card/features/categories/domain/repositories/category_repository.dart';
+import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:business_card/features/nfc/presentation/cubit/nfc_cubit.dart';
 import 'package:business_card/features/scanned_cards/data/models/scanned_card_model.dart';
 import 'package:business_card/features/scanned_cards/data/repositories/scanned_card_repository_impl.dart';
@@ -20,6 +24,7 @@ Future<void> initDependencies() async {
   await _initHive();
   await _initSharedPreferences();
   await _initTemplates();
+  await _initCategories();
   _initRepositories();
   _initCubits();
 }
@@ -34,14 +39,22 @@ Future<void> _initHive() async {
   await Hive.initFlutter();
   Hive.registerAdapter(BusinessCardModelAdapter());
   Hive.registerAdapter(ScannedCardModelAdapter());
+  Hive.registerAdapter(CategoryModelAdapter());
   await Hive.openBox<BusinessCardModel>(AppConstants.hiveBoxName);
   await Hive.openBox<ScannedCardModel>(AppConstants.hiveScannedBoxName);
+  await Hive.openBox<CategoryModel>(AppConstants.categoriesBoxName);
   await Hive.openBox(AppConstants.settingsBoxName);
 }
 
 Future<void> _initSharedPreferences() async {
   final prefs = await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferences>(() => prefs);
+}
+
+Future<void> _initCategories() async {
+  final repo = CategoryRepositoryImpl();
+  await repo.ensureDefaults();
+  sl.registerLazySingleton<CategoryRepository>(() => repo);
 }
 
 void _initRepositories() {
@@ -58,4 +71,5 @@ void _initCubits() {
   sl.registerLazySingleton(() => NfcCubit());
   sl.registerLazySingleton(() => ScannedCardCubit(sl()));
   sl.registerLazySingleton(() => SettingsCubit(sl()));
+  sl.registerLazySingleton(() => CategoryCubit(sl()));
 }

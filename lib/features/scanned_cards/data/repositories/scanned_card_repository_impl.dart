@@ -5,7 +5,8 @@ import 'package:business_card/features/scanned_cards/domain/entities/scanned_car
 import 'package:business_card/features/scanned_cards/domain/repositories/scanned_card_repository.dart';
 
 class ScannedCardRepositoryImpl implements ScannedCardRepository {
-  Box<ScannedCardModel> get _box => Hive.box<ScannedCardModel>(AppConstants.hiveScannedBoxName);
+  Box<ScannedCardModel> get _box =>
+      Hive.box<ScannedCardModel>(AppConstants.hiveScannedBoxName);
 
   @override
   Future<List<ScannedCard>> getAll() async {
@@ -51,6 +52,43 @@ class ScannedCardRepositoryImpl implements ScannedCardRepository {
         profileImagePath: model.profileImagePath,
         scanDate: model.scanDate,
         isFavorite: !model.isFavorite,
+        mobileNumber2: model.mobileNumber2,
+        cardId: model.cardId,
+        categoryIds: model.categoryIds,
+      );
+      await _box.put(id, updated);
+    }
+  }
+
+  @override
+  Future<void> updateCategories(String id, List<String> categoryIds) async {
+    final model = _box.get(id);
+    if (model != null) {
+      final updated = ScannedCardModel(
+        id: model.id,
+        fullName: model.fullName,
+        jobTitle: model.jobTitle,
+        companyName: model.companyName,
+        tagline: model.tagline,
+        mobileNumber: model.mobileNumber,
+        whatsappNumber: model.whatsappNumber,
+        email: model.email,
+        website: model.website,
+        linkedin: model.linkedin,
+        facebook: model.facebook,
+        instagram: model.instagram,
+        telegram: model.telegram,
+        youtube: model.youtube,
+        x: model.x,
+        address: model.address,
+        aboutMe: model.aboutMe,
+        templateId: model.templateId,
+        profileImagePath: model.profileImagePath,
+        scanDate: model.scanDate,
+        isFavorite: model.isFavorite,
+        mobileNumber2: model.mobileNumber2,
+        cardId: model.cardId,
+        categoryIds: categoryIds,
       );
       await _box.put(id, updated);
     }
@@ -73,10 +111,13 @@ class ScannedCardRepositoryImpl implements ScannedCardRepository {
   @override
   Future<bool> existsByData(ScannedCard card) async {
     final all = _box.values.toList();
-    if (card.cardId.isNotEmpty && all.any((c) => c.cardId == card.cardId)) return true;
+    if (card.cardId.isNotEmpty &&
+        all.any((c) => c.cardId == card.cardId)) {
+      return true;
+    }
     return all.any((c) =>
-      c.fullName == card.fullName &&
-      c.mobileNumber == card.mobileNumber &&
-      c.email == card.email);
+        c.fullName == card.fullName &&
+        c.mobileNumber == card.mobileNumber &&
+        c.email == card.email);
   }
 }

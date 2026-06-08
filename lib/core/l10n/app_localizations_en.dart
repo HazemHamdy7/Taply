@@ -344,4 +344,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String deleteCardConfirm(Object name) {
     return 'Delete \"$name\" card?';
   }
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get manageCategories => 'Manage Categories';
+
+  @override
+  String get allCategories => 'All';
+
+  @override
+  String get newCategory => 'New Category';
+
+  @override
+  String get renameCategory => 'Rename Category';
+
+  @override
+  String get deleteCategory => 'Delete Category';
+
+  @override
+  String deleteCategoryConfirm(Object name) {
+    return 'Delete \"$name\" category?';
+  }
+
+  @override
+  String get categoryName => 'Category name';
+
+  @override
+  String get assignCategories => 'Assign Categories';
+
+  @override
+  String get noCategoriesAssigned => 'No categories assigned';
+
+  @override
+  String get noCategoriesAvailable =>
+      'No categories available. Create one first.';
+
+  @override
+  String get sortByDate => 'Sort by Date';
+
+  @override
+  String get sortByName => 'Sort by Name';
+
+  @override
+  String get sortByCategory => 'Sort by Category';
+
+  @override
+  String get categoryDefault => 'Default';
 }

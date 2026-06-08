@@ -344,4 +344,52 @@ class AppLocalizationsAr extends AppLocalizations {
   String deleteCardConfirm(Object name) {
     return 'حذف بطاقة \"$name\"؟';
   }
+
+  @override
+  String get categories => 'التصنيفات';
+
+  @override
+  String get manageCategories => 'إدارة التصنيفات';
+
+  @override
+  String get allCategories => 'الكل';
+
+  @override
+  String get newCategory => 'تصنيف جديد';
+
+  @override
+  String get renameCategory => 'إعادة تسمية التصنيف';
+
+  @override
+  String get deleteCategory => 'حذف التصنيف';
+
+  @override
+  String deleteCategoryConfirm(Object name) {
+    return 'حذف التصنيف \"$name\"؟';
+  }
+
+  @override
+  String get categoryName => 'اسم التصنيف';
+
+  @override
+  String get assignCategories => 'تخصيص تصنيفات';
+
+  @override
+  String get noCategoriesAssigned => 'لم يتم تخصيص تصنيفات';
+
+  @override
+  String get noCategoriesAvailable =>
+      'لا توجد تصنيفات متاحة. قم بإنشاء واحد أولاً.';
+
+  @override
+  String get sortByDate => 'ترتيب حسب التاريخ';
+
+  @override
+  String get sortByName => 'ترتيب حسب الاسم';
+
+  @override
+  String get sortByCategory => 'ترتيب حسب التصنيف';
+
+  @override
+  String get categoryDefault => 'افتراضي';
 }

@@ -109,5 +109,20 @@
   "searchCountry": "البحث عن دولة...",
   "card": "بطاقة",
   "close": "إغلاق",
-  "deleteCardConfirm": "حذف بطاقة \"{name}\"؟"
+  "deleteCardConfirm": "حذف بطاقة \"{name}\"؟",
+  "categories": "التصنيفات",
+  "manageCategories": "إدارة التصنيفات",
+  "allCategories": "الكل",
+  "newCategory": "تصنيف جديد",
+  "renameCategory": "إعادة تسمية التصنيف",
+  "deleteCategory": "حذف التصنيف",
+  "deleteCategoryConfirm": "حذف التصنيف \"{name}\"؟",
+  "categoryName": "اسم التصنيف",
+  "assignCategories": "تخصيص تصنيفات",
+  "noCategoriesAssigned": "لم يتم تخصيص تصنيفات",
+  "noCategoriesAvailable": "لا توجد تصنيفات متاحة. قم بإنشاء واحد أولاً.",
+  "sortByDate": "ترتيب حسب التاريخ",
+  "sortByName": "ترتيب حسب الاسم",
+  "sortByCategory": "ترتيب حسب التصنيف",
+  "categoryDefault": "افتراضي"
 }

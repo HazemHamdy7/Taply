@@ -76,6 +76,9 @@ class ScannedCardModel extends ScannedCard {
   @HiveField(22)
   final String cardId;
 
+  @HiveField(23)
+  final List<String> categoryIds;
+
   const ScannedCardModel({
     required this.id,
     this.cardId = '',
@@ -100,6 +103,7 @@ class ScannedCardModel extends ScannedCard {
     required this.scanDate,
     this.isFavorite = false,
     this.mobileNumber2 = '',
+    this.categoryIds = const [],
   }) : super(
           id: id,
           cardId: cardId,
@@ -124,6 +128,7 @@ class ScannedCardModel extends ScannedCard {
           profileImagePath: profileImagePath,
           scanDate: scanDate,
           isFavorite: isFavorite,
+          categoryIds: categoryIds,
         );
 
   factory ScannedCardModel.fromEntity(ScannedCard entity) {
@@ -151,6 +156,7 @@ class ScannedCardModel extends ScannedCard {
       profileImagePath: entity.profileImagePath,
       scanDate: entity.scanDate,
       isFavorite: entity.isFavorite,
+      categoryIds: entity.categoryIds,
     );
   }
 
@@ -179,6 +185,7 @@ class ScannedCardModel extends ScannedCard {
       profileImagePath: profileImagePath,
       scanDate: scanDate,
       isFavorite: isFavorite,
+      categoryIds: categoryIds,
     );
   }
 }

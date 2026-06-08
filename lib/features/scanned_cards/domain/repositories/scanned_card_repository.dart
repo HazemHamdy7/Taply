@@ -5,6 +5,7 @@ abstract class ScannedCardRepository {
   Future<void> save(ScannedCard card);
   Future<void> delete(String id);
   Future<void> toggleFavorite(String id);
+  Future<void> updateCategories(String id, List<String> categoryIds);
   Future<List<ScannedCard>> search(String query);
   Future<bool> existsByData(ScannedCard card);
 }

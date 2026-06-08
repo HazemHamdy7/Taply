@@ -2,38 +2,74 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
 import 'package:business_card/features/scanned_cards/domain/repositories/scanned_card_repository.dart';
 
+enum SortMode { date, name, category }
+
 class ScannedCardState {
   final List<ScannedCard> cards;
   final bool isLoading;
   final String searchQuery;
+  final String? selectedCategoryId;
+  final SortMode sortMode;
 
   const ScannedCardState({
     this.cards = const [],
     this.isLoading = false,
     this.searchQuery = '',
+    this.selectedCategoryId,
+    this.sortMode = SortMode.date,
   });
 
   List<ScannedCard> get filtered {
-    if (searchQuery.isEmpty) return cards;
-    final q = searchQuery.toLowerCase();
-    return cards.where((c) =>
-      c.fullName.toLowerCase().contains(q) ||
-      c.companyName.toLowerCase().contains(q) ||
-      c.jobTitle.toLowerCase().contains(q) ||
-      c.email.toLowerCase().contains(q) ||
-      c.mobileNumber.contains(q),
-    ).toList();
+    var result = cards.toList();
+
+    if (selectedCategoryId != null) {
+      result = result
+          .where((c) => c.categoryIds.contains(selectedCategoryId))
+          .toList();
+    }
+
+    if (searchQuery.isNotEmpty) {
+      final q = searchQuery.toLowerCase();
+      result = result.where((c) =>
+        c.fullName.toLowerCase().contains(q) ||
+        c.companyName.toLowerCase().contains(q) ||
+        c.jobTitle.toLowerCase().contains(q) ||
+        c.email.toLowerCase().contains(q) ||
+        c.mobileNumber.contains(q),
+      ).toList();
+    }
+
+    switch (sortMode) {
+      case SortMode.date:
+        result.sort((a, b) => b.scanDate.compareTo(a.scanDate));
+      case SortMode.name:
+        result.sort((a, b) => a.fullName.compareTo(b.fullName));
+      case SortMode.category:
+        result.sort((a, b) {
+          final aCat = a.categoryIds.isNotEmpty ? a.categoryIds.first : '';
+          final bCat = b.categoryIds.isNotEmpty ? b.categoryIds.first : '';
+          return aCat.compareTo(bCat);
+        });
+    }
+
+    return result;
   }
 
   ScannedCardState copyWith({
     List<ScannedCard>? cards,
     bool? isLoading,
     String? searchQuery,
+    String? selectedCategoryId,
+    SortMode? sortMode,
+    bool clearCategory = false,
   }) {
     return ScannedCardState(
       cards: cards ?? this.cards,
       isLoading: isLoading ?? this.isLoading,
       searchQuery: searchQuery ?? this.searchQuery,
+      selectedCategoryId:
+          clearCategory ? null : (selectedCategoryId ?? this.selectedCategoryId),
+      sortMode: sortMode ?? this.sortMode,
     );
   }
 }
@@ -46,7 +82,11 @@ class ScannedCardCubit extends Cubit<ScannedCardState> {
   Future<void> load() async {
     emit(state.copyWith(isLoading: true));
     final cards = await _repository.getAll();
-    emit(ScannedCardState(cards: cards));
+    emit(ScannedCardState(
+      cards: cards,
+      selectedCategoryId: state.selectedCategoryId,
+      sortMode: state.sortMode,
+    ));
   }
 
   Future<void> save(ScannedCard card) async {
@@ -72,7 +112,23 @@ class ScannedCardCubit extends Cubit<ScannedCardState> {
     await load();
   }
 
+  Future<void> updateCategories(String id, List<String> categoryIds) async {
+    await _repository.updateCategories(id, categoryIds);
+    await load();
+  }
+
   void search(String query) {
     emit(state.copyWith(searchQuery: query));
+  }
+
+  void filterByCategory(String? categoryId) {
+    emit(state.copyWith(
+      selectedCategoryId: categoryId,
+      clearCategory: categoryId == null,
+    ));
+  }
+
+  void sortBy(SortMode mode) {
+    emit(state.copyWith(sortMode: mode));
   }
 }
