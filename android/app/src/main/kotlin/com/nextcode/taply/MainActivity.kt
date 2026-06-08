@@ -1,4 +1,4 @@
-package com.businesscard.business_card
+package com.nextcode.taply
 
 import io.flutter.embedding.android.FlutterActivity
 
