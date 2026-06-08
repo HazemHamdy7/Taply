@@ -444,4 +444,52 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get analyticsEmptyHint =>
       'ستظهر الإحصائيات هنا أثناء استخدامك للتطبيق';
+
+  @override
+  String get networkingScore => 'درجة التواصل';
+
+  @override
+  String get insights => 'نصائح';
+
+  @override
+  String get markAsFollowedUp => 'تحديد كمتابع';
+
+  @override
+  String get followUpSubtitle => 'تتبع تقدم متابعتك';
+
+  @override
+  String get followUpTracked => 'تم تتبع المتابعة';
+
+  @override
+  String get beginnerNetworker => 'مبتدئ في التواصل';
+
+  @override
+  String get activeNetworker => 'نشط في التواصل';
+
+  @override
+  String get professionalNetworker => 'محترف في التواصل';
+
+  @override
+  String get networkingExpert => 'خبير تواصل';
+
+  @override
+  String get insightAddContacts => 'أضف المزيد من جهات الاتصال لتحسين درجتك';
+
+  @override
+  String get insightShareQR => 'اطبع رمز الاستجابة السريعة أو شاركه رقمياً';
+
+  @override
+  String get insightUseNfc => 'استخدم NFC لتبادل البطاقات بسرعة';
+
+  @override
+  String get insightShareMore => 'شارك بطاقتك أكثر';
+
+  @override
+  String get insightSaveContacts => 'احفظ المزيد من جهات الاتصال من مسحك';
+
+  @override
+  String get insightFollowUp => 'تابع مع جهات الاتصال المحفوظة';
+
+  @override
+  String get insightGreatJob => 'عمل رائع! استمر في التواصل للحفاظ على درجتك';
 }

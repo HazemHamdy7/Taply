@@ -5,6 +5,9 @@ import 'package:business_card/features/analytics/presentation/widgets/activity_c
 import 'package:business_card/features/analytics/presentation/widgets/overview_cards.dart';
 import 'package:business_card/features/analytics/presentation/widgets/top_cards_section.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
+import 'package:business_card/features/networking_score/presentation/cubit/networking_score_cubit.dart';
+import 'package:business_card/features/networking_score/presentation/widgets/networking_insights.dart';
+import 'package:business_card/features/networking_score/presentation/widgets/networking_score_card.dart';
 import 'package:business_card/features/scanned_cards/presentation/cubit/scanned_card_cubit.dart';
 
 class AnalyticsDashboardScreen extends StatefulWidget {
@@ -21,6 +24,7 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<AnalyticsCubit>().load();
+      context.read<NetworkingScoreCubit>().load();
     });
   }
 
@@ -86,6 +90,11 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 8),
+                const NetworkingScoreCard(),
+                const SizedBox(height: 8),
+                const NetworkingInsights(),
+                const SizedBox(height: 16),
                 OverviewCards(
                   summary: summary,
                   totalCards: totalCards,

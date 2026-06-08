@@ -21,6 +21,7 @@ class EventType {
   static const String share = 'share';
   static const String vcfDownload = 'vcf_download';
   static const String contactSave = 'contact_save';
+  static const String followUp = 'follow_up';
 
   static const List<String> all = [
     qrScan,
@@ -29,5 +30,6 @@ class EventType {
     share,
     vcfDownload,
     contactSave,
+    followUp,
   ];
 }

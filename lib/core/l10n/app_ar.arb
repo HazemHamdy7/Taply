@@ -141,5 +141,21 @@
   "mostViewed": "الأكثر مشاهدة",
   "mostShared": "الأكثر مشاركة",
   "noAnalyticsData": "لا توجد بيانات إحصائيات بعد",
-  "analyticsEmptyHint": "ستظهر الإحصائيات هنا أثناء استخدامك للتطبيق"
+  "analyticsEmptyHint": "ستظهر الإحصائيات هنا أثناء استخدامك للتطبيق",
+  "networkingScore": "درجة التواصل",
+  "insights": "نصائح",
+  "markAsFollowedUp": "تحديد كمتابع",
+  "followUpSubtitle": "تتبع تقدم متابعتك",
+  "followUpTracked": "تم تتبع المتابعة",
+  "beginnerNetworker": "مبتدئ في التواصل",
+  "activeNetworker": "نشط في التواصل",
+  "professionalNetworker": "محترف في التواصل",
+  "networkingExpert": "خبير تواصل",
+  "insightAddContacts": "أضف المزيد من جهات الاتصال لتحسين درجتك",
+  "insightShareQR": "اطبع رمز الاستجابة السريعة أو شاركه رقمياً",
+  "insightUseNfc": "استخدم NFC لتبادل البطاقات بسرعة",
+  "insightShareMore": "شارك بطاقتك أكثر",
+  "insightSaveContacts": "احفظ المزيد من جهات الاتصال من مسحك",
+  "insightFollowUp": "تابع مع جهات الاتصال المحفوظة",
+  "insightGreatJob": "عمل رائع! استمر في التواصل للحفاظ على درجتك"
 }

@@ -94,6 +94,16 @@ class AnalyticsCubit extends Cubit<AnalyticsState> {
     ));
   }
 
+  Future<void> trackFollowUp(String cardId, String cardName) async {
+    await _repository.trackEvent(AnalyticsEvent(
+      id: _newId(),
+      cardId: cardId,
+      cardName: cardName,
+      eventType: EventType.followUp,
+      timestamp: DateTime.now(),
+    ));
+  }
+
   String _newId() => 'ae_${DateTime.now().millisecondsSinceEpoch}_${_random()}';
 
   int _random() => DateTime.now().microsecondsSinceEpoch % 10000;

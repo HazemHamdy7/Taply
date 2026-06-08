@@ -144,5 +144,21 @@
   "mostViewed": "Most Viewed",
   "mostShared": "Most Shared",
   "noAnalyticsData": "No analytics data yet",
-  "analyticsEmptyHint": "Analytics will appear here as you use the app"
+  "analyticsEmptyHint": "Analytics will appear here as you use the app",
+  "networkingScore": "Networking Score",
+  "insights": "Insights",
+  "markAsFollowedUp": "Mark as Followed Up",
+  "followUpSubtitle": "Track your follow-up progress",
+  "followUpTracked": "Follow-up tracked",
+  "beginnerNetworker": "Beginner Networker",
+  "activeNetworker": "Active Networker",
+  "professionalNetworker": "Professional Networker",
+  "networkingExpert": "Networking Expert",
+  "insightAddContacts": "Add more contacts to improve your score",
+  "insightShareQR": "Print your QR code or share it digitally",
+  "insightUseNfc": "Use NFC to quickly exchange cards",
+  "insightShareMore": "Share your card more often",
+  "insightSaveContacts": "Save more contacts from your scans",
+  "insightFollowUp": "Follow up with saved contacts",
+  "insightGreatJob": "Great job! Keep networking to maintain your score"
 }

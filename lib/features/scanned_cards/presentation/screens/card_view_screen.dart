@@ -88,6 +88,8 @@ class CardViewScreen extends StatelessWidget {
                 scannedCardId: scannedCardId!,
                 categoryIds: categoryIds,
               ),
+              const SizedBox(height: 12),
+              _FollowUpButton(scannedCardId: scannedCardId!, cardName: card.fullName, cardId: card.id ?? ''),
             ],
             if (card.tagline.isNotEmpty || card.aboutMe.isNotEmpty) ...[
               const SizedBox(height: 16),
@@ -372,6 +374,42 @@ class _CategoriesSection extends StatelessWidget {
             .read<ScannedCardCubit>()
             .updateCategories(scannedCardId, selected);
       },
+    );
+  }
+}
+
+class _FollowUpButton extends StatelessWidget {
+  final String scannedCardId;
+  final String cardName;
+  final String cardId;
+
+  const _FollowUpButton({
+    required this.scannedCardId,
+    required this.cardName,
+    required this.cardId,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Card(
+      child: ListTile(
+        leading: Icon(Icons.how_to_reg, color: theme.colorScheme.primary),
+        title: const Text('Mark as Followed Up', style: TextStyle(fontSize: 14)),
+        subtitle:
+            const Text('Track your follow-up progress', style: TextStyle(fontSize: 11)),
+        trailing: const Icon(Icons.check_circle_outline, size: 20),
+        onTap: () {
+          context.read<AnalyticsCubit>().trackFollowUp(cardId, cardName);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Follow-up tracked'),
+              duration: Duration(seconds: 2),
+            ),
+          );
+        },
+      ),
     );
   }
 }

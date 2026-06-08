@@ -444,4 +444,53 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get analyticsEmptyHint =>
       'Analytics will appear here as you use the app';
+
+  @override
+  String get networkingScore => 'Networking Score';
+
+  @override
+  String get insights => 'Insights';
+
+  @override
+  String get markAsFollowedUp => 'Mark as Followed Up';
+
+  @override
+  String get followUpSubtitle => 'Track your follow-up progress';
+
+  @override
+  String get followUpTracked => 'Follow-up tracked';
+
+  @override
+  String get beginnerNetworker => 'Beginner Networker';
+
+  @override
+  String get activeNetworker => 'Active Networker';
+
+  @override
+  String get professionalNetworker => 'Professional Networker';
+
+  @override
+  String get networkingExpert => 'Networking Expert';
+
+  @override
+  String get insightAddContacts => 'Add more contacts to improve your score';
+
+  @override
+  String get insightShareQR => 'Print your QR code or share it digitally';
+
+  @override
+  String get insightUseNfc => 'Use NFC to quickly exchange cards';
+
+  @override
+  String get insightShareMore => 'Share your card more often';
+
+  @override
+  String get insightSaveContacts => 'Save more contacts from your scans';
+
+  @override
+  String get insightFollowUp => 'Follow up with saved contacts';
+
+  @override
+  String get insightGreatJob =>
+      'Great job! Keep networking to maintain your score';
 }

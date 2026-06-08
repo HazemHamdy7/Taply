@@ -7,6 +7,8 @@ import 'package:business_card/features/analytics/data/repositories/analytics_rep
 import 'package:business_card/features/analytics/domain/repositories/analytics_repository.dart';
 import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
 import 'package:business_card/features/business_card/data/models/business_card_model.dart';
+import 'package:business_card/features/networking_score/domain/services/networking_score_service.dart';
+import 'package:business_card/features/networking_score/presentation/cubit/networking_score_cubit.dart';
 import 'package:business_card/features/business_card/data/repositories/business_card_repository_impl.dart';
 import 'package:business_card/features/business_card/domain/repositories/business_card_repository.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
@@ -82,4 +84,8 @@ void _initCubits() {
   sl.registerLazySingleton(() => SettingsCubit(sl()));
   sl.registerLazySingleton(() => CategoryCubit(sl()));
   sl.registerLazySingleton(() => AnalyticsCubit(sl()));
+  sl.registerLazySingleton(() => NetworkingScoreService());
+  sl.registerLazySingleton(
+    () => NetworkingScoreCubit(sl(), sl(), sl()),
+  );
 }

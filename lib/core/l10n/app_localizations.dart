@@ -949,6 +949,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Analytics will appear here as you use the app'**
   String get analyticsEmptyHint;
+
+  /// No description provided for @networkingScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Networking Score'**
+  String get networkingScore;
+
+  /// No description provided for @insights.
+  ///
+  /// In en, this message translates to:
+  /// **'Insights'**
+  String get insights;
+
+  /// No description provided for @markAsFollowedUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Followed Up'**
+  String get markAsFollowedUp;
+
+  /// No description provided for @followUpSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your follow-up progress'**
+  String get followUpSubtitle;
+
+  /// No description provided for @followUpTracked.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow-up tracked'**
+  String get followUpTracked;
+
+  /// No description provided for @beginnerNetworker.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner Networker'**
+  String get beginnerNetworker;
+
+  /// No description provided for @activeNetworker.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Networker'**
+  String get activeNetworker;
+
+  /// No description provided for @professionalNetworker.
+  ///
+  /// In en, this message translates to:
+  /// **'Professional Networker'**
+  String get professionalNetworker;
+
+  /// No description provided for @networkingExpert.
+  ///
+  /// In en, this message translates to:
+  /// **'Networking Expert'**
+  String get networkingExpert;
+
+  /// No description provided for @insightAddContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Add more contacts to improve your score'**
+  String get insightAddContacts;
+
+  /// No description provided for @insightShareQR.
+  ///
+  /// In en, this message translates to:
+  /// **'Print your QR code or share it digitally'**
+  String get insightShareQR;
+
+  /// No description provided for @insightUseNfc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use NFC to quickly exchange cards'**
+  String get insightUseNfc;
+
+  /// No description provided for @insightShareMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your card more often'**
+  String get insightShareMore;
+
+  /// No description provided for @insightSaveContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Save more contacts from your scans'**
+  String get insightSaveContacts;
+
+  /// No description provided for @insightFollowUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow up with saved contacts'**
+  String get insightFollowUp;
+
+  /// No description provided for @insightGreatJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Great job! Keep networking to maintain your score'**
+  String get insightGreatJob;
 }
 
 class _AppLocalizationsDelegate
