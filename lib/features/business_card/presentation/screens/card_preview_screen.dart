@@ -88,7 +88,10 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.qr_code),
-            onPressed: () => context.push('/qr'),
+            onPressed: () {
+              final card = _singleCard ?? context.read<BusinessCardCubit>().state.selectedCard;
+              context.push('/qr', extra: card);
+            },
             tooltip: AppLocalizations.of(context)!.qrCode,
           ),
           IconButton(

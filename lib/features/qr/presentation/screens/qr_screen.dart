@@ -69,7 +69,8 @@ class _QRScreenState extends State<QRScreen> {
       ),
       body: BlocBuilder<BusinessCardCubit, BusinessCardState>(
         builder: (context, state) {
-          final card = state.selectedCard;
+          final extraCard = GoRouterState.of(context).extra as BusinessCard?;
+          final card = extraCard ?? state.selectedCard;
 
           if (card == null) {
             return Center(

@@ -61,9 +61,15 @@ class NfcScreen extends StatelessWidget {
               card.id ?? '',
               card.fullName,
             );
-            final localCard = context.read<BusinessCardCubit>().state.selectedCard;
-            final isOwnCard = localCard != null && localCard.fullName == card.fullName;
-            final displayCard = isOwnCard ? localCard : card;
+            final allCards = context.read<BusinessCardCubit>().state.cards;
+            final matchedCard = allCards.where((c) => c.id != null && c.id == card.id).firstOrNull
+                ?? allCards.where((c) =>
+                    c.fullName == card.fullName &&
+                    c.mobileNumber == card.mobileNumber &&
+                    c.email == card.email
+                ).firstOrNull;
+            final isOwnCard = matchedCard != null;
+            final displayCard = matchedCard ?? card;
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.of(context).push(
                 MaterialPageRoute(
