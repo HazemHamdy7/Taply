@@ -176,5 +176,20 @@
   "done": "تم",
   "create": "إنشاء",
   "rename": "إعادة تسمية",
-  "noCategoriesYet": "لا توجد تصنيفات بعد"
+  "noCategoriesYet": "لا توجد تصنيفات بعد",
+  "categoryStats": "إحصائيات التصنيفات",
+  "categoryIcon": "أيقونة",
+  "categoryColor": "لون",
+  "overview": "نظرة عامة",
+  "totalContacts": "إجمالي جهات الاتصال",
+  "categorized": "مصنفة",
+  "mostActiveCategory": "التصنيف الأكثر نشاطاً",
+  "perCategory": "حسب التصنيف",
+  "noCategoryStats": "لا توجد تصنيفات تحتوي على جهات اتصال بعد",
+  "defaultClients": "عملاء",
+  "defaultInvestors": "مستثمرين",
+  "defaultDevelopers": "مطورين",
+  "defaultDesigners": "مصممين",
+  "defaultPartners": "شركاء",
+  "defaultFriends": "أصدقاء"
 }

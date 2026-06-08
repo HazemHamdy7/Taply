@@ -180,5 +180,20 @@
   "done": "Done",
   "create": "Create",
   "rename": "Rename",
-  "noCategoriesYet": "No categories yet"
+  "noCategoriesYet": "No categories yet",
+  "categoryStats": "Category Statistics",
+  "categoryIcon": "Icon",
+  "categoryColor": "Color",
+  "overview": "Overview",
+  "totalContacts": "Total Contacts",
+  "categorized": "Categorized",
+  "mostActiveCategory": "Most Active Category",
+  "perCategory": "Per Category",
+  "noCategoryStats": "No categories with contacts yet",
+  "defaultClients": "Clients",
+  "defaultInvestors": "Investors",
+  "defaultDevelopers": "Developers",
+  "defaultDesigners": "Designers",
+  "defaultPartners": "Partners",
+  "defaultFriends": "Friends"
 }

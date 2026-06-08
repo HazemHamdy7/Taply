@@ -1159,6 +1159,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No categories yet'**
   String get noCategoriesYet;
+
+  /// No description provided for @categoryStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Category Statistics'**
+  String get categoryStats;
+
+  /// No description provided for @categoryIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get categoryIcon;
+
+  /// No description provided for @categoryColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get categoryColor;
+
+  /// No description provided for @overview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get overview;
+
+  /// No description provided for @totalContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Contacts'**
+  String get totalContacts;
+
+  /// No description provided for @categorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Categorized'**
+  String get categorized;
+
+  /// No description provided for @mostActiveCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Active Category'**
+  String get mostActiveCategory;
+
+  /// No description provided for @perCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Per Category'**
+  String get perCategory;
+
+  /// No description provided for @noCategoryStats.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories with contacts yet'**
+  String get noCategoryStats;
+
+  /// No description provided for @defaultClients.
+  ///
+  /// In en, this message translates to:
+  /// **'Clients'**
+  String get defaultClients;
+
+  /// No description provided for @defaultInvestors.
+  ///
+  /// In en, this message translates to:
+  /// **'Investors'**
+  String get defaultInvestors;
+
+  /// No description provided for @defaultDevelopers.
+  ///
+  /// In en, this message translates to:
+  /// **'Developers'**
+  String get defaultDevelopers;
+
+  /// No description provided for @defaultDesigners.
+  ///
+  /// In en, this message translates to:
+  /// **'Designers'**
+  String get defaultDesigners;
+
+  /// No description provided for @defaultPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'Partners'**
+  String get defaultPartners;
+
+  /// No description provided for @defaultFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Friends'**
+  String get defaultFriends;
 }
 
 class _AppLocalizationsDelegate

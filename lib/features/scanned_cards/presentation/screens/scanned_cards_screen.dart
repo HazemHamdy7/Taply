@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
+import 'package:business_card/features/categories/helpers/icon_helper.dart';
+import 'package:business_card/features/categories/helpers/localized_category_name.dart';
 import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:business_card/features/categories/presentation/widgets/category_chips_bar.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
@@ -118,6 +121,13 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                           Text(AppLocalizations.of(context)!.sortByFavorites),
                     ),
                   ],
+                ),
+                IconButton(
+                  icon: const Icon(Icons.bar_chart_outlined),
+                  tooltip: AppLocalizations.of(context)!.categoryStats,
+                  onPressed: () {
+                    context.pushNamed('categoryStats');
+                  },
                 ),
                 IconButton(
                   icon: const Icon(Icons.label_outline),
@@ -461,35 +471,45 @@ class _CategoryLabels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return BlocBuilder<CategoryCubit, CategoryState>(
       builder: (context, catState) {
-        final names = categoryIds
-            .map((id) => catState.categories
-                .where((c) => c.id == id)
-                .map((c) => c.name)
-                .firstOrNull)
-            .where((n) => n != null)
+        final cats = categoryIds
+            .map((id) {
+              final found = catState.categories.where((c) => c.id == id).toList();
+              return found.isNotEmpty ? found.first : null;
+            })
+            .where((c) => c != null)
             .toList();
 
-        if (names.isEmpty) return const SizedBox.shrink();
+        if (cats.isEmpty) return const SizedBox.shrink();
 
         return Wrap(
           spacing: 4,
           runSpacing: 2,
-          children: names.take(3).map((name) {
+          children: cats.take(3).map((cat) {
             return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               decoration: BoxDecoration(
-                color: theme.colorScheme.primaryContainer.withValues(alpha: 0.6),
+                color: Color(cat!.color).withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Text(
-                name!,
-                style: TextStyle(
-                  fontSize: 11,
-                  color: theme.colorScheme.onPrimaryContainer,
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    getIconData(cat.icon),
+                    size: 12,
+                    color: Color(cat.color),
+                  ),
+                  const SizedBox(width: 3),
+                  Text(
+                    localizedCategoryName(context, cat),
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Color(cat.color),
+                    ),
+                  ),
+                ],
               ),
             );
           }).toList(),

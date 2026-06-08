@@ -549,4 +549,49 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noCategoriesYet => 'لا توجد تصنيفات بعد';
+
+  @override
+  String get categoryStats => 'إحصائيات التصنيفات';
+
+  @override
+  String get categoryIcon => 'أيقونة';
+
+  @override
+  String get categoryColor => 'لون';
+
+  @override
+  String get overview => 'نظرة عامة';
+
+  @override
+  String get totalContacts => 'إجمالي جهات الاتصال';
+
+  @override
+  String get categorized => 'مصنفة';
+
+  @override
+  String get mostActiveCategory => 'التصنيف الأكثر نشاطاً';
+
+  @override
+  String get perCategory => 'حسب التصنيف';
+
+  @override
+  String get noCategoryStats => 'لا توجد تصنيفات تحتوي على جهات اتصال بعد';
+
+  @override
+  String get defaultClients => 'عملاء';
+
+  @override
+  String get defaultInvestors => 'مستثمرين';
+
+  @override
+  String get defaultDevelopers => 'مطورين';
+
+  @override
+  String get defaultDesigners => 'مصممين';
+
+  @override
+  String get defaultPartners => 'شركاء';
+
+  @override
+  String get defaultFriends => 'أصدقاء';
 }

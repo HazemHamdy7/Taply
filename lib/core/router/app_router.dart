@@ -4,6 +4,7 @@ import 'package:business_card/features/business_card/domain/entities/business_ca
 import 'package:business_card/features/business_card/presentation/screens/home_screen.dart';
 import 'package:business_card/features/business_card/presentation/screens/create_card_screen.dart';
 import 'package:business_card/features/business_card/presentation/screens/card_preview_screen.dart';
+import 'package:business_card/features/categories/presentation/screens/category_stats_screen.dart';
 import 'package:business_card/features/qr/presentation/screens/qr_screen.dart';
 import 'package:business_card/features/qr/presentation/screens/qr_scanner_screen.dart';
 import 'package:business_card/features/nfc/presentation/screens/nfc_screen.dart';
@@ -20,6 +21,7 @@ abstract final class AppRouter {
   static const String settings = '/settings';
   static const String templateGallery = '/template-gallery';
   static const String analytics = '/analytics';
+  static const String categoryStats = '/category-stats';
 
   static final GoRouter router = GoRouter(
     initialLocation: home,
@@ -74,6 +76,11 @@ abstract final class AppRouter {
         path: analytics,
         name: 'analytics',
         builder: (context, state) => const AnalyticsDashboardScreen(),
+      ),
+      GoRoute(
+        path: categoryStats,
+        name: 'categoryStats',
+        builder: (context, state) => const CategoryStatsScreen(),
       ),
     ],
   );

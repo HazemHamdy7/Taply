@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
+import 'package:business_card/features/categories/helpers/icon_helper.dart';
+import 'package:business_card/features/categories/helpers/localized_category_name.dart';
 import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:business_card/features/scanned_cards/presentation/cubit/scanned_card_cubit.dart';
 
@@ -31,13 +33,21 @@ class CategoryChipsBar extends StatelessWidget {
                         .filterByCategory(null),
                   ),
                   const SizedBox(width: 8),
-                  ...categories.map((cat) => _FilterChip(
-                        label: cat.name,
-                        selected: cardState.selectedCategoryId == cat.id,
-                        onSelected: () => context
-                            .read<ScannedCardCubit>()
-                            .filterByCategory(cat.id),
-                      )),
+                  ...categories.map((cat) {
+                    final count = cardState.cards
+                        .where((c) => c.categoryIds.contains(cat.id))
+                        .length;
+                    final label = localizedCategoryName(context, cat);
+                    return _FilterChip(
+                      label: count > 0 ? '$label ($count)' : label,
+                      selected: cardState.selectedCategoryId == cat.id,
+                      icon: cat.icon,
+                      color: cat.color,
+                      onSelected: () => context
+                          .read<ScannedCardCubit>()
+                          .filterByCategory(cat.id),
+                    );
+                  }),
                 ],
               ),
             );
@@ -52,11 +62,15 @@ class _FilterChip extends StatelessWidget {
   final String label;
   final bool selected;
   final VoidCallback onSelected;
+  final String? icon;
+  final int? color;
 
   const _FilterChip({
     required this.label,
     required this.selected,
     required this.onSelected,
+    this.icon,
+    this.color,
   });
 
   @override
@@ -65,7 +79,22 @@ class _FilterChip extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: FilterChip(
-        label: Text(label),
+        label: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null && color != null) ...[
+              Icon(
+                getIconData(icon!),
+                size: 16,
+                color: selected
+                    ? theme.colorScheme.onPrimaryContainer
+                    : Color(color!),
+              ),
+              const SizedBox(width: 4),
+            ],
+            Text(label),
+          ],
+        ),
         selected: selected,
         onSelected: (_) => onSelected(),
         showCheckmark: true,

@@ -6,6 +6,8 @@ import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
 import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
+import 'package:business_card/features/categories/helpers/icon_helper.dart';
+import 'package:business_card/features/categories/helpers/localized_category_name.dart';
 import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:business_card/features/categories/presentation/widgets/category_picker_sheet.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
@@ -324,21 +326,23 @@ class _CategoriesSection extends StatelessWidget {
                       );
                     }
 
-                    final names = ids
-                        .map((id) => catState.categories
-                            .where((c) => c.id == id)
-                            .map((c) => c.name)
-                            .firstOrNull)
-                        .where((n) => n != null)
-                        .toList();
-
                     return Wrap(
                       spacing: 6,
                       runSpacing: 4,
-                      children: names.map((name) {
+                      children: ids.map((id) {
+                        final found = catState.categories.where((c) => c.id == id).toList();
+                        final cat = found.isNotEmpty ? found.first : null;
+                        if (cat == null) return const SizedBox.shrink();
                         return Chip(
-                          label:
-                              Text(name!, style: const TextStyle(fontSize: 12)),
+                          avatar: CircleAvatar(
+                            backgroundColor: Color(cat.color),
+                            child: Icon(
+                              getIconData(cat.icon),
+                              color: Colors.white,
+                              size: 14,
+                            ),
+                          ),
+                          label: Text(localizedCategoryName(context, cat), style: const TextStyle(fontSize: 12)),
                           visualDensity: VisualDensity.compact,
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,

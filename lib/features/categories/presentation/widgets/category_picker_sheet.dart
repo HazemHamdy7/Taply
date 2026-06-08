@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
+import 'package:business_card/features/categories/helpers/icon_helper.dart';
+import 'package:business_card/features/categories/helpers/localized_category_name.dart';
 import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 
 class CategoryPickerSheet extends StatefulWidget {
@@ -96,7 +98,15 @@ class _CategoryPickerSheetState extends State<CategoryPickerSheet> {
                       children: state.categories.map((cat) {
                         final isSelected = _selected.contains(cat.id);
                         return CheckboxListTile(
-                          title: Text(cat.name),
+                          secondary: CircleAvatar(
+                            backgroundColor: Color(cat.color),
+                            child: Icon(
+                              getIconData(cat.icon),
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
+                          title: Text(localizedCategoryName(context, cat)),
                           subtitle: cat.isDefault
                               ? Text(
                                   AppLocalizations.of(context)!.categoryDefault,

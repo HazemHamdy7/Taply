@@ -550,4 +550,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noCategoriesYet => 'No categories yet';
+
+  @override
+  String get categoryStats => 'Category Statistics';
+
+  @override
+  String get categoryIcon => 'Icon';
+
+  @override
+  String get categoryColor => 'Color';
+
+  @override
+  String get overview => 'Overview';
+
+  @override
+  String get totalContacts => 'Total Contacts';
+
+  @override
+  String get categorized => 'Categorized';
+
+  @override
+  String get mostActiveCategory => 'Most Active Category';
+
+  @override
+  String get perCategory => 'Per Category';
+
+  @override
+  String get noCategoryStats => 'No categories with contacts yet';
+
+  @override
+  String get defaultClients => 'Clients';
+
+  @override
+  String get defaultInvestors => 'Investors';
+
+  @override
+  String get defaultDevelopers => 'Developers';
+
+  @override
+  String get defaultDesigners => 'Designers';
+
+  @override
+  String get defaultPartners => 'Partners';
+
+  @override
+  String get defaultFriends => 'Friends';
 }

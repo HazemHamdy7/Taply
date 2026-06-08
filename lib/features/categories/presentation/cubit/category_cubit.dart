@@ -33,9 +33,16 @@ class CategoryCubit extends Cubit<CategoryState> {
     emit(CategoryState(categories: categories));
   }
 
-  Future<void> create(String name) async {
+  Future<void> create(String name, {String icon = 'label_outline', int color = 0xFF9E9E9E}) async {
+    final categories = await _repository.getAll();
     final id = 'cat_${DateTime.now().millisecondsSinceEpoch}';
-    final category = Category(id: id, name: name);
+    final category = Category(
+      id: id,
+      name: name,
+      icon: icon,
+      color: color,
+      sortOrder: categories.length,
+    );
     await _repository.save(category);
     await load();
   }
@@ -45,8 +52,30 @@ class CategoryCubit extends Cubit<CategoryState> {
     await load();
   }
 
+  Future<void> update(Category category) async {
+    await _repository.update(category);
+    await load();
+  }
+
   Future<void> delete(String id) async {
     await _repository.delete(id);
+    await load();
+  }
+
+  Future<void> reorder(int oldIndex, int newIndex) async {
+    final categories = await _repository.getAll();
+    if (oldIndex < 0 || oldIndex >= categories.length) return;
+    if (newIndex < 0 || newIndex >= categories.length) return;
+
+    final updated = List<Category>.from(categories);
+    final item = updated.removeAt(oldIndex);
+    updated.insert(newIndex, item);
+
+    for (int i = 0; i < updated.length; i++) {
+      if (updated[i].sortOrder != i) {
+        await _repository.reorder(updated[i].id, i);
+      }
+    }
     await load();
   }
 }
