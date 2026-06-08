@@ -151,6 +151,20 @@ class AnalyticsRepositoryImpl implements AnalyticsRepository {
   }
 
   @override
+  @override
+  Future<void> deleteEventsByCardId(String cardId) async {
+    final keysToDelete = _box.keys
+        .where((key) {
+          final event = _box.get(key);
+          return event != null && event.cardId == cardId;
+        })
+        .toList();
+    for (final key in keysToDelete) {
+      await _box.delete(key);
+    }
+  }
+
+  @override
   Future<void> clearAll() async {
     await _box.clear();
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/analytics/domain/entities/card_analytics.dart';
 
 class TopCardsSection extends StatelessWidget {
@@ -25,7 +26,7 @@ class TopCardsSection extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             child: Center(
               child: Text(
-                'No analytics data yet',
+                AppLocalizations.of(context)!.noAnalyticsData,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.disabledColor,
                 ),
@@ -43,7 +44,7 @@ class TopCardsSection extends StatelessWidget {
         children: [
           if (hasViewed) ...[
             Text(
-              'Most Viewed',
+              AppLocalizations.of(context)!.mostViewed,
               style: theme.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -56,14 +57,14 @@ class TopCardsSection extends StatelessWidget {
                       rank: topViewed.indexOf(c) + 1,
                       name: c.cardName,
                       count: c.viewCount,
-                      label: 'views',
+                      label: AppLocalizations.of(context)!.viewsLabel,
                       icon: Icons.visibility,
                     )),
           ],
           if (hasShared && hasViewed) const SizedBox(height: 16),
           if (hasShared) ...[
             Text(
-              'Most Shared',
+              AppLocalizations.of(context)!.mostShared,
               style: theme.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -76,7 +77,7 @@ class TopCardsSection extends StatelessWidget {
                       rank: topShared.indexOf(c) + 1,
                       name: c.cardName,
                       count: c.shareCount,
-                      label: 'shares',
+                      label: AppLocalizations.of(context)!.sharesLabel,
                       icon: Icons.share,
                     )),
           ],
@@ -122,7 +123,7 @@ class _CardRankTile extends StatelessWidget {
           ),
         ),
         title: Text(
-          name.isNotEmpty ? name : 'Unknown Card',
+          name.isNotEmpty ? name : AppLocalizations.of(context)!.unknownCard,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),

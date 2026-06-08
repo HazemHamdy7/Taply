@@ -39,26 +39,26 @@ class NetworkingScoreService {
     final insights = <String>[];
 
     if (score.totalContacts < 10) {
-      insights.add('Add more contacts to improve your score');
+      insights.add('insightAddContacts');
     }
     if (score.qrScans < 3) {
-      insights.add('Print your QR code or share it digitally');
+      insights.add('insightShareQR');
     }
     if (score.nfcOpens < 2) {
-      insights.add('Use NFC to quickly exchange cards');
+      insights.add('insightUseNfc');
     }
     if (score.sharedCards < 3) {
-      insights.add('Share your card more often');
+      insights.add('insightShareMore');
     }
     if (score.savedContacts < score.totalContacts) {
-      insights.add('Save more contacts from your scans');
+      insights.add('insightSaveContacts');
     }
     if (score.followUpsCompleted < 3) {
-      insights.add('Follow up with saved contacts');
+      insights.add('insightFollowUp');
     }
 
     if (insights.isEmpty) {
-      insights.add('Great job! Keep networking to maintain your score');
+      insights.add('insightGreatJob');
     }
 
     return insights.take(3).toList();

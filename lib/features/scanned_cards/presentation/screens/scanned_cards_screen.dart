@@ -77,7 +77,7 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                 const SizedBox(width: 8),
                 PopupMenuButton<String>(
                   icon: const Icon(Icons.sort),
-                  tooltip: 'Sort',
+                  tooltip: AppLocalizations.of(context)!.sortTooltip,
                   onSelected: (value) {
                     switch (value) {
                       case 'date':

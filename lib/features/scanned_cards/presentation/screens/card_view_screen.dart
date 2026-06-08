@@ -291,7 +291,7 @@ class _CategoriesSection extends StatelessWidget {
                     size: 18, color: theme.colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
-                  'Categories',
+                  AppLocalizations.of(context)!.categories,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -300,7 +300,7 @@ class _CategoriesSection extends StatelessWidget {
                 TextButton.icon(
                   onPressed: () => _editCategories(context),
                   icon: const Icon(Icons.edit, size: 16),
-                  label: const Text('Edit'),
+                  label: Text(AppLocalizations.of(context)!.edit),
                 ),
               ],
             ),
@@ -316,7 +316,7 @@ class _CategoriesSection extends StatelessWidget {
                   builder: (context, catState) {
                     if (ids.isEmpty) {
                       return Text(
-                        'No categories assigned',
+                        AppLocalizations.of(context)!.noCategoriesAssigned,
                         style: TextStyle(
                           color: theme.disabledColor,
                           fontSize: 13,
@@ -396,16 +396,16 @@ class _FollowUpButton extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: Icon(Icons.how_to_reg, color: theme.colorScheme.primary),
-        title: const Text('Mark as Followed Up', style: TextStyle(fontSize: 14)),
+        title: Text(AppLocalizations.of(context)!.markAsFollowedUp, style: const TextStyle(fontSize: 14)),
         subtitle:
-            const Text('Track your follow-up progress', style: TextStyle(fontSize: 11)),
+            Text(AppLocalizations.of(context)!.followUpSubtitle, style: const TextStyle(fontSize: 11)),
         trailing: const Icon(Icons.check_circle_outline, size: 20),
         onTap: () {
           context.read<AnalyticsCubit>().trackFollowUp(cardId, cardName);
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Follow-up tracked'),
-              duration: Duration(seconds: 2),
+            SnackBar(
+              content: Text(AppLocalizations.of(context)!.followUpTracked),
+              duration: const Duration(seconds: 2),
             ),
           );
         },

@@ -80,7 +80,7 @@ void _initRepositories() {
 void _initCubits() {
   sl.registerLazySingleton(() => BusinessCardCubit(sl()));
   sl.registerLazySingleton(() => NfcCubit());
-  sl.registerLazySingleton(() => ScannedCardCubit(sl()));
+  sl.registerLazySingleton(() => ScannedCardCubit(sl(), sl()));
   sl.registerLazySingleton(() => SettingsCubit(sl()));
   sl.registerLazySingleton(() => CategoryCubit(sl()));
   sl.registerLazySingleton(() => AnalyticsCubit(sl()));

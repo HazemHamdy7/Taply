@@ -68,6 +68,7 @@ class _FilterChip extends StatelessWidget {
         label: Text(label),
         selected: selected,
         onSelected: (_) => onSelected(),
+        showCheckmark: true,
         visualDensity: VisualDensity.compact,
         selectedColor: theme.colorScheme.primaryContainer,
         checkmarkColor: theme.colorScheme.onPrimaryContainer,

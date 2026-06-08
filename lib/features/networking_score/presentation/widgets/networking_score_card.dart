@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/networking_score/presentation/cubit/networking_score_cubit.dart';
 
 class NetworkingScoreCard extends StatelessWidget {
@@ -26,7 +27,7 @@ class NetworkingScoreCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Networking Score',
+                    AppLocalizations.of(context)!.networkingScore,
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -60,7 +61,7 @@ class NetworkingScoreCard extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '/ 100',
+                              AppLocalizations.of(context)!.scoreOutOf,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: theme.disabledColor,
                               ),

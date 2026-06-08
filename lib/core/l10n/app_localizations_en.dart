@@ -493,4 +493,61 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get insightGreatJob =>
       'Great job! Keep networking to maintain your score';
+
+  @override
+  String get qrScans => 'QR Scans';
+
+  @override
+  String get nfcOpens => 'NFC Opens';
+
+  @override
+  String get cardViews => 'Card Views';
+
+  @override
+  String get shares => 'Shares';
+
+  @override
+  String get vcfDownloads => 'VCF Downloads';
+
+  @override
+  String get contactSaves => 'Contact Saves';
+
+  @override
+  String get overviewCards => 'Cards';
+
+  @override
+  String get overviewContacts => 'Contacts';
+
+  @override
+  String get overviewScans => 'Scans';
+
+  @override
+  String get viewsLabel => 'views';
+
+  @override
+  String get sharesLabel => 'shares';
+
+  @override
+  String get unknownCard => 'Unknown Card';
+
+  @override
+  String get scoreOutOf => '/ 100';
+
+  @override
+  String get sortTooltip => 'Sort';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get create => 'Create';
+
+  @override
+  String get rename => 'Rename';
+
+  @override
+  String get noCategoriesYet => 'No categories yet';
 }

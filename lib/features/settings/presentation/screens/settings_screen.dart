@@ -24,8 +24,10 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                      child:                       Text(AppLocalizations.of(context)!.appearance,
-                          style: theme.textTheme.titleMedium),
+                      child: Text(
+                        AppLocalizations.of(context)!.appearance,
+                        style: theme.textTheme.titleMedium,
+                      ),
                     ),
                     SwitchListTile(
                       title: Text(AppLocalizations.of(context)!.darkMode),
@@ -33,8 +35,8 @@ class SettingsScreen extends StatelessWidget {
                         state.themeMode == ThemeMode.dark
                             ? AppLocalizations.of(context)!.darkModeEnabled
                             : state.themeMode == ThemeMode.light
-                                ? AppLocalizations.of(context)!.lightModeEnabled
-                                : AppLocalizations.of(context)!.followSystem,
+                            ? AppLocalizations.of(context)!.lightModeEnabled
+                            : AppLocalizations.of(context)!.followSystem,
                       ),
                       value: state.themeMode == ThemeMode.dark,
                       onChanged: (value) {
@@ -53,8 +55,10 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                      child:                       Text(AppLocalizations.of(context)!.language,
-                          style: theme.textTheme.titleMedium),
+                      child: Text(
+                        AppLocalizations.of(context)!.language,
+                        style: theme.textTheme.titleMedium,
+                      ),
                     ),
                     RadioGroup<String>(
                       groupValue: state.languageCode,
@@ -67,12 +71,16 @@ class SettingsScreen extends StatelessWidget {
                         children: [
                           RadioListTile<String>(
                             title: Text(AppLocalizations.of(context)!.english),
-                            subtitle: Text(AppLocalizations.of(context)!.englishLanguage),
+                            subtitle: Text(
+                              AppLocalizations.of(context)!.englishLanguage,
+                            ),
                             value: 'en',
                           ),
                           RadioListTile<String>(
                             title: const Text('العربية'),
-                            subtitle: Text(AppLocalizations.of(context)!.arabicLanguage),
+                            subtitle: Text(
+                              AppLocalizations.of(context)!.arabicLanguage,
+                            ),
                             value: 'ar',
                           ),
                         ],
@@ -85,8 +93,10 @@ class SettingsScreen extends StatelessWidget {
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.analytics_outlined),
-                  title: const Text('Analytics'),
-                  subtitle: const Text('View usage statistics'),
+                  title: Text(AppLocalizations.of(context)!.analytics),
+                  subtitle: Text(
+                    AppLocalizations.of(context)!.analyticsDescription,
+                  ),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => context.push('/analytics'),
                 ),

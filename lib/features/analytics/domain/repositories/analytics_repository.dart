@@ -5,5 +5,6 @@ abstract class AnalyticsRepository {
   Future<void> trackEvent(AnalyticsEvent event);
   Future<List<AnalyticsEvent>> getAllEvents();
   Future<AnalyticsSummary> getSummary();
+  Future<void> deleteEventsByCardId(String cardId);
   Future<void> clearAll();
 }

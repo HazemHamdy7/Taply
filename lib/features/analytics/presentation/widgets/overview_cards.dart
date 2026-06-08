@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/analytics/domain/entities/analytics_summary.dart';
 
 class OverviewCards extends StatelessWidget {
@@ -23,7 +24,7 @@ class OverviewCards extends StatelessWidget {
           Expanded(
             child: _StatCard(
               icon: Icons.credit_card,
-              label: 'Cards',
+              label: AppLocalizations.of(context)!.overviewCards,
               value: '$totalCards',
               color: theme.colorScheme.primary,
             ),
@@ -32,7 +33,7 @@ class OverviewCards extends StatelessWidget {
           Expanded(
             child: _StatCard(
               icon: Icons.contacts,
-              label: 'Contacts',
+              label: AppLocalizations.of(context)!.overviewContacts,
               value: '$totalContacts',
               color: theme.colorScheme.tertiary,
             ),
@@ -41,7 +42,7 @@ class OverviewCards extends StatelessWidget {
           Expanded(
             child: _StatCard(
               icon: Icons.qr_code_scanner,
-              label: 'Scans',
+              label: AppLocalizations.of(context)!.overviewScans,
               value: '${summary.totalQrScans + summary.totalNfcOpens}',
               color: theme.colorScheme.secondary,
             ),

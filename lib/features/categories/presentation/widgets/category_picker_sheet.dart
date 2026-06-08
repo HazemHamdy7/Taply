@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 
 class CategoryPickerSheet extends StatefulWidget {
@@ -70,7 +71,7 @@ class _CategoryPickerSheetState extends State<CategoryPickerSheet> {
               ),
               const SizedBox(height: 16),
               Text(
-                'Assign Categories',
+                AppLocalizations.of(context)!.assignCategories,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
@@ -82,7 +83,7 @@ class _CategoryPickerSheetState extends State<CategoryPickerSheet> {
                     if (state.categories.isEmpty) {
                       return Center(
                         child: Text(
-                          'No categories available. Create one first.',
+                          AppLocalizations.of(context)!.noCategoriesAvailable,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.disabledColor,
                           ),
@@ -98,7 +99,7 @@ class _CategoryPickerSheetState extends State<CategoryPickerSheet> {
                           title: Text(cat.name),
                           subtitle: cat.isDefault
                               ? Text(
-                                  'Default',
+                                  AppLocalizations.of(context)!.categoryDefault,
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: theme.disabledColor,
@@ -129,7 +130,7 @@ class _CategoryPickerSheetState extends State<CategoryPickerSheet> {
                     widget.onChanged(_selected);
                     Navigator.of(context).pop();
                   },
-                  child: const Text('Done'),
+                  child: Text(AppLocalizations.of(context)!.done),
                 ),
               ),
             ],

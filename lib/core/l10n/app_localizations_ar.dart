@@ -492,4 +492,61 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get insightGreatJob => 'عمل رائع! استمر في التواصل للحفاظ على درجتك';
+
+  @override
+  String get qrScans => 'مسح QR';
+
+  @override
+  String get nfcOpens => 'فتح NFC';
+
+  @override
+  String get cardViews => 'مشاهدة البطاقات';
+
+  @override
+  String get shares => 'مشاركات';
+
+  @override
+  String get vcfDownloads => 'تنزيل VCF';
+
+  @override
+  String get contactSaves => 'حفظ جهات اتصال';
+
+  @override
+  String get overviewCards => 'بطاقات';
+
+  @override
+  String get overviewContacts => 'جهات اتصال';
+
+  @override
+  String get overviewScans => 'مسح';
+
+  @override
+  String get viewsLabel => 'مشاهدة';
+
+  @override
+  String get sharesLabel => 'مشاركة';
+
+  @override
+  String get unknownCard => 'بطاقة غير معروفة';
+
+  @override
+  String get scoreOutOf => '/ 100';
+
+  @override
+  String get sortTooltip => 'ترتيب';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get create => 'إنشاء';
+
+  @override
+  String get rename => 'إعادة تسمية';
+
+  @override
+  String get noCategoriesYet => 'لا توجد تصنيفات بعد';
 }

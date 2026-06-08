@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:business_card/features/analytics/domain/repositories/analytics_repository.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
 import 'package:business_card/features/scanned_cards/domain/repositories/scanned_card_repository.dart';
 
@@ -90,8 +91,9 @@ class ScannedCardState {
 
 class ScannedCardCubit extends Cubit<ScannedCardState> {
   final ScannedCardRepository _repository;
+  final AnalyticsRepository _analyticsRepository;
 
-  ScannedCardCubit(this._repository) : super(const ScannedCardState());
+  ScannedCardCubit(this._repository, this._analyticsRepository) : super(const ScannedCardState());
 
   Future<void> load() async {
     emit(state.copyWith(isLoading: true));
@@ -118,7 +120,11 @@ class ScannedCardCubit extends Cubit<ScannedCardState> {
   }
 
   Future<void> delete(String id) async {
+    final card = state.cards.where((c) => c.id == id).firstOrNull;
     await _repository.delete(id);
+    if (card != null && card.cardId.isNotEmpty) {
+      await _analyticsRepository.deleteEventsByCardId(card.cardId);
+    }
     await load();
   }
 

@@ -23,12 +23,12 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('New Category'),
+        title: Text(AppLocalizations.of(ctx)!.newCategory),
         content: TextField(
           controller: controller,
           autofocus: true,
-          decoration: const InputDecoration(
-            hintText: 'Category name',
+          decoration: InputDecoration(
+            hintText: AppLocalizations.of(ctx)!.categoryName,
             border: OutlineInputBorder(),
           ),
         ),
@@ -45,7 +45,7 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
                 Navigator.of(ctx).pop();
               }
             },
-            child: const Text('Create'),
+            child: Text(AppLocalizations.of(ctx)!.create),
           ),
         ],
       ),
@@ -57,7 +57,7 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Rename Category'),
+        title: Text(AppLocalizations.of(ctx)!.renameCategory),
         content: TextField(
           controller: controller,
           autofocus: true,
@@ -78,7 +78,7 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
                 Navigator.of(ctx).pop();
               }
             },
-            child: const Text('Rename'),
+            child: Text(AppLocalizations.of(ctx)!.rename),
           ),
         ],
       ),
@@ -89,8 +89,8 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Delete Category'),
-        content: Text('Delete "${category.name}" category?'),
+        title: Text(AppLocalizations.of(ctx)!.deleteCategory),
+        content: Text(AppLocalizations.of(ctx)!.deleteCategoryConfirm(category.name)),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
@@ -118,7 +118,7 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Manage Categories'),
+        title: Text(AppLocalizations.of(context)!.manageCategories),
         centerTitle: true,
       ),
       body: BlocBuilder<CategoryCubit, CategoryState>(
@@ -130,7 +130,7 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
           if (state.categories.isEmpty) {
             return Center(
               child: Text(
-                'No categories yet',
+                AppLocalizations.of(context)!.noCategoriesYet,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: theme.disabledColor,
                 ),
@@ -155,7 +155,7 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
                   title: Text(cat.name),
                   subtitle: cat.isDefault
                       ? Text(
-                          'Default',
+                          AppLocalizations.of(context)!.categoryDefault,
                           style: TextStyle(
                             fontSize: 12,
                             color: theme.disabledColor,
@@ -171,20 +171,20 @@ class _CategoryManagerScreenState extends State<CategoryManagerScreen> {
                       }
                     },
                     itemBuilder: (context) => [
-                      const PopupMenuItem(
+                      PopupMenuItem(
                         value: 'rename',
                         child: ListTile(
-                          leading: Icon(Icons.edit_outlined),
-                          title: Text('Rename'),
+                          leading: const Icon(Icons.edit_outlined),
+                          title: Text(AppLocalizations.of(context)!.rename),
                           contentPadding: EdgeInsets.zero,
                           visualDensity: VisualDensity.compact,
                         ),
                       ),
-                      const PopupMenuItem(
+                      PopupMenuItem(
                         value: 'delete',
                         child: ListTile(
-                          leading: Icon(Icons.delete_outline, color: Colors.red),
-                          title: Text('Delete', style: TextStyle(color: Colors.red)),
+                          leading: const Icon(Icons.delete_outline, color: Colors.red),
+                          title: Text(AppLocalizations.of(context)!.delete, style: const TextStyle(color: Colors.red)),
                           contentPadding: EdgeInsets.zero,
                           visualDensity: VisualDensity.compact,
                         ),

@@ -1045,6 +1045,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Great job! Keep networking to maintain your score'**
   String get insightGreatJob;
+
+  /// No description provided for @qrScans.
+  ///
+  /// In en, this message translates to:
+  /// **'QR Scans'**
+  String get qrScans;
+
+  /// No description provided for @nfcOpens.
+  ///
+  /// In en, this message translates to:
+  /// **'NFC Opens'**
+  String get nfcOpens;
+
+  /// No description provided for @cardViews.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Views'**
+  String get cardViews;
+
+  /// No description provided for @shares.
+  ///
+  /// In en, this message translates to:
+  /// **'Shares'**
+  String get shares;
+
+  /// No description provided for @vcfDownloads.
+  ///
+  /// In en, this message translates to:
+  /// **'VCF Downloads'**
+  String get vcfDownloads;
+
+  /// No description provided for @contactSaves.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Saves'**
+  String get contactSaves;
+
+  /// No description provided for @overviewCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get overviewCards;
+
+  /// No description provided for @overviewContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get overviewContacts;
+
+  /// No description provided for @overviewScans.
+  ///
+  /// In en, this message translates to:
+  /// **'Scans'**
+  String get overviewScans;
+
+  /// No description provided for @viewsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'views'**
+  String get viewsLabel;
+
+  /// No description provided for @sharesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'shares'**
+  String get sharesLabel;
+
+  /// No description provided for @unknownCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Card'**
+  String get unknownCard;
+
+  /// No description provided for @scoreOutOf.
+  ///
+  /// In en, this message translates to:
+  /// **'/ 100'**
+  String get scoreOutOf;
+
+  /// No description provided for @sortTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort'**
+  String get sortTooltip;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @create.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get create;
+
+  /// No description provided for @rename.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename'**
+  String get rename;
+
+  /// No description provided for @noCategoriesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories yet'**
+  String get noCategoriesYet;
 }
 
 class _AppLocalizationsDelegate

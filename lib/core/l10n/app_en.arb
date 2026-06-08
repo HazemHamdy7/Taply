@@ -31,6 +31,7 @@
   "theme": "Theme",
   "darkMode": "Dark Mode",
   "lightMode": "Light Mode",
+  
   "english": "English",
   "arabic": "Arabic",
   "saveQR": "Save QR",
@@ -160,5 +161,24 @@
   "insightShareMore": "Share your card more often",
   "insightSaveContacts": "Save more contacts from your scans",
   "insightFollowUp": "Follow up with saved contacts",
-  "insightGreatJob": "Great job! Keep networking to maintain your score"
+  "insightGreatJob": "Great job! Keep networking to maintain your score",
+  "qrScans": "QR Scans",
+  "nfcOpens": "NFC Opens",
+  "cardViews": "Card Views",
+  "shares": "Shares",
+  "vcfDownloads": "VCF Downloads",
+  "contactSaves": "Contact Saves",
+  "overviewCards": "Cards",
+  "overviewContacts": "Contacts",
+  "overviewScans": "Scans",
+  "viewsLabel": "views",
+  "sharesLabel": "shares",
+  "unknownCard": "Unknown Card",
+  "scoreOutOf": "/ 100",
+  "sortTooltip": "Sort",
+  "edit": "Edit",
+  "done": "Done",
+  "create": "Create",
+  "rename": "Rename",
+  "noCategoriesYet": "No categories yet"
 }
