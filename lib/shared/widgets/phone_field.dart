@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/shared/data/country_codes.dart';
 
 class PhoneField extends StatelessWidget {
@@ -93,14 +94,14 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-              child: Text('Select Country Code', style: Theme.of(context).textTheme.titleMedium),
+              child: Text(AppLocalizations.of(context)!.selectCountryCode, style: Theme.of(context).textTheme.titleMedium),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: TextField(
                 controller: _searchCtrl,
                 decoration: InputDecoration(
-                  hintText: 'Search country...',
+                  hintText: AppLocalizations.of(context)!.searchCountry,
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   isDense: true,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/shared/template_engine/template_loader.dart';
 import 'package:business_card/shared/template_engine/template_renderer.dart';
 
@@ -22,14 +23,14 @@ class TemplateGalleryScreen extends StatelessWidget {
           children: [
             Icon(Icons.auto_awesome, size: 80, color: Colors.grey.shade400),
             const SizedBox(height: 16),
-            const Text('No templates available'),
+            Text(AppLocalizations.of(context)!.noTemplates),
           ],
         ),
       );
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Template Gallery')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.templateGallery)),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: GridView.builder(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
 import 'package:business_card/features/scanned_cards/presentation/cubit/scanned_card_cubit.dart';
 import 'package:business_card/features/scanned_cards/presentation/screens/card_view_screen.dart';
@@ -41,7 +42,7 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search scanned cards...',
+                hintText: AppLocalizations.of(context)!.searchScannedCards,
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
@@ -89,8 +90,8 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                           const SizedBox(height: 16),
                           Text(
                             state.searchQuery.isNotEmpty
-                                ? 'No cards match your search'
-                                : 'No scanned cards yet',
+                                ? AppLocalizations.of(context)!.noMatchSearch
+                                : AppLocalizations.of(context)!.noScannedCards,
                             style: theme.textTheme.titleMedium?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(
                                 alpha: 0.6,
@@ -100,7 +101,7 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                           if (state.searchQuery.isEmpty) ...[
                             const SizedBox(height: 8),
                             Text(
-                              'Scan a QR code or NFC tag\nto save a card here',
+                              AppLocalizations.of(context)!.scanToSave,
                               textAlign: TextAlign.center,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: theme.disabledColor,
@@ -169,7 +170,7 @@ class _ScannedCardTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          card.fullName.isNotEmpty ? card.fullName : 'Unknown',
+                          card.fullName.isNotEmpty ? card.fullName : AppLocalizations.of(context)!.unknown,
                           style: theme.textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
@@ -232,21 +233,23 @@ class _ScannedCardTile extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Delete Card'),
+        title: Text(AppLocalizations.of(ctx)!.deleteCard),
         content: Text(
-          'Delete ${card.fullName.isNotEmpty ? card.fullName : 'this card'}?',
+          AppLocalizations.of(ctx)!.deleteCardConfirm(
+            card.fullName.isNotEmpty ? card.fullName : AppLocalizations.of(ctx)!.card,
+          ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(ctx)!.cancel),
           ),
           TextButton(
             onPressed: () {
               context.read<ScannedCardCubit>().delete(card.id);
               Navigator.of(ctx).pop();
             },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+            child: Text(AppLocalizations.of(ctx)!.delete, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),

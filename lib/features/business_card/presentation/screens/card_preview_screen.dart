@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
@@ -49,13 +50,16 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Confirm Delete'),
-        content: Text('Delete "${card.fullName}" card?'),
+        title: Text(AppLocalizations.of(ctx)!.confirmDelete),
+        content: Text(AppLocalizations.of(ctx)!.deleteCardConfirm(card.fullName)),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('No')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(AppLocalizations.of(ctx)!.no),
+          ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Yes', style: TextStyle(color: Colors.red)),
+            child: Text(AppLocalizations.of(ctx)!.yes, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -68,7 +72,7 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
       return;
     }
     scaffold.showSnackBar(
-      const SnackBar(content: Text('Card deleted'), duration: Duration(seconds: 2)),
+      SnackBar(content: Text(AppLocalizations.of(context)!.cardDeleted), duration: const Duration(seconds: 2)),
     );
     if (_singleCard != null) context.pop();
   }
@@ -80,17 +84,17 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: const Text('My Cards'),
+        title: Text(AppLocalizations.of(context)!.myCards),
         actions: [
           IconButton(
             icon: const Icon(Icons.qr_code),
             onPressed: () => context.push('/qr'),
-            tooltip: 'QR Code',
+            tooltip: AppLocalizations.of(context)!.qrCode,
           ),
           IconButton(
             icon: const Icon(Icons.nfc),
             onPressed: () => context.push('/nfc'),
-            tooltip: 'NFC',
+            tooltip: AppLocalizations.of(context)!.nfc,
           ),
           IconButton(
             icon: const Icon(Icons.share),
@@ -99,12 +103,12 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
               final card = _singleCard ?? state.selectedCard;
               if (card != null) ExportBottomSheet.show(context, card);
             },
-            tooltip: 'Export',
+            tooltip: AppLocalizations.of(context)!.export,
           ),
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () => context.push('/settings'),
-            tooltip: 'Settings',
+            tooltip: AppLocalizations.of(context)!.settings,
           ),
         ],
       ),
@@ -139,7 +143,7 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
                         size: 100, color: theme.colorScheme.primary.withValues(alpha: 0.4)),
                     const SizedBox(height: 24),
                     Text(
-                      'Add Your Card',
+                      AppLocalizations.of(context)!.addYourCard,
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: theme.colorScheme.primary,
@@ -147,7 +151,7 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Create a digital business card\nto share with anyone',
+                      AppLocalizations.of(context)!.createDigitalCard,
                       textAlign: TextAlign.center,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
@@ -157,7 +161,7 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
                     FilledButton.icon(
                       onPressed: () => context.push('/create-card'),
                       icon: const Icon(Icons.add),
-                      label: const Text('Create Your Card'),
+                      label: Text(AppLocalizations.of(context)!.createYourCard),
                       style: FilledButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                         textStyle: const TextStyle(fontSize: 16),
@@ -275,28 +279,28 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
         if (card.mobileNumber.isNotEmpty)
           _ActionButton(
             icon: Icons.phone,
-            label: 'Call',
+            label: AppLocalizations.of(context)!.call,
             color: Colors.green,
             onTap: () => _launchUrl('tel:${card.mobileNumber}'),
           ),
         if (card.whatsappNumber.isNotEmpty)
           _ActionButton(
             icon: Icons.chat,
-            label: 'WhatsApp',
+            label: AppLocalizations.of(context)!.whatsapp,
             color: const Color(0xFF25D366),
             onTap: () => _launchUrl('https://wa.me/${card.whatsappNumber}'),
           ),
         if (card.email.isNotEmpty)
           _ActionButton(
             icon: Icons.email,
-            label: 'Email',
+            label: AppLocalizations.of(context)!.emailLabel,
             color: Colors.red,
             onTap: () => _launchUrl('mailto:${card.email}'),
           ),
         if (card.website.isNotEmpty)
           _ActionButton(
             icon: Icons.language,
-            label: 'Website',
+            label: AppLocalizations.of(context)!.websiteLabel,
             color: theme.colorScheme.primary,
             onTap: () => _launchUrl(card.website),
           ),
@@ -311,7 +315,7 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('About Me', style: theme.textTheme.titleMedium),
+            Text(AppLocalizations.of(context)!.aboutMe, style: theme.textTheme.titleMedium),
             const SizedBox(height: 8),
             Text(card.aboutMe, style: theme.textTheme.bodyMedium),
           ],
@@ -324,7 +328,7 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
     return TextButton.icon(
       onPressed: () => _deleteCard(card),
       icon: const Icon(Icons.delete, color: Colors.red),
-      label: const Text('Delete Card', style: TextStyle(color: Colors.red)),
+      label: Text(AppLocalizations.of(context)!.deleteCard, style: const TextStyle(color: Colors.red)),
     );
   }
 

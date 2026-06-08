@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
@@ -43,10 +44,19 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentTab,
         onDestinationSelected: (i) => setState(() => _currentTab = i),
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.credit_card_outlined), label: 'My Cards'),
-          NavigationDestination(icon: Icon(Icons.contact_page_outlined), label: 'Scanned'),
-          NavigationDestination(icon: Icon(Icons.settings_outlined), label: 'Settings'),
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.credit_card_outlined),
+            label: AppLocalizations.of(context)!.myCards,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.contact_page_outlined),
+            label: AppLocalizations.of(context)!.scanned,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.settings_outlined),
+            label: AppLocalizations.of(context)!.settings,
+          ),
         ],
       ),
     );
@@ -63,18 +73,18 @@ class _MyCardsTab extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: const Text('My Cards'),
+        title: Text(AppLocalizations.of(context)!.myCards),
         centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.qr_code),
             onPressed: () => context.push('/qr'),
-            tooltip: 'QR Code',
+            tooltip: AppLocalizations.of(context)!.qrCode,
           ),
           IconButton(
             icon: const Icon(Icons.nfc),
             onPressed: () => context.push('/nfc'),
-            tooltip: 'NFC',
+            tooltip: AppLocalizations.of(context)!.nfc,
           ),
         ],
       ),
@@ -95,7 +105,7 @@ class _MyCardsTab extends StatelessWidget {
                         size: 100, color: theme.colorScheme.primary.withValues(alpha: 0.4)),
                     const SizedBox(height: 24),
                     Text(
-                      'Add Your Card',
+                      AppLocalizations.of(context)!.addYourCard,
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: theme.colorScheme.primary,
@@ -103,7 +113,7 @@ class _MyCardsTab extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Create a digital business card\nto share with anyone',
+                      AppLocalizations.of(context)!.createDigitalCard,
                       textAlign: TextAlign.center,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
@@ -113,7 +123,7 @@ class _MyCardsTab extends StatelessWidget {
                     FilledButton.icon(
                       onPressed: () => context.push('/create-card'),
                       icon: const Icon(Icons.add),
-                      label: const Text('Create Your Card'),
+                      label: Text(AppLocalizations.of(context)!.createYourCard),
                       style: FilledButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                         textStyle: const TextStyle(fontSize: 16),

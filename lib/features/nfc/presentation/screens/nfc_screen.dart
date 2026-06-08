@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/nfc/presentation/cubit/nfc_cubit.dart';
 import 'package:business_card/features/scanned_cards/presentation/screens/card_view_screen.dart';
@@ -13,7 +14,7 @@ class NfcScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('NFC')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.nfc)),
       body: BlocConsumer<NfcCubit, NfcState>(
         listener: (context, state) {
           if (state.message != null) {
@@ -34,7 +35,7 @@ class NfcScreen extends StatelessWidget {
                 children: [
                   Icon(Icons.nfc, size: 80, color: theme.disabledColor),
                   const SizedBox(height: 16),
-                  const Text('NFC is not supported on this device'),
+                  Text(AppLocalizations.of(context)!.nfcNotSupported),
                 ],
               ),
             );
@@ -47,7 +48,7 @@ class NfcScreen extends StatelessWidget {
                 children: [
                   Icon(Icons.nfc, size: 80, color: theme.disabledColor),
                   const SizedBox(height: 16),
-                  const Text('NFC is disabled. Please enable it in settings.'),
+                  Text(AppLocalizations.of(context)!.nfcDisabled),
                 ],
               ),
             );
@@ -87,7 +88,7 @@ class NfcScreen extends StatelessWidget {
             Icon(Icons.nfc, size: 80, color: theme.colorScheme.primary),
             const SizedBox(height: 24),
             Text(
-              isBusy ? 'Place your phone near the tag...' : 'NFC Actions',
+              isBusy ? AppLocalizations.of(context)!.placePhoneNearTag : AppLocalizations.of(context)!.nfcActions,
               style: theme.textTheme.titleLarge,
             ),
             if (isBusy) ...[
@@ -108,7 +109,7 @@ class NfcScreen extends StatelessWidget {
                           }
                         },
                   icon: const Icon(Icons.nfc),
-                  label: const Text('Write to NFC Tag'),
+                  label: Text(AppLocalizations.of(context)!.writeNFC),
                 ),
               ),
             if (hasCard) const SizedBox(height: 16),
@@ -119,7 +120,7 @@ class NfcScreen extends StatelessWidget {
                     ? null
                     : () => context.read<NfcCubit>().readCard(),
                 icon: const Icon(Icons.nfc),
-                label: const Text('Read NFC Tag'),
+                label: Text(AppLocalizations.of(context)!.readNFC),
               ),
             ),
           ],

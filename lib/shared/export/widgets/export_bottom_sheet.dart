@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/shared/export/card_export_service.dart';
 
@@ -20,12 +21,13 @@ class ExportBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context)!;
     final tiles = [
-      _TileData(Icons.image, 'Save to Gallery', Colors.green, () => _export(context, 'saveGallery')),
-      _TileData(Icons.share, 'Share as Image', Colors.blue, () => _export(context, 'shareImage')),
-      _TileData(Icons.contact_page, 'Save Contact (VCF)', Colors.indigo, () => _export(context, 'saveVcf')),
-      _TileData(Icons.person_add, 'Add to Phone Contacts', Colors.orange, () => _export(context, 'addContacts')),
-      _TileData(Icons.high_quality, 'High Res Export (1920px)', Colors.purple, () => _export(context, 'hiRes')),
+      _TileData(Icons.image, loc.saveToGallery, Colors.green, () => _export(context, 'saveGallery')),
+      _TileData(Icons.share, loc.shareAsImage, Colors.blue, () => _export(context, 'shareImage')),
+      _TileData(Icons.contact_page, loc.saveContactVcf, Colors.indigo, () => _export(context, 'saveVcf')),
+      _TileData(Icons.person_add, loc.addToPhoneContacts, Colors.orange, () => _export(context, 'addContacts')),
+      _TileData(Icons.high_quality, loc.hiResExport, Colors.purple, () => _export(context, 'hiRes')),
     ];
 
     return SafeArea(
@@ -43,7 +45,7 @@ class ExportBottomSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text('Export Card', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+            Text(AppLocalizations.of(context)!.exportCard, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
             const SizedBox(height: 12),
             ...tiles.map((t) => ListTile(
               leading: CircleAvatar(
@@ -64,7 +66,7 @@ class ExportBottomSheet extends StatelessWidget {
     Navigator.pop(context);
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
-      const SnackBar(content: Text('Processing...'), duration: Duration(seconds: 1)),
+      SnackBar(content: Text(AppLocalizations.of(context)!.processing), duration: const Duration(seconds: 1)),
     );
 
     String? error;

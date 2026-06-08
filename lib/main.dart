@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:business_card/core/di/service_locator.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/core/router/app_router.dart';
 import 'package:business_card/core/theme/app_theme.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
@@ -29,33 +29,31 @@ class BusinessCardApp extends StatelessWidget {
       ],
       child: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, settings) {
-          return MaterialApp.router(
-            title: 'Digital Business Card',
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: settings.themeMode,
-            locale: Locale(settings.languageCode),
-            supportedLocales: const [
-              Locale('en'),
-              Locale('ar'),
-            ],
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
-            localeResolutionCallback: (locale, supportedLocales) {
-              if (locale != null) {
-                for (final supported in supportedLocales) {
-                  if (supported.languageCode == locale.languageCode) {
-                    return supported;
+          return Directionality(
+            textDirection: settings.languageCode == 'ar'
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            child: MaterialApp.router(
+              title: AppLocalizations.of(context)?.appTitle ?? 'Digital Business Card',
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: settings.themeMode,
+              locale: Locale(settings.languageCode),
+              supportedLocales: AppLocalizations.supportedLocales,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              localeResolutionCallback: (locale, supportedLocales) {
+                if (locale != null) {
+                  for (final supported in supportedLocales) {
+                    if (supported.languageCode == locale.languageCode) {
+                      return supported;
+                    }
                   }
                 }
-              }
-              return supportedLocales.first;
-            },
-            routerConfig: AppRouter.router,
+                return supportedLocales.first;
+              },
+              routerConfig: AppRouter.router,
+            ),
           );
         },
       ),

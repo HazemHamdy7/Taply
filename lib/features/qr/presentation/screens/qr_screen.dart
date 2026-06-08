@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gal/gal.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/shared/utils/card_url.dart';
@@ -39,12 +40,12 @@ class _QRScreenState extends State<QRScreen> {
 
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('QR Code saved to gallery')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.qrCodeSaved)),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error saving: $e')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.errorSaving('$e'))),
       );
     } finally {
       if (mounted) setState(() => _isSaving = false);
@@ -57,11 +58,11 @@ class _QRScreenState extends State<QRScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('QR Code'),
+        title: Text(AppLocalizations.of(context)!.qrCode),
         actions: [
           IconButton(
             icon: const Icon(Icons.qr_code_scanner),
-            tooltip: 'Scan QR',
+            tooltip: AppLocalizations.of(context)!.scanQRCode,
             onPressed: () => context.push('/qr-scanner'),
           ),
         ],
@@ -77,11 +78,11 @@ class _QRScreenState extends State<QRScreen> {
                 children: [
                   Icon(Icons.qr_code_2, size: 80, color: theme.disabledColor),
                   const SizedBox(height: 16),
-                  const Text('No card data available'),
+                  Text(AppLocalizations.of(context)!.noCardData),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () => context.go('/create-card'),
-                    child: const Text('Create Card'),
+                    child: Text(AppLocalizations.of(context)!.createCard),
                   ),
                 ],
               ),
@@ -133,7 +134,7 @@ class _QRScreenState extends State<QRScreen> {
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.save_alt),
-                  label: const Text('Save QR'),
+                  label: Text(AppLocalizations.of(context)!.saveQR),
                 ),
               ],
             ),

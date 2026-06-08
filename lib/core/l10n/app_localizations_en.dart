@@ -180,4 +180,168 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nfcNotSupported => 'NFC is not supported on this device';
+
+  @override
+  String get myCards => 'My Cards';
+
+  @override
+  String get scanned => 'Scanned';
+
+  @override
+  String get addYourCard => 'Add Your Card';
+
+  @override
+  String get createDigitalCard =>
+      'Create a digital business card to share with anyone';
+
+  @override
+  String get createYourCard => 'Create Your Card';
+
+  @override
+  String get tagline => 'Tagline';
+
+  @override
+  String get mobileNumber2 => 'Mobile Number 2';
+
+  @override
+  String get xTwitter => 'X (Twitter)';
+
+  @override
+  String get youtube => 'YouTube';
+
+  @override
+  String get required => 'Required';
+
+  @override
+  String get whatsapp => 'WhatsApp';
+
+  @override
+  String get export => 'Export';
+
+  @override
+  String get cardDeleted => 'Card deleted';
+
+  @override
+  String get deleteCard => 'Delete Card';
+
+  @override
+  String get saveCard => 'Save Card';
+
+  @override
+  String get cardSaved => 'Card saved';
+
+  @override
+  String get cardAlreadySaved => 'This card is already saved';
+
+  @override
+  String get call2 => 'Call 2';
+
+  @override
+  String get searchScannedCards => 'Search scanned cards...';
+
+  @override
+  String get noMatchSearch => 'No cards match your search';
+
+  @override
+  String get noScannedCards => 'No scanned cards yet';
+
+  @override
+  String get scanToSave => 'Scan a QR code or NFC tag to save a card here';
+
+  @override
+  String get unknown => 'Unknown';
+
+  @override
+  String get noTemplates => 'No templates available';
+
+  @override
+  String get templateGallery => 'Template Gallery';
+
+  @override
+  String get qrCodeSaved => 'QR Code saved to gallery';
+
+  @override
+  String errorSaving(Object error) {
+    return 'Error saving: $error';
+  }
+
+  @override
+  String get noCardData => 'No card data available';
+
+  @override
+  String get scanQRCode => 'Scan QR Code';
+
+  @override
+  String get nfcDisabled => 'NFC is disabled. Please enable it in settings.';
+
+  @override
+  String get placePhoneNearTag => 'Place your phone near the tag...';
+
+  @override
+  String get nfcActions => 'NFC Actions';
+
+  @override
+  String get cardTheme => 'Card Theme';
+
+  @override
+  String get browseAll => 'Browse All';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get darkModeEnabled => 'Dark mode is enabled';
+
+  @override
+  String get lightModeEnabled => 'Light mode is enabled';
+
+  @override
+  String get followSystem => 'Follow system setting';
+
+  @override
+  String get englishLanguage => 'English language';
+
+  @override
+  String get arabicLanguage => 'اللغة العربية';
+
+  @override
+  String get version => 'Digital Business Card v1.0.0';
+
+  @override
+  String get saveToGallery => 'Save to Gallery';
+
+  @override
+  String get shareAsImage => 'Share as Image';
+
+  @override
+  String get saveContactVcf => 'Save Contact (VCF)';
+
+  @override
+  String get addToPhoneContacts => 'Add to Phone Contacts';
+
+  @override
+  String get hiResExport => 'High Res Export (1920px)';
+
+  @override
+  String get exportCard => 'Export Card';
+
+  @override
+  String get processing => 'Processing...';
+
+  @override
+  String get selectCountryCode => 'Select Country Code';
+
+  @override
+  String get searchCountry => 'Search country...';
+
+  @override
+  String get card => 'Card';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String deleteCardConfirm(Object name) {
+    return 'Delete \"$name\" card?';
+  }
 }

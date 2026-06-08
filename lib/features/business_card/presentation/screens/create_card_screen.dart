@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/domain/entities/card_template.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
@@ -169,7 +170,7 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
           children: [
             ListTile(
               leading: const Icon(Icons.photo_library),
-              title: const Text('Select from Gallery'),
+              title: Text(AppLocalizations.of(context)!.selectFromGallery),
               onTap: () {
                 Navigator.pop(ctx);
                 _pickImage(ImageSource.gallery);
@@ -177,7 +178,7 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.camera_alt),
-              title: const Text('Take Photo'),
+              title: Text(AppLocalizations.of(context)!.takePhoto),
               onTap: () {
                 Navigator.pop(ctx);
                 _pickImage(ImageSource.camera);
@@ -186,8 +187,8 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
             if (_profileImagePath != null)
               ListTile(
                 leading: const Icon(Icons.delete, color: Colors.red),
-                title: const Text('Remove Photo',
-                    style: TextStyle(color: Colors.red)),
+                title: Text(AppLocalizations.of(context)!.removePhoto,
+                    style: const TextStyle(color: Colors.red)),
                 onTap: () {
                   Navigator.pop(ctx);
                   setState(() => _profileImagePath = null);
@@ -233,7 +234,9 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.existingCard != null ? 'Edit Business Card' : 'Create Business Card'),
+        title: Text(widget.existingCard != null
+            ? AppLocalizations.of(context)!.editCard
+            : AppLocalizations.of(context)!.createCard),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -260,37 +263,37 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
               const SizedBox(height: 8),
               TextButton(
                 onPressed: _showImagePicker,
-                child: const Text('Profile Image'),
+                child: Text(AppLocalizations.of(context)!.profileImage),
               ),
               const SizedBox(height: 16),
               AppTextField(
                 controller: _fullNameCtrl,
-                label: 'Full Name',
+                label: AppLocalizations.of(context)!.fullName,
                 prefixIcon: const Icon(Icons.person),
-                validator: (v) => v?.isEmpty == true ? 'Required' : null,
+                validator: (v) => v?.isEmpty == true ? AppLocalizations.of(context)!.required : null,
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _taglineCtrl,
-                label: 'Tagline',
+                label: AppLocalizations.of(context)!.tagline,
                 prefixIcon: const Icon(Icons.short_text),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _jobTitleCtrl,
-                label: 'Job Title',
+                label: AppLocalizations.of(context)!.jobTitle,
                 prefixIcon: const Icon(Icons.work),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _companyNameCtrl,
-                label: 'Company Name',
+                label: AppLocalizations.of(context)!.companyName,
                 prefixIcon: const Icon(Icons.business),
               ),
               const SizedBox(height: 12),
               PhoneField(
                 controller: _mobileCtrl,
-                label: 'Mobile Number',
+                label: AppLocalizations.of(context)!.mobileNumber,
                 icon: Icons.phone,
                 selectedCountry: _mobileCountry,
                 onCountryChanged: (c) => setState(() => _mobileCountry = c),
@@ -298,7 +301,7 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
               const SizedBox(height: 12),
               PhoneField(
                 controller: _mobileCtrl2,
-                label: 'Mobile Number 2',
+                label: AppLocalizations.of(context)!.mobileNumber2,
                 icon: Icons.phone,
                 selectedCountry: _mobile2Country,
                 onCountryChanged: (c) => setState(() => _mobile2Country = c),
@@ -306,7 +309,7 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
               const SizedBox(height: 12),
               PhoneField(
                 controller: _whatsappCtrl,
-                label: 'WhatsApp Number',
+                label: AppLocalizations.of(context)!.whatsappNumber,
                 icon: Icons.chat,
                 selectedCountry: _whatsappCountry,
                 onCountryChanged: (c) => setState(() => _whatsappCountry = c),
@@ -314,70 +317,70 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
               const SizedBox(height: 12),
               AppTextField(
                 controller: _emailCtrl,
-                label: 'Email',
+                label: AppLocalizations.of(context)!.email,
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: const Icon(Icons.email),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _websiteCtrl,
-                label: 'Website',
+                label: AppLocalizations.of(context)!.website,
                 keyboardType: TextInputType.url,
                 prefixIcon: const Icon(Icons.language),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _linkedinCtrl,
-                label: 'LinkedIn',
+                label: AppLocalizations.of(context)!.linkedin,
                 prefixIcon: const Icon(Icons.link),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _facebookCtrl,
-                label: 'Facebook',
+                label: AppLocalizations.of(context)!.facebook,
                 prefixIcon: const Icon(Icons.link),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _instagramCtrl,
-                label: 'Instagram',
+                label: AppLocalizations.of(context)!.instagram,
                 prefixIcon: const Icon(Icons.link),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _telegramCtrl,
-                label: 'Telegram',
+                label: AppLocalizations.of(context)!.telegram,
                 prefixIcon: const Icon(Icons.send),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _youtubeCtrl,
-                label: 'YouTube',
+                label: AppLocalizations.of(context)!.youtube,
                 prefixIcon: const Icon(Icons.videocam),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _xCtrl,
-                label: 'X (Twitter)',
+                label: AppLocalizations.of(context)!.xTwitter,
                 prefixIcon: const Icon(Icons.alternate_email),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _addressCtrl,
-                label: 'Address',
+                label: AppLocalizations.of(context)!.address,
                 prefixIcon: const Icon(Icons.location_on),
               ),
               const SizedBox(height: 12),
               AppTextField(
                 controller: _aboutMeCtrl,
-                label: 'About Me',
+                label: AppLocalizations.of(context)!.aboutMe,
                 maxLines: 3,
                 prefixIcon: const Icon(Icons.info),
               ),
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: _save,
-                child: const Text('Save'),
+                child: Text(AppLocalizations.of(context)!.save),
               ),
               const SizedBox(height: 32),
             ],
@@ -407,7 +410,7 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
       children: [
         Row(
           children: [
-            Text('Card Theme', style: Theme.of(context).textTheme.titleMedium),
+            Text(AppLocalizations.of(context)!.cardTheme, style: Theme.of(context).textTheme.titleMedium),
             const Spacer(),
             TextButton.icon(
               onPressed: () async {
@@ -418,7 +421,7 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
                 }
               },
               icon: const Icon(Icons.grid_view, size: 18),
-              label: const Text('Browse All'),
+              label: Text(AppLocalizations.of(context)!.browseAll),
             ),
           ],
         ),

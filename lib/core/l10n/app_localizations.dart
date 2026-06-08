@@ -439,6 +439,324 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'NFC is not supported on this device'**
   String get nfcNotSupported;
+
+  /// No description provided for @myCards.
+  ///
+  /// In en, this message translates to:
+  /// **'My Cards'**
+  String get myCards;
+
+  /// No description provided for @scanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned'**
+  String get scanned;
+
+  /// No description provided for @addYourCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Your Card'**
+  String get addYourCard;
+
+  /// No description provided for @createDigitalCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a digital business card to share with anyone'**
+  String get createDigitalCard;
+
+  /// No description provided for @createYourCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Your Card'**
+  String get createYourCard;
+
+  /// No description provided for @tagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Tagline'**
+  String get tagline;
+
+  /// No description provided for @mobileNumber2.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Number 2'**
+  String get mobileNumber2;
+
+  /// No description provided for @xTwitter.
+  ///
+  /// In en, this message translates to:
+  /// **'X (Twitter)'**
+  String get xTwitter;
+
+  /// No description provided for @youtube.
+  ///
+  /// In en, this message translates to:
+  /// **'YouTube'**
+  String get youtube;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
+
+  /// No description provided for @whatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get whatsapp;
+
+  /// No description provided for @export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get export;
+
+  /// No description provided for @cardDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Card deleted'**
+  String get cardDeleted;
+
+  /// No description provided for @deleteCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Card'**
+  String get deleteCard;
+
+  /// No description provided for @saveCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Card'**
+  String get saveCard;
+
+  /// No description provided for @cardSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Card saved'**
+  String get cardSaved;
+
+  /// No description provided for @cardAlreadySaved.
+  ///
+  /// In en, this message translates to:
+  /// **'This card is already saved'**
+  String get cardAlreadySaved;
+
+  /// No description provided for @call2.
+  ///
+  /// In en, this message translates to:
+  /// **'Call 2'**
+  String get call2;
+
+  /// No description provided for @searchScannedCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Search scanned cards...'**
+  String get searchScannedCards;
+
+  /// No description provided for @noMatchSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards match your search'**
+  String get noMatchSearch;
+
+  /// No description provided for @noScannedCards.
+  ///
+  /// In en, this message translates to:
+  /// **'No scanned cards yet'**
+  String get noScannedCards;
+
+  /// No description provided for @scanToSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a QR code or NFC tag to save a card here'**
+  String get scanToSave;
+
+  /// No description provided for @unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get unknown;
+
+  /// No description provided for @noTemplates.
+  ///
+  /// In en, this message translates to:
+  /// **'No templates available'**
+  String get noTemplates;
+
+  /// No description provided for @templateGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Template Gallery'**
+  String get templateGallery;
+
+  /// No description provided for @qrCodeSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'QR Code saved to gallery'**
+  String get qrCodeSaved;
+
+  /// No description provided for @errorSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Error saving: {error}'**
+  String errorSaving(Object error);
+
+  /// No description provided for @noCardData.
+  ///
+  /// In en, this message translates to:
+  /// **'No card data available'**
+  String get noCardData;
+
+  /// No description provided for @scanQRCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan QR Code'**
+  String get scanQRCode;
+
+  /// No description provided for @nfcDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'NFC is disabled. Please enable it in settings.'**
+  String get nfcDisabled;
+
+  /// No description provided for @placePhoneNearTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Place your phone near the tag...'**
+  String get placePhoneNearTag;
+
+  /// No description provided for @nfcActions.
+  ///
+  /// In en, this message translates to:
+  /// **'NFC Actions'**
+  String get nfcActions;
+
+  /// No description provided for @cardTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Theme'**
+  String get cardTheme;
+
+  /// No description provided for @browseAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse All'**
+  String get browseAll;
+
+  /// No description provided for @appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// No description provided for @darkModeEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark mode is enabled'**
+  String get darkModeEnabled;
+
+  /// No description provided for @lightModeEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Light mode is enabled'**
+  String get lightModeEnabled;
+
+  /// No description provided for @followSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow system setting'**
+  String get followSystem;
+
+  /// No description provided for @englishLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'English language'**
+  String get englishLanguage;
+
+  /// No description provided for @arabicLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'اللغة العربية'**
+  String get arabicLanguage;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'Digital Business Card v1.0.0'**
+  String get version;
+
+  /// No description provided for @saveToGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Save to Gallery'**
+  String get saveToGallery;
+
+  /// No description provided for @shareAsImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as Image'**
+  String get shareAsImage;
+
+  /// No description provided for @saveContactVcf.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Contact (VCF)'**
+  String get saveContactVcf;
+
+  /// No description provided for @addToPhoneContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Phone Contacts'**
+  String get addToPhoneContacts;
+
+  /// No description provided for @hiResExport.
+  ///
+  /// In en, this message translates to:
+  /// **'High Res Export (1920px)'**
+  String get hiResExport;
+
+  /// No description provided for @exportCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Card'**
+  String get exportCard;
+
+  /// No description provided for @processing.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing...'**
+  String get processing;
+
+  /// No description provided for @selectCountryCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Country Code'**
+  String get selectCountryCode;
+
+  /// No description provided for @searchCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Search country...'**
+  String get searchCountry;
+
+  /// No description provided for @card.
+  ///
+  /// In en, this message translates to:
+  /// **'Card'**
+  String get card;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @deleteCardConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete \"{name}\" card?'**
+  String deleteCardConfirm(Object name);
 }
 
 class _AppLocalizationsDelegate

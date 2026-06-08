@@ -180,4 +180,168 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get nfcNotSupported => 'NFC غير مدعوم على هذا الجهاز';
+
+  @override
+  String get myCards => 'بطاقاتي';
+
+  @override
+  String get scanned => 'الممسوحة';
+
+  @override
+  String get addYourCard => 'أضف بطاقتك';
+
+  @override
+  String get createDigitalCard => 'أنشئ بطاقة عمل رقمية لمشاركتها مع أي شخص';
+
+  @override
+  String get createYourCard => 'أنشئ بطاقتك';
+
+  @override
+  String get tagline => 'الشعار';
+
+  @override
+  String get mobileNumber2 => 'رقم الجوال 2';
+
+  @override
+  String get xTwitter => 'إكس (تويتر)';
+
+  @override
+  String get youtube => 'يوتيوب';
+
+  @override
+  String get required => 'مطلوب';
+
+  @override
+  String get whatsapp => 'واتساب';
+
+  @override
+  String get export => 'تصدير';
+
+  @override
+  String get cardDeleted => 'تم حذف البطاقة';
+
+  @override
+  String get deleteCard => 'حذف البطاقة';
+
+  @override
+  String get saveCard => 'حفظ البطاقة';
+
+  @override
+  String get cardSaved => 'تم حفظ البطاقة';
+
+  @override
+  String get cardAlreadySaved => 'هذه البطاقة محفوظة بالفعل';
+
+  @override
+  String get call2 => 'اتصال 2';
+
+  @override
+  String get searchScannedCards => 'البحث في البطاقات الممسوحة...';
+
+  @override
+  String get noMatchSearch => 'لا توجد بطاقات تطابق بحثك';
+
+  @override
+  String get noScannedCards => 'لا توجد بطاقات ممسوحة بعد';
+
+  @override
+  String get scanToSave =>
+      'امسح رمز الاستجابة السريعة أو بطاقة NFC لحفظ البطاقة هنا';
+
+  @override
+  String get unknown => 'غير معروف';
+
+  @override
+  String get noTemplates => 'لا توجد قوالب متاحة';
+
+  @override
+  String get templateGallery => 'معرض القوالب';
+
+  @override
+  String get qrCodeSaved => 'تم حفظ رمز الاستجابة في المعرض';
+
+  @override
+  String errorSaving(Object error) {
+    return 'خطأ في الحفظ: $error';
+  }
+
+  @override
+  String get noCardData => 'لا توجد بيانات بطاقة متاحة';
+
+  @override
+  String get scanQRCode => 'مسح رمز الاستجابة';
+
+  @override
+  String get nfcDisabled => 'NFC معطل. يرجى تفعيله في الإعدادات.';
+
+  @override
+  String get placePhoneNearTag => 'ضع هاتفك بالقرب من البطاقة...';
+
+  @override
+  String get nfcActions => 'إجراءات NFC';
+
+  @override
+  String get cardTheme => 'قالب البطاقة';
+
+  @override
+  String get browseAll => 'تصفح الكل';
+
+  @override
+  String get appearance => 'المظهر';
+
+  @override
+  String get darkModeEnabled => 'الوضع الداكن مفعل';
+
+  @override
+  String get lightModeEnabled => 'الوضع الفاتح مفعل';
+
+  @override
+  String get followSystem => 'اتباع إعدادات النظام';
+
+  @override
+  String get englishLanguage => 'اللغة الإنجليزية';
+
+  @override
+  String get arabicLanguage => 'اللغة العربية';
+
+  @override
+  String get version => 'بطاقة الأعمال الرقمية v1.0.0';
+
+  @override
+  String get saveToGallery => 'حفظ في المعرض';
+
+  @override
+  String get shareAsImage => 'مشاركة كصورة';
+
+  @override
+  String get saveContactVcf => 'حفظ جهة اتصال (VCF)';
+
+  @override
+  String get addToPhoneContacts => 'إضافة إلى جهات اتصال الهاتف';
+
+  @override
+  String get hiResExport => 'تصدير عالي الدقة (1920px)';
+
+  @override
+  String get exportCard => 'تصدير البطاقة';
+
+  @override
+  String get processing => 'جارٍ المعالجة...';
+
+  @override
+  String get selectCountryCode => 'اختر رمز الدولة';
+
+  @override
+  String get searchCountry => 'البحث عن دولة...';
+
+  @override
+  String get card => 'بطاقة';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String deleteCardConfirm(Object name) {
+    return 'حذف بطاقة \"$name\"؟';
+  }
 }

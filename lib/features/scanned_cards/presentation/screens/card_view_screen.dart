@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
@@ -22,7 +23,7 @@ class CardViewScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: Text(card.fullName.isNotEmpty ? card.fullName : 'Card'),
+        title: Text(card.fullName.isNotEmpty ? card.fullName : AppLocalizations.of(context)!.card),
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
@@ -30,7 +31,7 @@ class CardViewScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
-            tooltip: 'Export',
+            tooltip: AppLocalizations.of(context)!.export,
             onPressed: () => ExportBottomSheet.show(context, card),
           ),
         ],
@@ -80,7 +81,7 @@ class CardViewScreen extends StatelessWidget {
                 child: FilledButton.icon(
                   onPressed: () async { await _saveCard(context); },
                   icon: const Icon(Icons.save),
-                  label: const Text('Save Card'),
+                  label: Text(AppLocalizations.of(context)!.saveCard),
                 ),
               ),
             const SizedBox(height: 8),
@@ -88,7 +89,7 @@ class CardViewScreen extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
+                child: Text(AppLocalizations.of(context)!.close),
               ),
             ),
           ],
@@ -125,30 +126,31 @@ class CardViewScreen extends StatelessWidget {
     if (!context.mounted) return;
     if (saved) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Card saved'), duration: Duration(seconds: 2)),
+        SnackBar(content: Text(AppLocalizations.of(context)!.cardSaved), duration: const Duration(seconds: 2)),
       );
       context.goNamed('home', extra: 1);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('This card is already saved'), duration: Duration(seconds: 2)),
+        SnackBar(content: Text(AppLocalizations.of(context)!.cardAlreadySaved), duration: const Duration(seconds: 2)),
       );
     }
   }
 
   Widget _actionsSection(BuildContext context, ThemeData theme) {
     final tiles = <Widget>[];
-    _addTile(tiles, Icons.phone_outlined, 'Call', card.mobileNumber, () => _launch('tel:${card.mobileNumber}'));
-    _addTile(tiles, Icons.phone_outlined, 'Call 2', card.mobileNumber2, () => _launch('tel:${card.mobileNumber2}'));
-    _addTile(tiles, Icons.chat_outlined, 'WhatsApp', card.whatsappNumber, () => _launch('https://wa.me/${card.whatsappNumber.replaceAll('+', '').replaceAll(' ', '')}'));
-    _addTile(tiles, Icons.email_outlined, 'Email', card.email, () => _launch('mailto:${card.email}'));
-    _addTile(tiles, Icons.language_outlined, 'Website', card.website, () => _launch(_normalizeUrl(card.website)));
-    _addTile(tiles, Icons.location_on_outlined, 'Address', card.address, () => _launch('https://maps.google.com/?q=${Uri.encodeComponent(card.address)}'));
-    _addTile(tiles, Icons.person_outlined, 'LinkedIn', card.linkedin, () => _launch(_normalizeUrl(card.linkedin)));
-    _addTile(tiles, Icons.facebook_outlined, 'Facebook', card.facebook, () => _launch(_normalizeUrl(card.facebook)));
-    _addTile(tiles, Icons.camera_alt_outlined, 'Instagram', card.instagram, () => _launch(_normalizeUrl(card.instagram)));
-    _addTile(tiles, Icons.send_outlined, 'Telegram', card.telegram, () => _launch(_normalizeUrl(card.telegram)));
-    _addTile(tiles, Icons.play_circle_outlined, 'YouTube', card.youtube, () => _launch(_normalizeUrl(card.youtube)));
-    _addTile(tiles, Icons.alternate_email_outlined, 'X', card.x, () => _launch(_normalizeUrl(card.x)));
+    final loc = AppLocalizations.of(context)!;
+    _addTile(tiles, Icons.phone_outlined, loc.call, card.mobileNumber, () => _launch('tel:${card.mobileNumber}'));
+    _addTile(tiles, Icons.phone_outlined, loc.call2, card.mobileNumber2, () => _launch('tel:${card.mobileNumber2}'));
+    _addTile(tiles, Icons.chat_outlined, loc.whatsapp, card.whatsappNumber, () => _launch('https://wa.me/${card.whatsappNumber.replaceAll('+', '').replaceAll(' ', '')}'));
+    _addTile(tiles, Icons.email_outlined, loc.emailLabel, card.email, () => _launch('mailto:${card.email}'));
+    _addTile(tiles, Icons.language_outlined, loc.websiteLabel, card.website, () => _launch(_normalizeUrl(card.website)));
+    _addTile(tiles, Icons.location_on_outlined, loc.address, card.address, () => _launch('https://maps.google.com/?q=${Uri.encodeComponent(card.address)}'));
+    _addTile(tiles, Icons.person_outlined, loc.linkedin, card.linkedin, () => _launch(_normalizeUrl(card.linkedin)));
+    _addTile(tiles, Icons.facebook_outlined, loc.facebook, card.facebook, () => _launch(_normalizeUrl(card.facebook)));
+    _addTile(tiles, Icons.camera_alt_outlined, loc.instagram, card.instagram, () => _launch(_normalizeUrl(card.instagram)));
+    _addTile(tiles, Icons.send_outlined, loc.telegram, card.telegram, () => _launch(_normalizeUrl(card.telegram)));
+    _addTile(tiles, Icons.play_circle_outlined, loc.youtube, card.youtube, () => _launch(_normalizeUrl(card.youtube)));
+    _addTile(tiles, Icons.alternate_email_outlined, loc.xTwitter, card.x, () => _launch(_normalizeUrl(card.x)));
 
     if (tiles.isEmpty) return const SizedBox.shrink();
 

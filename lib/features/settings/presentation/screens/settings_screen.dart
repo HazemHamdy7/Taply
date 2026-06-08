@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/settings/presentation/cubit/settings_cubit.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.settings)),
       body: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
           return ListView(
@@ -22,17 +23,17 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                      child: Text('Appearance',
+                      child:                       Text(AppLocalizations.of(context)!.appearance,
                           style: theme.textTheme.titleMedium),
                     ),
                     SwitchListTile(
-                      title: const Text('Dark Mode'),
+                      title: Text(AppLocalizations.of(context)!.darkMode),
                       subtitle: Text(
                         state.themeMode == ThemeMode.dark
-                            ? 'Dark mode is enabled'
+                            ? AppLocalizations.of(context)!.darkModeEnabled
                             : state.themeMode == ThemeMode.light
-                                ? 'Light mode is enabled'
-                                : 'Follow system setting',
+                                ? AppLocalizations.of(context)!.lightModeEnabled
+                                : AppLocalizations.of(context)!.followSystem,
                       ),
                       value: state.themeMode == ThemeMode.dark,
                       onChanged: (value) {
@@ -51,7 +52,7 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                      child: Text('Language',
+                      child:                       Text(AppLocalizations.of(context)!.language,
                           style: theme.textTheme.titleMedium),
                     ),
                     RadioGroup<String>(
@@ -64,13 +65,13 @@ class SettingsScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           RadioListTile<String>(
-                            title: const Text('English'),
-                            subtitle: const Text('English language'),
+                            title: Text(AppLocalizations.of(context)!.english),
+                            subtitle: Text(AppLocalizations.of(context)!.englishLanguage),
                             value: 'en',
                           ),
                           RadioListTile<String>(
                             title: const Text('العربية'),
-                            subtitle: const Text('اللغة العربية'),
+                            subtitle: Text(AppLocalizations.of(context)!.arabicLanguage),
                             value: 'ar',
                           ),
                         ],
@@ -82,7 +83,7 @@ class SettingsScreen extends StatelessWidget {
               const SizedBox(height: 32),
               Center(
                 child: Text(
-                  'Digital Business Card v1.0.0',
+                  AppLocalizations.of(context)!.version,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.disabledColor,
                   ),
