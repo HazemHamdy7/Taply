@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
+import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
 import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:business_card/features/categories/presentation/widgets/category_chips_bar.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
@@ -405,6 +406,10 @@ class _ScannedCardTile extends StatelessWidget {
   }
 
   void _showDetail(BuildContext context) {
+    context.read<AnalyticsCubit>().trackCardView(
+      card.cardId.isNotEmpty ? card.cardId : card.id,
+      card.fullName,
+    );
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => CardViewScreen(

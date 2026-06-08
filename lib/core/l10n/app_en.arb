@@ -133,5 +133,16 @@
   "addToFavorites": "Add to Favorites",
   "removeFromFavorites": "Remove from Favorites",
   "sortByFavorites": "Favorites First",
-  "noFavoriteCards": "No favorite cards yet"
+  "noFavoriteCards": "No favorite cards yet",
+  "analytics": "Analytics",
+  "analyticsDescription": "View usage statistics",
+  "eventBreakdown": "Event Breakdown",
+  "dailyActivity": "Daily Activity (7 days)",
+  "weeklyActivity": "Weekly Activity (4 weeks)",
+  "monthlyActivity": "Monthly Activity (6 months)",
+  "totalEvents": "Total Events",
+  "mostViewed": "Most Viewed",
+  "mostShared": "Most Shared",
+  "noAnalyticsData": "No analytics data yet",
+  "analyticsEmptyHint": "Analytics will appear here as you use the app"
 }

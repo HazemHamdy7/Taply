@@ -410,4 +410,38 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noFavoriteCards => 'No favorite cards yet';
+
+  @override
+  String get analytics => 'Analytics';
+
+  @override
+  String get analyticsDescription => 'View usage statistics';
+
+  @override
+  String get eventBreakdown => 'Event Breakdown';
+
+  @override
+  String get dailyActivity => 'Daily Activity (7 days)';
+
+  @override
+  String get weeklyActivity => 'Weekly Activity (4 weeks)';
+
+  @override
+  String get monthlyActivity => 'Monthly Activity (6 months)';
+
+  @override
+  String get totalEvents => 'Total Events';
+
+  @override
+  String get mostViewed => 'Most Viewed';
+
+  @override
+  String get mostShared => 'Most Shared';
+
+  @override
+  String get noAnalyticsData => 'No analytics data yet';
+
+  @override
+  String get analyticsEmptyHint =>
+      'Analytics will appear here as you use the app';
 }

@@ -410,4 +410,38 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noFavoriteCards => 'لا توجد بطاقات مفضلة بعد';
+
+  @override
+  String get analytics => 'الإحصائيات';
+
+  @override
+  String get analyticsDescription => 'عرض إحصائيات الاستخدام';
+
+  @override
+  String get eventBreakdown => 'تفصيل الأحداث';
+
+  @override
+  String get dailyActivity => 'النشاط اليومي (7 أيام)';
+
+  @override
+  String get weeklyActivity => 'النشاط الأسبوعي (4 أسابيع)';
+
+  @override
+  String get monthlyActivity => 'النشاط الشهري (6 أشهر)';
+
+  @override
+  String get totalEvents => 'إجمالي الأحداث';
+
+  @override
+  String get mostViewed => 'الأكثر مشاهدة';
+
+  @override
+  String get mostShared => 'الأكثر مشاركة';
+
+  @override
+  String get noAnalyticsData => 'لا توجد بيانات إحصائيات بعد';
+
+  @override
+  String get analyticsEmptyHint =>
+      'ستظهر الإحصائيات هنا أثناء استخدامك للتطبيق';
 }

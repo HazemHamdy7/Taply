@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/settings/presentation/cubit/settings_cubit.dart';
 
@@ -78,6 +79,16 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.analytics_outlined),
+                  title: const Text('Analytics'),
+                  subtitle: const Text('View usage statistics'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/analytics'),
                 ),
               ),
               const SizedBox(height: 32),

@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/widgets/business_card_widget.dart';
+import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
 import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:business_card/features/categories/presentation/widgets/category_picker_sheet.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
@@ -169,6 +170,10 @@ class CardViewScreen extends StatelessWidget {
         await context.read<ScannedCardCubit>().saveIfNotExists(scanned);
     if (!context.mounted) return;
     if (saved) {
+      context.read<AnalyticsCubit>().trackContactSave(
+        card.id ?? '',
+        card.fullName,
+      );
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             content: Text(AppLocalizations.of(context)!.cardSaved),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
+import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/shared/export/card_export_service.dart';
 
@@ -69,21 +71,26 @@ class ExportBottomSheet extends StatelessWidget {
       SnackBar(content: Text(AppLocalizations.of(context)!.processing), duration: const Duration(seconds: 1)),
     );
 
+    final analyticsCubit = context.read<AnalyticsCubit>();
     String? error;
     switch (action) {
       case 'saveGallery':
         error = await CardExportService.exportPng(context: context, card: card);
         break;
       case 'shareImage':
+        analyticsCubit.trackShare(card.id ?? '', card.fullName);
         error = await CardExportService.shareAsImage(context: context, card: card);
         break;
       case 'saveVcf':
+        analyticsCubit.trackVcfDownload(card.id ?? '', card.fullName);
         error = await CardExportService.saveContact(context: context, card: card);
         break;
       case 'addContacts':
+        analyticsCubit.trackContactSave(card.id ?? '', card.fullName);
         error = await CardExportService.addToPhoneContacts(context: context, card: card);
         break;
       case 'hiRes':
+        analyticsCubit.trackShare(card.id ?? '', card.fullName);
         error = await CardExportService.hiResExport(context: context, card: card);
         break;
     }

@@ -130,5 +130,16 @@
   "addToFavorites": "إضافة إلى المفضلة",
   "removeFromFavorites": "إزالة من المفضلة",
   "sortByFavorites": "المفضلة أولاً",
-  "noFavoriteCards": "لا توجد بطاقات مفضلة بعد"
+  "noFavoriteCards": "لا توجد بطاقات مفضلة بعد",
+  "analytics": "الإحصائيات",
+  "analyticsDescription": "عرض إحصائيات الاستخدام",
+  "eventBreakdown": "تفصيل الأحداث",
+  "dailyActivity": "النشاط اليومي (7 أيام)",
+  "weeklyActivity": "النشاط الأسبوعي (4 أسابيع)",
+  "monthlyActivity": "النشاط الشهري (6 أشهر)",
+  "totalEvents": "إجمالي الأحداث",
+  "mostViewed": "الأكثر مشاهدة",
+  "mostShared": "الأكثر مشاركة",
+  "noAnalyticsData": "لا توجد بيانات إحصائيات بعد",
+  "analyticsEmptyHint": "ستظهر الإحصائيات هنا أثناء استخدامك للتطبيق"
 }

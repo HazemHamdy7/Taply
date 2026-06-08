@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
+import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/nfc/presentation/cubit/nfc_cubit.dart';
 import 'package:business_card/features/scanned_cards/presentation/screens/card_view_screen.dart';
@@ -56,6 +57,10 @@ class NfcScreen extends StatelessWidget {
 
           if (state.readCard != null) {
             final card = state.readCard!;
+            context.read<AnalyticsCubit>().trackNfcOpen(
+              card.id ?? '',
+              card.fullName,
+            );
             final localCard = context.read<BusinessCardCubit>().state.selectedCard;
             final isOwnCard = localCard != null && localCard.fullName == card.fullName;
             final displayCard = isOwnCard ? localCard : card;

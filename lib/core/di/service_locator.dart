@@ -2,6 +2,10 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:business_card/core/constants/app_constants.dart';
+import 'package:business_card/features/analytics/data/models/analytics_event_model.dart';
+import 'package:business_card/features/analytics/data/repositories/analytics_repository_impl.dart';
+import 'package:business_card/features/analytics/domain/repositories/analytics_repository.dart';
+import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
 import 'package:business_card/features/business_card/data/models/business_card_model.dart';
 import 'package:business_card/features/business_card/data/repositories/business_card_repository_impl.dart';
 import 'package:business_card/features/business_card/domain/repositories/business_card_repository.dart';
@@ -40,9 +44,11 @@ Future<void> _initHive() async {
   Hive.registerAdapter(BusinessCardModelAdapter());
   Hive.registerAdapter(ScannedCardModelAdapter());
   Hive.registerAdapter(CategoryModelAdapter());
+  Hive.registerAdapter(AnalyticsEventModelAdapter());
   await Hive.openBox<BusinessCardModel>(AppConstants.hiveBoxName);
   await Hive.openBox<ScannedCardModel>(AppConstants.hiveScannedBoxName);
   await Hive.openBox<CategoryModel>(AppConstants.categoriesBoxName);
+  await Hive.openBox<AnalyticsEventModel>(AppConstants.analyticsBoxName);
   await Hive.openBox(AppConstants.settingsBoxName);
 }
 
@@ -64,6 +70,9 @@ void _initRepositories() {
   sl.registerLazySingleton<ScannedCardRepository>(
     () => ScannedCardRepositoryImpl(),
   );
+  sl.registerLazySingleton<AnalyticsRepository>(
+    () => AnalyticsRepositoryImpl(),
+  );
 }
 
 void _initCubits() {
@@ -72,4 +81,5 @@ void _initCubits() {
   sl.registerLazySingleton(() => ScannedCardCubit(sl()));
   sl.registerLazySingleton(() => SettingsCubit(sl()));
   sl.registerLazySingleton(() => CategoryCubit(sl()));
+  sl.registerLazySingleton(() => AnalyticsCubit(sl()));
 }

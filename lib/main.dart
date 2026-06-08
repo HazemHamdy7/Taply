@@ -4,6 +4,7 @@ import 'package:business_card/core/di/service_locator.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/core/router/app_router.dart';
 import 'package:business_card/core/theme/app_theme.dart';
+import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:business_card/features/nfc/presentation/cubit/nfc_cubit.dart';
@@ -27,6 +28,7 @@ class BusinessCardApp extends StatelessWidget {
         BlocProvider<BusinessCardCubit>(create: (_) => sl<BusinessCardCubit>()),
         BlocProvider<ScannedCardCubit>(create: (_) => sl<ScannedCardCubit>()),
         BlocProvider<CategoryCubit>(create: (_) => sl<CategoryCubit>()),
+        BlocProvider<AnalyticsCubit>(create: (_) => sl<AnalyticsCubit>()),
         BlocProvider<NfcCubit>(create: (_) => sl<NfcCubit>()),
       ],
       child: BlocBuilder<SettingsCubit, SettingsState>(

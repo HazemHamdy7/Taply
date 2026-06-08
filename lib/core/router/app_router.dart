@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:business_card/features/analytics/presentation/screens/analytics_dashboard_screen.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/screens/home_screen.dart';
 import 'package:business_card/features/business_card/presentation/screens/create_card_screen.dart';
@@ -18,6 +19,7 @@ abstract final class AppRouter {
   static const String nfc = '/nfc';
   static const String settings = '/settings';
   static const String templateGallery = '/template-gallery';
+  static const String analytics = '/analytics';
 
   static final GoRouter router = GoRouter(
     initialLocation: home,
@@ -67,6 +69,11 @@ abstract final class AppRouter {
           final selectedId = state.extra as String?;
           return TemplateGalleryScreen(selectedId: selectedId);
         },
+      ),
+      GoRoute(
+        path: analytics,
+        name: 'analytics',
+        builder: (context, state) => const AnalyticsDashboardScreen(),
       ),
     ],
   );

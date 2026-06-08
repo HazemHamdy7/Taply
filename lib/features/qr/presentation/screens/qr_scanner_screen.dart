@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
+import 'package:business_card/features/analytics/presentation/cubit/analytics_cubit.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
 import 'package:business_card/features/business_card/presentation/cubit/business_card_cubit.dart';
 import 'package:business_card/features/scanned_cards/presentation/screens/card_view_screen.dart';
@@ -79,6 +80,11 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
 
       _hasResult = true;
       _controller?.stop();
+
+      context.read<AnalyticsCubit>().trackQrScan(
+        card.id ?? '',
+        card.fullName,
+      );
 
       final localCard = context.read<BusinessCardCubit>().state.selectedCard;
       final isOwnCard = localCard != null && localCard.fullName == card.fullName;

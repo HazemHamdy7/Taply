@@ -883,6 +883,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No favorite cards yet'**
   String get noFavoriteCards;
+
+  /// No description provided for @analytics.
+  ///
+  /// In en, this message translates to:
+  /// **'Analytics'**
+  String get analytics;
+
+  /// No description provided for @analyticsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'View usage statistics'**
+  String get analyticsDescription;
+
+  /// No description provided for @eventBreakdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Breakdown'**
+  String get eventBreakdown;
+
+  /// No description provided for @dailyActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Activity (7 days)'**
+  String get dailyActivity;
+
+  /// No description provided for @weeklyActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Activity (4 weeks)'**
+  String get weeklyActivity;
+
+  /// No description provided for @monthlyActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Activity (6 months)'**
+  String get monthlyActivity;
+
+  /// No description provided for @totalEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Events'**
+  String get totalEvents;
+
+  /// No description provided for @mostViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Viewed'**
+  String get mostViewed;
+
+  /// No description provided for @mostShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Shared'**
+  String get mostShared;
+
+  /// No description provided for @noAnalyticsData.
+  ///
+  /// In en, this message translates to:
+  /// **'No analytics data yet'**
+  String get noAnalyticsData;
+
+  /// No description provided for @analyticsEmptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Analytics will appear here as you use the app'**
+  String get analyticsEmptyHint;
 }
 
 class _AppLocalizationsDelegate
