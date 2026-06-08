@@ -9,7 +9,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appTitle => 'بطاقة الأعمال الرقمية';
+  String get appTitle => 'Taply';
 
   @override
   String get createCard => 'إنشاء بطاقة عمل';
@@ -305,7 +305,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get arabicLanguage => 'اللغة العربية';
 
   @override
-  String get version => 'بطاقة الأعمال الرقمية v1.0.0';
+  String get version => 'Taply v1.0.0';
 
   @override
   String get saveToGallery => 'حفظ في المعرض';

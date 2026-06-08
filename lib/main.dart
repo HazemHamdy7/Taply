@@ -40,7 +40,7 @@ class BusinessCardApp extends StatelessWidget {
                 ? TextDirection.rtl
                 : TextDirection.ltr,
             child: MaterialApp.router(
-              title: AppLocalizations.of(context)?.appTitle ?? 'Digital Business Card',
+              title: AppLocalizations.of(context)?.appTitle ?? 'Taply',
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,

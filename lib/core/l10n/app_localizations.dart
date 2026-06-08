@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// The title of the application
   ///
   /// In en, this message translates to:
-  /// **'Digital Business Card'**
+  /// **'Taply'**
   String get appTitle;
 
   /// No description provided for @createCard.
@@ -683,7 +683,7 @@ abstract class AppLocalizations {
   /// No description provided for @version.
   ///
   /// In en, this message translates to:
-  /// **'Digital Business Card v1.0.0'**
+  /// **'Taply v1.0.0'**
   String get version;
 
   /// No description provided for @saveToGallery.

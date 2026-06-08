@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Digital Business Card';
+  String get appTitle => 'Taply';
 
   @override
   String get createCard => 'Create Business Card';
@@ -305,7 +305,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get arabicLanguage => 'اللغة العربية';
 
   @override
-  String get version => 'Digital Business Card v1.0.0';
+  String get version => 'Taply v1.0.0';
 
   @override
   String get saveToGallery => 'Save to Gallery';

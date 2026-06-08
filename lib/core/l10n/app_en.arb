@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "Digital Business Card",
+  "appTitle": "Taply",
   "@appTitle": {
     "description": "The title of the application"
   },
@@ -101,7 +101,7 @@
   "followSystem": "Follow system setting",
   "englishLanguage": "English language",
   "arabicLanguage": "اللغة العربية",
-  "version": "Digital Business Card v1.0.0",
+  "version": "Taply v1.0.0",
   "saveToGallery": "Save to Gallery",
   "shareAsImage": "Share as Image",
   "saveContactVcf": "Save Contact (VCF)",

@@ -1,6 +1,6 @@
 {
   "@@locale": "ar",
-  "appTitle": "بطاقة الأعمال الرقمية",
+  "appTitle": "Taply",
   "createCard": "إنشاء بطاقة عمل",
   "editCard": "تعديل بطاقة العمل",
   "myCard": "بطاقتي",
@@ -97,7 +97,7 @@
   "followSystem": "اتباع إعدادات النظام",
   "englishLanguage": "اللغة الإنجليزية",
   "arabicLanguage": "اللغة العربية",
-  "version": "بطاقة الأعمال الرقمية v1.0.0",
+  "version": "Taply v1.0.0",
   "saveToGallery": "حفظ في المعرض",
   "shareAsImage": "مشاركة كصورة",
   "saveContactVcf": "حفظ جهة اتصال (VCF)",
