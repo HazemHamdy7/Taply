@@ -49,7 +49,8 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                   child: TextField(
                     controller: _searchController,
                     decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.searchScannedCards,
+                      hintText:
+                          AppLocalizations.of(context)!.searchScannedCards,
                       prefixIcon: const Icon(Icons.search),
                       suffixIcon: _searchController.text.isNotEmpty
                           ? IconButton(
@@ -90,26 +91,36 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                         context
                             .read<ScannedCardCubit>()
                             .sortBy(SortMode.category);
+                      case 'favorites':
+                        context
+                            .read<ScannedCardCubit>()
+                            .sortBy(SortMode.favorites);
                     }
                   },
                   itemBuilder: (context) => [
-                    const PopupMenuItem(
+                    PopupMenuItem(
                       value: 'date',
-                      child: Text('Sort by Date'),
+                      child: Text(AppLocalizations.of(context)!.sortByDate),
                     ),
-                    const PopupMenuItem(
+                    PopupMenuItem(
                       value: 'name',
-                      child: Text('Sort by Name'),
+                      child: Text(AppLocalizations.of(context)!.sortByName),
                     ),
-                    const PopupMenuItem(
+                    PopupMenuItem(
                       value: 'category',
-                      child: Text('Sort by Category'),
+                      child:
+                          Text(AppLocalizations.of(context)!.sortByCategory),
+                    ),
+                    PopupMenuItem(
+                      value: 'favorites',
+                      child:
+                          Text(AppLocalizations.of(context)!.sortByFavorites),
                     ),
                   ],
                 ),
                 IconButton(
                   icon: const Icon(Icons.label_outline),
-                  tooltip: 'Manage Categories',
+                  tooltip: AppLocalizations.of(context)!.manageCategories,
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -123,6 +134,40 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                 ),
               ],
             ),
+          ),
+          BlocBuilder<ScannedCardCubit, ScannedCardState>(
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                child: Row(
+                  children: [
+                    _QuickFilterChip(
+                      label: AppLocalizations.of(context)!.allCards,
+                      selected: !state.showFavoritesOnly,
+                      onTap: () {
+                        if (state.showFavoritesOnly) {
+                          context
+                              .read<ScannedCardCubit>()
+                              .toggleShowFavoritesOnly();
+                        }
+                      },
+                    ),
+                    const SizedBox(width: 8),
+                    _QuickFilterChip(
+                      label: AppLocalizations.of(context)!.favoritesOnly,
+                      selected: state.showFavoritesOnly,
+                      onTap: () {
+                        if (!state.showFavoritesOnly) {
+                          context
+                              .read<ScannedCardCubit>()
+                              .toggleShowFavoritesOnly();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
           const CategoryChipsBar(),
           const SizedBox(height: 4),
@@ -143,7 +188,9 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
-                            Icons.contact_page_outlined,
+                            state.showFavoritesOnly
+                                ? Icons.favorite_outline
+                                : Icons.contact_page_outlined,
                             size: 80,
                             color: theme.colorScheme.primary.withValues(
                               alpha: 0.4,
@@ -153,14 +200,19 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
                           Text(
                             state.searchQuery.isNotEmpty
                                 ? AppLocalizations.of(context)!.noMatchSearch
-                                : AppLocalizations.of(context)!.noScannedCards,
+                                : state.showFavoritesOnly
+                                    ? AppLocalizations.of(context)!
+                                        .noFavoriteCards
+                                    : AppLocalizations.of(context)!
+                                        .noScannedCards,
                             style: theme.textTheme.titleMedium?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(
                                 alpha: 0.6,
                               ),
                             ),
                           ),
-                          if (state.searchQuery.isEmpty) ...[
+                          if (state.searchQuery.isEmpty &&
+                              !state.showFavoritesOnly) ...[
                             const SizedBox(height: 8),
                             Text(
                               AppLocalizations.of(context)!.scanToSave,
@@ -196,6 +248,38 @@ class _ScannedCardsScreenState extends State<ScannedCardsScreen> {
   }
 }
 
+class _QuickFilterChip extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  const _QuickFilterChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return FilterChip(
+      label: Text(label),
+      selected: selected,
+      onSelected: (_) => onTap(),
+      visualDensity: VisualDensity.compact,
+      selectedColor: theme.colorScheme.secondaryContainer,
+      checkmarkColor: theme.colorScheme.onSecondaryContainer,
+      labelStyle: TextStyle(
+        fontSize: 13,
+        fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
+        color: selected
+            ? theme.colorScheme.onSecondaryContainer
+            : theme.colorScheme.onSurface,
+      ),
+    );
+  }
+}
+
 class _ScannedCardTile extends StatelessWidget {
   final ScannedCard card;
   const _ScannedCardTile({required this.card});
@@ -215,13 +299,34 @@ class _ScannedCardTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: cardWidgetWidth,
-              height: cardWidgetHeight,
-              child: BusinessCardWidget(
-                card: card.toBusinessCard(),
-                width: cardWidgetWidth,
-              ),
+            Stack(
+              children: [
+                SizedBox(
+                  width: cardWidgetWidth,
+                  height: cardWidgetHeight,
+                  child: BusinessCardWidget(
+                    card: card.toBusinessCard(),
+                    width: cardWidgetWidth,
+                  ),
+                ),
+                if (card.isFavorite)
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.9),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                        size: 18,
+                      ),
+                    ),
+                  ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),

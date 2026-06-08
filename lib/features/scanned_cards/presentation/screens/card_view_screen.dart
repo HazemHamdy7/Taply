@@ -41,6 +41,27 @@ class CardViewScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: [
+          if (scannedCardId != null)
+            BlocBuilder<ScannedCardCubit, ScannedCardState>(
+              builder: (context, state) {
+                final scannedCard = state.cards
+                    .where((c) => c.id == scannedCardId)
+                    .firstOrNull;
+                final isFav = scannedCard?.isFavorite ?? false;
+                return IconButton(
+                  icon: Icon(
+                    isFav ? Icons.favorite : Icons.favorite_border,
+                    color: isFav ? Colors.red : null,
+                  ),
+                  tooltip: isFav
+                      ? AppLocalizations.of(context)!.removeFromFavorites
+                      : AppLocalizations.of(context)!.addToFavorites,
+                  onPressed: () => context
+                      .read<ScannedCardCubit>()
+                      .toggleFavorite(scannedCardId!),
+                );
+              },
+            ),
           IconButton(
             icon: const Icon(Icons.share),
             tooltip: AppLocalizations.of(context)!.export,

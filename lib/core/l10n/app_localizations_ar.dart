@@ -392,4 +392,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get categoryDefault => 'افتراضي';
+
+  @override
+  String get allCards => 'جميع البطاقات';
+
+  @override
+  String get favoritesOnly => 'المفضلة فقط';
+
+  @override
+  String get addToFavorites => 'إضافة إلى المفضلة';
+
+  @override
+  String get removeFromFavorites => 'إزالة من المفضلة';
+
+  @override
+  String get sortByFavorites => 'المفضلة أولاً';
+
+  @override
+  String get noFavoriteCards => 'لا توجد بطاقات مفضلة بعد';
 }

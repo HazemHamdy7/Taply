@@ -124,5 +124,11 @@
   "sortByDate": "ترتيب حسب التاريخ",
   "sortByName": "ترتيب حسب الاسم",
   "sortByCategory": "ترتيب حسب التصنيف",
-  "categoryDefault": "افتراضي"
+  "categoryDefault": "افتراضي",
+  "allCards": "جميع البطاقات",
+  "favoritesOnly": "المفضلة فقط",
+  "addToFavorites": "إضافة إلى المفضلة",
+  "removeFromFavorites": "إزالة من المفضلة",
+  "sortByFavorites": "المفضلة أولاً",
+  "noFavoriteCards": "لا توجد بطاقات مفضلة بعد"
 }

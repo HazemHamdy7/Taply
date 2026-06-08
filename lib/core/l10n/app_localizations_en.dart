@@ -392,4 +392,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get categoryDefault => 'Default';
+
+  @override
+  String get allCards => 'All Cards';
+
+  @override
+  String get favoritesOnly => 'Favorites Only';
+
+  @override
+  String get addToFavorites => 'Add to Favorites';
+
+  @override
+  String get removeFromFavorites => 'Remove from Favorites';
+
+  @override
+  String get sortByFavorites => 'Favorites First';
+
+  @override
+  String get noFavoriteCards => 'No favorite cards yet';
 }

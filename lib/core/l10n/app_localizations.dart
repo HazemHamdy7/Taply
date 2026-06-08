@@ -847,6 +847,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Default'**
   String get categoryDefault;
+
+  /// No description provided for @allCards.
+  ///
+  /// In en, this message translates to:
+  /// **'All Cards'**
+  String get allCards;
+
+  /// No description provided for @favoritesOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites Only'**
+  String get favoritesOnly;
+
+  /// No description provided for @addToFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Favorites'**
+  String get addToFavorites;
+
+  /// No description provided for @removeFromFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Favorites'**
+  String get removeFromFavorites;
+
+  /// No description provided for @sortByFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites First'**
+  String get sortByFavorites;
+
+  /// No description provided for @noFavoriteCards.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorite cards yet'**
+  String get noFavoriteCards;
 }
 
 class _AppLocalizationsDelegate

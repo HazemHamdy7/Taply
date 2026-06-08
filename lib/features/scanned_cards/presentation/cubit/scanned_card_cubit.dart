@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:business_card/features/scanned_cards/domain/entities/scanned_card.dart';
 import 'package:business_card/features/scanned_cards/domain/repositories/scanned_card_repository.dart';
 
-enum SortMode { date, name, category }
+enum SortMode { date, name, category, favorites }
 
 class ScannedCardState {
   final List<ScannedCard> cards;
@@ -10,6 +10,7 @@ class ScannedCardState {
   final String searchQuery;
   final String? selectedCategoryId;
   final SortMode sortMode;
+  final bool showFavoritesOnly;
 
   const ScannedCardState({
     this.cards = const [],
@@ -17,6 +18,7 @@ class ScannedCardState {
     this.searchQuery = '',
     this.selectedCategoryId,
     this.sortMode = SortMode.date,
+    this.showFavoritesOnly = false,
   });
 
   List<ScannedCard> get filtered {
@@ -26,6 +28,10 @@ class ScannedCardState {
       result = result
           .where((c) => c.categoryIds.contains(selectedCategoryId))
           .toList();
+    }
+
+    if (showFavoritesOnly) {
+      result = result.where((c) => c.isFavorite).toList();
     }
 
     if (searchQuery.isNotEmpty) {
@@ -50,6 +56,12 @@ class ScannedCardState {
           final bCat = b.categoryIds.isNotEmpty ? b.categoryIds.first : '';
           return aCat.compareTo(bCat);
         });
+      case SortMode.favorites:
+        result.sort((a, b) {
+          if (a.isFavorite && !b.isFavorite) return -1;
+          if (!a.isFavorite && b.isFavorite) return 1;
+          return b.scanDate.compareTo(a.scanDate);
+        });
     }
 
     return result;
@@ -61,6 +73,7 @@ class ScannedCardState {
     String? searchQuery,
     String? selectedCategoryId,
     SortMode? sortMode,
+    bool? showFavoritesOnly,
     bool clearCategory = false,
   }) {
     return ScannedCardState(
@@ -70,6 +83,7 @@ class ScannedCardState {
       selectedCategoryId:
           clearCategory ? null : (selectedCategoryId ?? this.selectedCategoryId),
       sortMode: sortMode ?? this.sortMode,
+      showFavoritesOnly: showFavoritesOnly ?? this.showFavoritesOnly,
     );
   }
 }
@@ -86,6 +100,7 @@ class ScannedCardCubit extends Cubit<ScannedCardState> {
       cards: cards,
       selectedCategoryId: state.selectedCategoryId,
       sortMode: state.sortMode,
+      showFavoritesOnly: state.showFavoritesOnly,
     ));
   }
 
@@ -130,5 +145,9 @@ class ScannedCardCubit extends Cubit<ScannedCardState> {
 
   void sortBy(SortMode mode) {
     emit(state.copyWith(sortMode: mode));
+  }
+
+  void toggleShowFavoritesOnly() {
+    emit(state.copyWith(showFavoritesOnly: !state.showFavoritesOnly));
   }
 }

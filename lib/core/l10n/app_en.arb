@@ -127,5 +127,11 @@
   "sortByDate": "Sort by Date",
   "sortByName": "Sort by Name",
   "sortByCategory": "Sort by Category",
-  "categoryDefault": "Default"
+  "categoryDefault": "Default",
+  "allCards": "All Cards",
+  "favoritesOnly": "Favorites Only",
+  "addToFavorites": "Add to Favorites",
+  "removeFromFavorites": "Remove from Favorites",
+  "sortByFavorites": "Favorites First",
+  "noFavoriteCards": "No favorite cards yet"
 }
