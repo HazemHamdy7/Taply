@@ -23,6 +23,7 @@ class _CardPreviewScreenState extends State<CardPreviewScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
       final extra = GoRouterState.of(context).extra;
       if (extra is BusinessCard) {
         setState(() => _singleCard = extra);

@@ -65,6 +65,14 @@ class ExportBottomSheet extends StatelessWidget {
   }
 
   Future<void> _export(BuildContext context, String action) async {
+    final origin = () {
+      final box = context.findRenderObject();
+      if (box is RenderBox && box.hasSize) {
+        return box.localToGlobal(Offset.zero) & box.size;
+      }
+      return null;
+    }();
+
     Navigator.pop(context);
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
@@ -79,19 +87,19 @@ class ExportBottomSheet extends StatelessWidget {
         break;
       case 'shareImage':
         analyticsCubit.trackShare(card.id ?? '', card.fullName);
-        error = await CardExportService.shareAsImage(context: context, card: card);
+        error = await CardExportService.shareAsImage(context: context, card: card, sharePositionOrigin: origin);
         break;
       case 'saveVcf':
         analyticsCubit.trackVcfDownload(card.id ?? '', card.fullName);
-        error = await CardExportService.saveContact(context: context, card: card);
+        error = await CardExportService.saveContact(context: context, card: card, sharePositionOrigin: origin);
         break;
       case 'addContacts':
         analyticsCubit.trackContactSave(card.id ?? '', card.fullName);
-        error = await CardExportService.addToPhoneContacts(context: context, card: card);
+        error = await CardExportService.addToPhoneContacts(context: context, card: card, sharePositionOrigin: origin);
         break;
       case 'hiRes':
         analyticsCubit.trackShare(card.id ?? '', card.fullName);
-        error = await CardExportService.hiResExport(context: context, card: card);
+        error = await CardExportService.hiResExport(context: context, card: card, sharePositionOrigin: origin);
         break;
     }
 

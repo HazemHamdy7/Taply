@@ -71,6 +71,7 @@ class NfcScreen extends StatelessWidget {
             final isOwnCard = matchedCard != null;
             final displayCard = matchedCard ?? card;
             WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!context.mounted) return;
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => CardViewScreen(card: displayCard, showSave: !isOwnCard),

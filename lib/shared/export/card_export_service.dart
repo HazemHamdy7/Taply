@@ -28,6 +28,7 @@ class CardExportService {
   static Future<String?> shareAsImage({
     required BuildContext context,
     required BusinessCard card,
+    Rect? sharePositionOrigin,
   }) async {
     final bytes = await CardScreenshotService.renderHiRes(
       context: context,
@@ -45,6 +46,7 @@ class CardExportService {
         ShareParams(
           files: [XFile(file.path)],
           text: '${card.fullName} — Digital Business Card',
+          sharePositionOrigin: sharePositionOrigin,
         ),
       );
     } catch (_) {
@@ -57,22 +59,25 @@ class CardExportService {
   static Future<String?> saveContact({
   required BuildContext context,
     required BusinessCard card,
+    Rect? sharePositionOrigin,
   }) async {
-    return _shareVcf(card);
+    return _shareVcf(card, sharePositionOrigin: sharePositionOrigin);
   }
 
   /// Add to phone contacts — saves .vcf, shares so user can import
   static Future<String?> addToPhoneContacts({
     required BuildContext context,
     required BusinessCard card,
+    Rect? sharePositionOrigin,
   }) async {
-    return _shareVcf(card);
+    return _shareVcf(card, sharePositionOrigin: sharePositionOrigin);
   }
 
   /// High resolution export (1080×648 at 300 DPI equivalent)
   static Future<String?> hiResExport({
     required BuildContext context,
     required BusinessCard card,
+    Rect? sharePositionOrigin,
   }) async {
     // Render at 1920px wide for maximum quality
     final bytes = await CardScreenshotService.renderHiRes(
@@ -90,6 +95,7 @@ class CardExportService {
         ShareParams(
           files: [XFile(file.path)],
           text: '${card.fullName} — High Resolution Card (1920px)',
+          sharePositionOrigin: sharePositionOrigin,
         ),
       );
 
@@ -102,7 +108,7 @@ class CardExportService {
     return null;
   }
 
-  static Future<String?> _shareVcf(BusinessCard card) async {
+  static Future<String?> _shareVcf(BusinessCard card, {Rect? sharePositionOrigin}) async {
     try {
       final vcf = CardVcfGenerator.generate(card);
       final dir = await getTemporaryDirectory();
@@ -112,6 +118,7 @@ class CardExportService {
         ShareParams(
           files: [XFile(file.path, mimeType: 'text/vcard')],
           text: '${card.fullName} — Contact Card',
+          sharePositionOrigin: sharePositionOrigin,
         ),
       );
     } catch (_) {

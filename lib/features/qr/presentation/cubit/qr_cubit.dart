@@ -51,7 +51,7 @@ class QrCubit extends Cubit<QrState> {
     ].join('\n');
   }
 
-  Future<void> saveQrImage(GlobalKey key) async {
+  Future<void> saveQrImage(GlobalKey key, {Rect? sharePositionOrigin}) async {
     emit(state.copyWith(isSaving: true));
     try {
       final boundary = key.currentContext?.findRenderObject() as RenderRepaintBoundary?;
@@ -65,20 +65,20 @@ class QrCubit extends Cubit<QrState> {
       await file.writeAsBytes(byteData.buffer.asUint8List());
 
       await SharePlus.instance.share(
-        ShareParams(files: [XFile(file.path)], text: 'My Business Card QR Code'),
+        ShareParams(files: [XFile(file.path)], text: 'My Business Card QR Code', sharePositionOrigin: sharePositionOrigin),
       );
     } catch (_) {}
     emit(state.copyWith(isSaving: false));
   }
 
-  Future<void> shareQrImage(Uint8List bytes) async {
+  Future<void> shareQrImage(Uint8List bytes, {Rect? sharePositionOrigin}) async {
     try {
       final dir = await getTemporaryDirectory();
       final file = File('${dir.path}/business_card_qr.png');
       await file.writeAsBytes(bytes);
 
       await SharePlus.instance.share(
-        ShareParams(files: [XFile(file.path)], text: 'My Business Card QR Code'),
+        ShareParams(files: [XFile(file.path)], text: 'My Business Card QR Code', sharePositionOrigin: sharePositionOrigin),
       );
     } catch (_) {}
   }

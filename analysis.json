@@ -1,0 +1,4 @@
+[info] Unnecessary use of multiple underscores (D:\projects\2026\business_card\lib\features\business_card\presentation\screens\create_card_screen.dart:434:35)
+[info] Statements in an if should be enclosed in a block (D:\projects\2026\business_card\lib\features\nfc\presentation\cubit\nfc_cubit.dart:145:43)
+[info] Don't use 'BuildContext's across async gaps (D:\projects\2026\business_card\lib\features\nfc\presentation\screens\nfc_screen.dart:78:29)
+[info] Statements in an if should be enclosed in a block (D:\projects\2026\business_card\lib\features\qr\presentation\screens\qr_scanner_screen.dart:21:41)

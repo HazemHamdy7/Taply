@@ -104,7 +104,7 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
     _jobTitleCtrl = TextEditingController(text: c?.jobTitle ?? '');
     _companyNameCtrl = TextEditingController(text: c?.companyName ?? '');
     _mobileCtrl = TextEditingController(text: _stripCode(c?.mobileNumber ?? '', _mobileCountry));
-    _mobileCtrl2 = TextEditingController(text: '');
+    _mobileCtrl2 = TextEditingController(text: _stripCode(c?.mobileNumber2 ?? '', _mobile2Country));
     _whatsappCtrl = TextEditingController(text: _stripCode(c?.whatsappNumber ?? '', _whatsappCountry));
     _emailCtrl = TextEditingController(text: c?.email ?? '');
     _websiteCtrl = TextEditingController(text: c?.website ?? '');
@@ -123,6 +123,8 @@ class _CreateCardScreenState extends State<CreateCardScreen> {
       _whatsappCountry = _findCode(c.whatsappNumber);
       _mobileCtrl.text = _stripCode(c.mobileNumber, _mobileCountry);
       _whatsappCtrl.text = _stripCode(c.whatsappNumber, _whatsappCountry);
+      _mobile2Country = _findCode(c.mobileNumber2);
+      _mobileCtrl2.text = _stripCode(c.mobileNumber2, _mobile2Country);
     }
 
     // Listen to all controllers for live preview rebuild
