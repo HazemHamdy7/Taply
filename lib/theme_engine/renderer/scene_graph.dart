@@ -1,4 +1,5 @@
 import '../interfaces/scene_graph_interface.dart';
+import '../models/scene_node.dart';
 import '../models/theme_scene.dart';
 
 /// Default implementation of [ISceneGraph].

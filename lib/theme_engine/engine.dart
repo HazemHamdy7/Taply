@@ -10,8 +10,8 @@
 // **Models**
 // - ThemeDocument – root theme model
 // - ThemeScene – a scene within a theme
-// - SceneLayer – a layer within a scene
-// - ThemeVariables – variable definitions
+// - SceneNode – a node within the scene graph
+// - ThemeVariables – strongly typed design tokens
 // - ThemeComponents – reusable component schemas
 //
 // **Parsing**
@@ -40,7 +40,7 @@ export 'core/engine_config.dart';
 export 'core/asset_manager.dart';
 export 'models/theme_document.dart';
 export 'models/theme_scene.dart';
-export 'models/scene_layer.dart';
+export 'models/scene_node.dart';
 export 'models/theme_variables.dart';
 export 'models/theme_components.dart';
 export 'parser/theme_parser.dart';

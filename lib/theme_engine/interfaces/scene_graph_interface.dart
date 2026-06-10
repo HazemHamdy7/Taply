@@ -1,3 +1,4 @@
+import '../models/scene_node.dart';
 import '../models/theme_scene.dart';
 
 /// Interface for the scene graph data structure.
@@ -8,7 +9,7 @@ abstract class ISceneGraph {
   /// Returns the root node of the scene graph.
   SceneNode? get root;
 
-  /// Finds a node by its layer [id].
+  /// Finds a node by its [id].
   SceneNode? findById(String id);
 
   /// Inserts a [node] as a child of the node identified by [parentId].
@@ -22,23 +23,4 @@ abstract class ISceneGraph {
 
   /// Returns the flattened list of nodes in draw order.
   List<SceneNode> flatten();
-}
-
-/// A node in the scene graph tree.
-class SceneNode {
-  /// The layer identifier.
-  final String id;
-
-  /// The layer type.
-  final String type;
-
-  /// Child nodes.
-  final List<SceneNode> children;
-
-  /// Creates a [SceneNode].
-  const SceneNode({
-    required this.id,
-    required this.type,
-    this.children = const [],
-  });
 }

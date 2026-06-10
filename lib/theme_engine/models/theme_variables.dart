@@ -1,57 +1,40 @@
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'color_palette.dart';
+import 'typography_set.dart';
+import 'spacing_set.dart';
+import 'radius_set.dart';
+import 'shadow_definition.dart';
+import 'theme_animation.dart';
 
-/// A variable definition within a theme.
-@immutable
-class VariableDefinition {
-  /// The variable name without the `$` prefix.
-  final String name;
+part 'theme_variables.freezed.dart';
+part 'theme_variables.g.dart';
 
-  /// The variable value, which may reference other variables.
-  final dynamic value;
+@freezed
+class VariableDefinition with _$VariableDefinition {
+  const factory VariableDefinition({
+    required String name,
+    dynamic value,
+    String? type,
+    String? description,
+  }) = _VariableDefinition;
 
-  /// An optional type hint (e.g., `"color"`, `"dimension"`, `"string"`).
-  final String? type;
-
-  /// An optional description of this variable.
-  final String? description;
-
-  /// Creates a [VariableDefinition].
-  const VariableDefinition({
-    required this.name,
-    this.value,
-    this.type,
-    this.description,
-  });
-
-  /// Creates a [VariableDefinition] from a JSON map.
-  factory VariableDefinition.fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('VariableDefinition.fromJson');
-  }
-
-  /// Converts this definition to a JSON map.
-  Map<String, dynamic> toJson() {
-    throw UnimplementedError('VariableDefinition.toJson');
-  }
+  factory VariableDefinition.fromJson(Map<String, dynamic> json) =>
+      _$VariableDefinitionFromJson(json);
 }
 
-/// A collection of variable definitions for a theme.
-@immutable
-class ThemeVariables {
-  /// Variables keyed by name (without the `$` prefix).
-  final Map<String, VariableDefinition> variables;
+@freezed
+class ThemeVariables with _$ThemeVariables {
+  const factory ThemeVariables({
+    @Default(ColorPalette()) ColorPalette colors,
+    @Default(TypographySet()) TypographySet typography,
+    @Default(SpacingSet()) SpacingSet spacing,
+    @Default(RadiusSet()) RadiusSet radius,
+    @Default(1.0) double opacity,
+    @Default([]) List<ShadowDefinition> shadows,
+    @Default([]) List<ThemeAnimation> animations,
+    @Default({}) Map<String, VariableDefinition> custom,
+  }) = _ThemeVariables;
 
-  /// Creates [ThemeVariables].
-  const ThemeVariables({
-    this.variables = const {},
-  });
-
-  /// Creates [ThemeVariables] from a JSON map.
-  factory ThemeVariables.fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('ThemeVariables.fromJson');
-  }
-
-  /// Converts to a JSON map.
-  Map<String, dynamic> toJson() {
-    throw UnimplementedError('ThemeVariables.toJson');
-  }
+  factory ThemeVariables.fromJson(Map<String, dynamic> json) =>
+      _$ThemeVariablesFromJson(json);
 }

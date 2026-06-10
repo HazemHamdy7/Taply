@@ -1,70 +1,32 @@
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// Defines the typography settings for a theme, including font families,
-/// sizes, weights, and line heights.
-@immutable
-class TypographySet {
-  /// The primary font family identifier.
-  final String? primaryFontFamily;
+part 'typography_set.freezed.dart';
+part 'typography_set.g.dart';
 
-  /// The secondary font family identifier.
-  final String? secondaryFontFamily;
+@freezed
+class TextStyleDef with _$TextStyleDef {
+  const factory TextStyleDef({
+    double? fontSize,
+    String? fontWeight,
+    double? lineHeight,
+    double? letterSpacing,
+    String? color,
+  }) = _TextStyleDef;
 
-  /// Named text styles keyed by role (e.g., `"heading"`, `"body"`, `"caption"`).
-  final Map<String, TextStyleDef> styles;
+  factory TextStyleDef.fromJson(Map<String, dynamic> json) =>
+      _$TextStyleDefFromJson(json);
 
-  /// Creates a [TypographySet].
-  const TypographySet({
-    this.primaryFontFamily,
-    this.secondaryFontFamily,
-    this.styles = const {},
-  });
-
-  /// Creates a [TypographySet] from a JSON map.
-  factory TypographySet.fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('TypographySet.fromJson');
-  }
-
-  /// Converts this set to a JSON map.
-  Map<String, dynamic> toJson() {
-    throw UnimplementedError('TypographySet.toJson');
-  }
 }
 
-/// A single text style definition.
-@immutable
-class TextStyleDef {
-  /// The font size in logical pixels or points.
-  final double? fontSize;
+@freezed
+class TypographySet with _$TypographySet {
+  const factory TypographySet({
+    String? primaryFontFamily,
+    String? secondaryFontFamily,
+    @Default({}) Map<String, TextStyleDef> styles,
+  }) = _TypographySet;
 
-  /// The font weight (e.g., `"400"`, `"700"`).
-  final String? fontWeight;
+  factory TypographySet.fromJson(Map<String, dynamic> json) =>
+      _$TypographySetFromJson(json);
 
-  /// The line height as a multiplier of font size.
-  final double? lineHeight;
-
-  /// The letter spacing in logical pixels.
-  final double? letterSpacing;
-
-  /// The text color as a hex string.
-  final String? color;
-
-  /// Creates a [TextStyleDef].
-  const TextStyleDef({
-    this.fontSize,
-    this.fontWeight,
-    this.lineHeight,
-    this.letterSpacing,
-    this.color,
-  });
-
-  /// Creates a [TextStyleDef] from a JSON map.
-  factory TextStyleDef.fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('TextStyleDef.fromJson');
-  }
-
-  /// Converts this definition to a JSON map.
-  Map<String, dynamic> toJson() {
-    throw UnimplementedError('TextStyleDef.toJson');
-  }
 }

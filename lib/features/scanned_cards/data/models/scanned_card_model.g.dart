@@ -1,4 +1,10 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of 'scanned_card_model.dart';
+
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
 
 class ScannedCardModelAdapter extends TypeAdapter<ScannedCardModel> {
   @override
@@ -11,30 +17,30 @@ class ScannedCardModelAdapter extends TypeAdapter<ScannedCardModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ScannedCardModel(
-      id: (fields[0] as String?) ?? '',
-      cardId: (fields[22] as String?) ?? '',
-      fullName: (fields[1] as String?) ?? '',
-      jobTitle: (fields[2] as String?) ?? '',
-      companyName: (fields[3] as String?) ?? '',
-      tagline: (fields[4] as String?) ?? '',
-      mobileNumber: (fields[5] as String?) ?? '',
-      whatsappNumber: (fields[6] as String?) ?? '',
-      email: (fields[7] as String?) ?? '',
-      website: (fields[8] as String?) ?? '',
-      linkedin: (fields[9] as String?) ?? '',
-      facebook: (fields[10] as String?) ?? '',
-      instagram: (fields[11] as String?) ?? '',
-      telegram: (fields[12] as String?) ?? '',
-      youtube: (fields[13] as String?) ?? '',
-      x: (fields[14] as String?) ?? '',
-      address: (fields[15] as String?) ?? '',
-      aboutMe: (fields[16] as String?) ?? '',
-      templateId: (fields[17] as String?) ?? 'default',
+      id: fields[0] as String,
+      cardId: fields[22] as String,
+      fullName: fields[1] as String,
+      jobTitle: fields[2] as String,
+      companyName: fields[3] as String,
+      tagline: fields[4] as String,
+      mobileNumber: fields[5] as String,
+      whatsappNumber: fields[6] as String,
+      email: fields[7] as String,
+      website: fields[8] as String,
+      linkedin: fields[9] as String,
+      facebook: fields[10] as String,
+      instagram: fields[11] as String,
+      telegram: fields[12] as String,
+      youtube: fields[13] as String,
+      x: fields[14] as String,
+      address: fields[15] as String,
+      aboutMe: fields[16] as String,
+      templateId: fields[17] as String,
       profileImagePath: fields[18] as String?,
-      scanDate: (fields[19] as DateTime?) ?? DateTime.now(),
-      isFavorite: (fields[20] as bool?) ?? false,
-      mobileNumber2: (fields[21] as String?) ?? '',
-      categoryIds: (fields[23] as List?)?.cast<String>() ?? const [],
+      scanDate: fields[19] as DateTime,
+      isFavorite: fields[20] as bool,
+      mobileNumber2: fields[21] as String,
+      categoryIds: (fields[23] as List).cast<String>(),
     );
   }
 

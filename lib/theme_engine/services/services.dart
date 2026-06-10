@@ -1,2 +1,15 @@
 export 'theme_validator.dart';
 export 'migration_service.dart';
+export 'validation_context.dart';
+export 'validation_rule.dart';
+export 'validation_registry.dart';
+export 'rules/metadata_validation_rule.dart';
+export 'rules/canvas_validation_rule.dart';
+export 'rules/variables_validation_rule.dart';
+export 'rules/assets_validation_rule.dart';
+export 'rules/scene_validation_rule.dart';
+export 'rules/paint_validation_rule.dart';
+export 'rules/widget_validation_rule.dart';
+export 'rules/components_validation_rule.dart';
+export 'rules/animations_validation_rule.dart';
+export 'rules/states_validation_rule.dart';

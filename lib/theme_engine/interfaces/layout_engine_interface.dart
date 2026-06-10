@@ -1,6 +1,6 @@
+import '../models/scene_node.dart';
 import '../models/theme_scene.dart';
-import '../models/layout_mode.dart';
-import 'scene_graph_interface.dart';
+import '../models/theme_canvas.dart';
 
 /// Interface for the layout engine that computes positions and sizes.
 abstract class ILayoutEngine {

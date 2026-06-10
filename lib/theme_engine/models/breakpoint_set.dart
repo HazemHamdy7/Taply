@@ -1,23 +1,15 @@
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// Represents a set of responsive breakpoints for adaptive layouts.
-@immutable
-class BreakpointSet {
-  /// Named breakpoints keyed by identifier (e.g., `"sm"`, `"md"`, `"lg"`).
-  final Map<String, double> breakpoints;
+part 'breakpoint_set.freezed.dart';
+part 'breakpoint_set.g.dart';
 
-  /// Creates a [BreakpointSet].
-  const BreakpointSet({
-    this.breakpoints = const {},
-  });
+@freezed
+class BreakpointSet with _$BreakpointSet {
+  const factory BreakpointSet({
+    @Default({}) Map<String, double> breakpoints,
+  }) = _BreakpointSet;
 
-  /// Creates a [BreakpointSet] from a JSON map.
-  factory BreakpointSet.fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('BreakpointSet.fromJson');
-  }
+  factory BreakpointSet.fromJson(Map<String, dynamic> json) =>
+      _$BreakpointSetFromJson(json);
 
-  /// Converts this set to a JSON map.
-  Map<String, dynamic> toJson() {
-    throw UnimplementedError('BreakpointSet.toJson');
-  }
 }

@@ -1,51 +1,22 @@
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// Metadata describing a theme's identity, version, and categorization.
-@immutable
-class ThemeMetadata {
-  /// The unique identifier for this theme.
-  final String id;
+part 'theme_metadata.freezed.dart';
+part 'theme_metadata.g.dart';
 
-  /// The human-readable name of the theme.
-  final String name;
+@freezed
+class ThemeMetadata with _$ThemeMetadata {
+  const factory ThemeMetadata({
+    required String id,
+    required String name,
+    @Default('2.0.0') String specVersion,
+    String? description,
+    String? author,
+    String? themeVersion,
+    @Default([]) List<String> tags,
+    String? colorScheme,
+  }) = _ThemeMetadata;
 
-  /// The theme specification version.
-  final String specVersion;
+  factory ThemeMetadata.fromJson(Map<String, dynamic> json) =>
+      _$ThemeMetadataFromJson(json);
 
-  /// The description of the theme.
-  final String? description;
-
-  /// The author or creator of the theme.
-  final String? author;
-
-  /// The theme version string.
-  final String? themeVersion;
-
-  /// Category tags for the theme (e.g., `"luxury"`, `"modern"`).
-  final List<String> tags;
-
-  /// The color scheme identifier (e.g., `"light"`, `"dark"`).
-  final String? colorScheme;
-
-  /// Creates [ThemeMetadata].
-  const ThemeMetadata({
-    required this.id,
-    required this.name,
-    required this.specVersion,
-    this.description,
-    this.author,
-    this.themeVersion,
-    this.tags = const [],
-    this.colorScheme,
-  });
-
-  /// Creates [ThemeMetadata] from a JSON map.
-  factory ThemeMetadata.fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('ThemeMetadata.fromJson');
-  }
-
-  /// Converts to a JSON map.
-  Map<String, dynamic> toJson() {
-    throw UnimplementedError('ThemeMetadata.toJson');
-  }
 }
