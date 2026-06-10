@@ -15,6 +15,7 @@
 | 3 | `setState` after dispose via `addPostFrameCallback` | `card_preview_screen.dart:26` | Added `if (!mounted) return;` guard |
 | 4 | `Navigator.push` after dispose via `addPostFrameCallback` | `nfc_screen.dart:74` | Added `if (!context.mounted) return;` guard |
 | 5 | NFC hardware feature not declared as optional | `AndroidManifest.xml` | Added `<uses-feature android:name="android.hardware.nfc" android:required="false" />` |
+| 6 | `READ_MEDIA_IMAGES` permission rejected by Google Play | `AndroidManifest.xml`, `main.dart` | Removed `READ_MEDIA_IMAGES` from manifest; enabled Android Photo Picker (`PickVisualMedia`) which needs no permission |
 
 ---
 
@@ -40,7 +41,6 @@ Remaining lints (all info, non-blocking):
 |------------|----------|---------|
 | `WRITE_EXTERNAL_STORAGE` | ✅ `android:maxSdkVersion="28"` | Gallery save (legacy) |
 | `READ_EXTERNAL_STORAGE` | ✅ `android:maxSdkVersion="32"` | Gallery read (legacy) |
-| `READ_MEDIA_IMAGES` | ✅ | Gallery read (API 33+) |
 | `CAMERA` | ✅ | QR scanning + profile photo |
 | NFC (implied by `flutter_nfc_kit`) | ✅ plugin auto-declares | NFC read/write |
 

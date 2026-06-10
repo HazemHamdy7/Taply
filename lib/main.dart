@@ -1,5 +1,9 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker_android/image_picker_android.dart';
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:business_card/core/di/service_locator.dart';
 import 'package:business_card/core/l10n/app_localizations.dart';
 import 'package:business_card/core/router/app_router.dart';
@@ -14,6 +18,15 @@ import 'package:business_card/features/settings/presentation/cubit/settings_cubi
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Use Android Photo Picker instead of READ_MEDIA_IMAGES permission
+  if (Platform.isAndroid) {
+    final platform = ImagePickerPlatform.instance;
+    if (platform is ImagePickerAndroid) {
+      platform.useAndroidPhotoPicker = true;
+    }
+  }
+
   await initDependencies();
   runApp(const BusinessCardApp());
 }
