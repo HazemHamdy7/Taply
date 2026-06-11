@@ -1,3 +1,10 @@
 export 'scene_graph.dart';
-export 'render_pipeline.dart';
 export 'paint_context.dart';
+export 'render_pipeline.dart';
+export 'render_tree.dart';
+export 'render_node.dart';
+export 'render_context.dart';
+export 'paint_dispatcher.dart';
+export 'widget_dispatcher.dart';
+export 'node_handler.dart';
+export 'render_tree_builder.dart';

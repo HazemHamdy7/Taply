@@ -1,28 +1,72 @@
-import 'dart:ui' show Canvas, Size;
-import '../models/theme_scene.dart';
+import '../models/theme_document.dart';
+import 'paint_dispatcher.dart';
+import 'render_node.dart';
+import 'render_tree.dart';
+import 'render_tree_builder.dart';
+import 'widget_dispatcher.dart';
 
-/// Orchestrates the full render pipeline: scene graph building, layout
-/// computation, paint dispatch, and widget layer build.
+/// Orchestrates the full rendering pipeline.
+///
+/// Stages:
+/// 1. Build [RenderTree] from [ThemeDocument] via [RenderTreeBuilder]
+/// 2. Prepare the tree (resolve painters/widgets, collect diagnostics)
+/// 3. Return the prepared [RenderTree] for painting
+///
+/// No actual painting occurs here. The pipeline only prepares data
+/// structures for downstream consumers (painters, widget builders).
 class RenderPipeline {
-  /// Renders a [scene] onto the given [canvas] within [size].
+  final RenderTreeBuilder treeBuilder;
+  final PaintDispatcher paintDispatcher;
+  final WidgetDispatcher widgetDispatcher;
+
+  RenderPipeline({
+    RenderTreeBuilder? treeBuilder,
+    PaintDispatcher? paintDispatcher,
+    WidgetDispatcher? widgetDispatcher,
+  })  : treeBuilder = treeBuilder ?? RenderTreeBuilder(),
+        paintDispatcher = paintDispatcher ?? PaintDispatcher(),
+        widgetDispatcher = widgetDispatcher ?? WidgetDispatcher();
+
+  /// Builds and prepares a [RenderTree] from [document].
   ///
-  /// Returns the list of computed layer positions for widget overlays.
-  List<Rect> render(Canvas canvas, Size size, ThemeScene scene) {
-    throw UnimplementedError('RenderPipeline.render');
+  /// [viewportWidth] and [viewportHeight] define the rendering surface
+  /// size and affect layout scaling.
+  RenderTree prepare(
+    ThemeDocument document, {
+    double viewportWidth = 1000,
+    double viewportHeight = 600,
+  }) {
+    final tree = treeBuilder.build(
+      document,
+      viewportWidth: viewportWidth,
+      viewportHeight: viewportHeight,
+    );
+
+    _resolvePainters(tree);
+    _resolveWidgetBuilders(tree);
+
+    return tree;
   }
-}
 
-/// Bounding rectangle for a rendered layer.
-class Rect {
-  final double left;
-  final double top;
-  final double width;
-  final double height;
+  void _resolvePainters(RenderTree tree) {
+    for (final node in tree.flatten()) {
+      if (node is RenderPaintNode) {
+        paintDispatcher.resolve(node);
+      }
+    }
+  }
 
-  const Rect({
-    required this.left,
-    required this.top,
-    required this.width,
-    required this.height,
-  });
+  void _resolveWidgetBuilders(RenderTree tree) {
+    for (final node in tree.flatten()) {
+      if (node is RenderWidgetNode) {
+        widgetDispatcher.resolve(node);
+      }
+    }
+  }
+
+  /// Returns the list of registered paint type keys.
+  List<String> get registeredPaintTypes => paintDispatcher.registeredTypes;
+
+  /// Returns the list of registered widget type keys.
+  List<String> get registeredWidgetTypes => widgetDispatcher.registeredTypes;
 }
