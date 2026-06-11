@@ -1,1 +1,9 @@
 export 'theme_parser.dart';
+export 'parse_result.dart';
+export 'parser_options.dart';
+export 'parser_context.dart';
+export 'parser_diagnostic.dart';
+export 'parser_exception.dart';
+export 'json_path.dart';
+export 'source_location.dart';
+export 'plugin_parser.dart';
