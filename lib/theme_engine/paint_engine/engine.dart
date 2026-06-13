@@ -13,6 +13,9 @@ import 'paint_request.dart';
 import 'painter_factory.dart';
 import 'painter_resolver.dart';
 import 'painters/rectangle_painter.dart';
+import 'painters/circle/circle_painter.dart';
+import 'painters/line/line_painter.dart';
+import 'painters/path/path_painter.dart';
 
 class PaintEngine {
   final PaintRegistry registry;
@@ -43,9 +46,10 @@ class PaintEngine {
   }
 
   void _registerBuiltinPainters() {
-    if (!registry.has('rect')) {
-      registry.register('rect', RectanglePainter());
-    }
+    registry.registerOrReplace('rect', RectanglePainter());
+    registry.registerOrReplace('circle', CirclePainter());
+    registry.registerOrReplace('line', LinePainter());
+    registry.registerOrReplace('path', PathPainter());
   }
 
   PaintMetrics render(

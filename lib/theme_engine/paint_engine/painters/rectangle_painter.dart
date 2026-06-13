@@ -150,7 +150,7 @@ class RectanglePaintStyle {
     this.antiAlias = true,
   });
 
-  bool get hasFill => styleType != PaintStyleType.stroke && fillColor != null;
+  bool get hasFill => styleType != PaintStyleType.stroke && (fillColor != null || fillGradient != null);
   bool get hasStroke =>
       styleType != PaintStyleType.fill && strokeWidth > 0 && strokeColor != null;
   bool get hasGradient => fillGradient != null || strokeGradient != null;
