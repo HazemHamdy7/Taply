@@ -32,3 +32,7 @@ export 'painters/image/image_painter.dart';
 export 'painters/image/image_paint_metrics.dart';
 export 'painters/image/image_paint_options.dart';
 export 'painters/image/image_paint_style.dart';
+export 'painters/text/text_painter.dart';
+export 'painters/text/text_paint_metrics.dart';
+export 'painters/text/text_paint_options.dart';
+export 'painters/text/text_paint_style.dart';

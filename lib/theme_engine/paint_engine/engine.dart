@@ -18,6 +18,7 @@ import 'painters/line/line_painter.dart';
 import 'painters/path/path_painter.dart';
 import 'painters/gradient/gradient_painter.dart';
 import 'painters/image/image_painter.dart';
+import 'painters/text/text_painter.dart';
 
 class PaintEngine {
   final PaintRegistry registry;
@@ -54,6 +55,7 @@ class PaintEngine {
     registry.registerOrReplace('path', PathPainter());
     registry.registerOrReplace('gradient', GradientPainter());
     registry.registerOrReplace('image', ImagePainter());
+    registry.registerOrReplace('text', TextPainterElement());
   }
 
   PaintMetrics render(

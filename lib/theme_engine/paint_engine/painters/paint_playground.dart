@@ -12,6 +12,7 @@ import 'line/line_painter.dart';
 import 'path/path_painter.dart';
 import 'gradient/gradient_painter.dart';
 import 'image/image_painter.dart';
+import 'text/text_painter.dart';
 
 /// Renders all 6 element types (rect, circle, line, path, gradient, image) on
 /// a single canvas. Returns a String with performance results.
@@ -258,7 +259,43 @@ String runPaintPlayground() {
   buffer.writeln('Image: ${imgResult.duration.inMicroseconds}us');
 
   // -----------------------------------------------------------------------
-  // 7. Circle with styling
+  // 7. Text
+  // -----------------------------------------------------------------------
+  final textNode = RenderPaintNode(
+    id: 'text', type: 'text',
+    x: 620, y: 20, width: 260, height: 40,
+    properties: {
+      'text': 'Hello Text!',
+      'fontSize': 20,
+      'color': '#000000',
+      'fontWeight': 'bold',
+    },
+  );
+
+  final textCtx = PaintContext(
+    canvas: canvas,
+    document: ThemeDocument(
+      metadata: ThemeMetadata(id: 'playground', name: 'Playground'),
+    ),
+    renderTree: RenderTree(
+      canvasWidth: canvasW, canvasHeight: canvasH,
+      viewportWidth: canvasW, viewportHeight: canvasH,
+      layoutMode: LayoutMode.centered,
+      scaleFactor: 1.0,
+      root: RenderGroup(id: 'root', children: [textNode]),
+    ),
+    renderNode: textNode,
+    viewportWidth: canvasW, viewportHeight: canvasH,
+    scaleFactor: 1.0,
+  );
+
+  final textPainter = TextPainterElement();
+  textPainter.prepare(textCtx);
+  final textResult = textPainter.paint(textCtx);
+  buffer.writeln('Text: ${textResult.duration.inMicroseconds}us');
+
+  // -----------------------------------------------------------------------
+  // 8. Circle with styling
   // -----------------------------------------------------------------------
   final circle2Node = RenderPaintNode(
     id: 'circle2', type: 'circle',
@@ -301,6 +338,7 @@ String runPaintPlayground() {
   buffer.writeln('Paths: ${pathPainter.metrics}');
   buffer.writeln('Gradients: ${gradPainter.metrics}');
   buffer.writeln('Images: ${imgPainter.metrics}');
+  buffer.writeln('Texts: ${textPainter.metrics}');
 
   return buffer.toString();
 }
