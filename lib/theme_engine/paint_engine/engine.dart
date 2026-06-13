@@ -12,6 +12,7 @@ import 'paint_registry.dart';
 import 'paint_request.dart';
 import 'painter_factory.dart';
 import 'painter_resolver.dart';
+import 'painters/rectangle_painter.dart';
 
 class PaintEngine {
   final PaintRegistry registry;
@@ -38,6 +39,13 @@ class PaintEngine {
   void initialize() {
     if (_initialized) return;
     _initialized = true;
+    _registerBuiltinPainters();
+  }
+
+  void _registerBuiltinPainters() {
+    if (!registry.has('rect')) {
+      registry.register('rect', RectanglePainter());
+    }
   }
 
   PaintMetrics render(
@@ -124,7 +132,11 @@ class PaintEngine {
       final result = painter.paint(request.context);
 
       stopwatch.stop();
-      metrics.recordPaint(stopwatch.elapsed);
+      metrics.recordPaint(
+        stopwatch.elapsed,
+        elementType: result.elementType ?? node.type,
+        bounds: result.paintBounds,
+      );
 
       if (result.success) {
         cache.set(node.id, result.paintBounds);
@@ -134,7 +146,10 @@ class PaintEngine {
       }
     } catch (e) {
       stopwatch.stop();
-      metrics.recordPaint(stopwatch.elapsed);
+      metrics.recordPaint(
+        stopwatch.elapsed,
+        elementType: node.type,
+      );
       metrics.recordFailure();
     }
   }

@@ -1,5 +1,7 @@
 import 'dart:ui' show Rect;
 
+import 'paint_bounds.dart';
+
 class PaintMetrics {
   int paintedNodes;
   int skippedNodes;
@@ -8,6 +10,8 @@ class PaintMetrics {
   int cacheHits;
   int cacheMisses;
   Rect? totalPaintBounds;
+  final Map<String, int> elementCounts;
+  List<PaintBounds> elementBounds;
 
   PaintMetrics({
     this.paintedNodes = 0,
@@ -17,11 +21,21 @@ class PaintMetrics {
     this.cacheHits = 0,
     this.cacheMisses = 0,
     this.totalPaintBounds,
-  });
+    Map<String, int>? elementCounts,
+    List<PaintBounds>? elementBounds,
+  })  : elementCounts = elementCounts ?? {},
+        elementBounds = elementBounds ?? [];
 
-  void recordPaint(Duration elapsed) {
+  void recordPaint(Duration elapsed, {String? elementType, Rect? bounds}) {
     paintedNodes++;
     paintTime += elapsed;
+    if (elementType != null) {
+      elementCounts[elementType] = (elementCounts[elementType] ?? 0) + 1;
+    }
+    if (bounds != null) {
+      elementBounds.add(PaintBounds(rect: bounds, elementType: elementType ?? 'unknown'));
+      extendBounds(bounds);
+    }
   }
 
   void recordSkip() {
@@ -49,6 +63,8 @@ class PaintMetrics {
 
   int get totalProcessed => paintedNodes + skippedNodes + failedNodes;
 
+  int elementCountFor(String type) => elementCounts[type] ?? 0;
+
   double get averagePaintTimeMs {
     if (paintedNodes == 0) return 0;
     return paintTime.inMicroseconds / paintedNodes / 1000.0;
@@ -62,6 +78,8 @@ class PaintMetrics {
     cacheHits = 0;
     cacheMisses = 0;
     totalPaintBounds = null;
+    elementCounts.clear();
+    elementBounds.clear();
   }
 
   PaintMetrics copy() {
@@ -73,6 +91,8 @@ class PaintMetrics {
       cacheHits: cacheHits,
       cacheMisses: cacheMisses,
       totalPaintBounds: totalPaintBounds,
+      elementCounts: Map.from(elementCounts),
+      elementBounds: List.from(elementBounds),
     );
   }
 
@@ -80,5 +100,6 @@ class PaintMetrics {
   String toString() =>
       'PaintMetrics(painted: $paintedNodes, skipped: $skippedNodes, '
       'failed: $failedNodes, time: ${paintTime.inMilliseconds}ms, '
-      'cache: ${cacheHits}h/${cacheMisses}m)';
+      'cache: ${cacheHits}h/${cacheMisses}m, '
+      'elements: $elementCounts)';
 }

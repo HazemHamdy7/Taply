@@ -6,6 +6,7 @@ class PaintResult {
   final List<String> warnings;
   final List<String> diagnostics;
   final Rect? paintBounds;
+  final String? elementType;
 
   const PaintResult({
     required this.success,
@@ -13,6 +14,7 @@ class PaintResult {
     this.warnings = const [],
     this.diagnostics = const [],
     this.paintBounds,
+    this.elementType,
   });
 
   bool get hasWarnings => warnings.isNotEmpty;
