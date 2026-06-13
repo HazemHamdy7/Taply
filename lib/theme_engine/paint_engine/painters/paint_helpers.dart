@@ -1,4 +1,4 @@
-import 'dart:ui' show Color, BlendMode, StrokeCap, StrokeJoin;
+import 'dart:ui' show Color, BlendMode, StrokeCap, StrokeJoin, TileMode;
 
 Color? parseColor(String? hex) {
   if (hex == null || hex.isEmpty) return null;
@@ -56,3 +56,11 @@ StrokeJoin parseStrokeJoin(String? join) {
 
 double? parseDouble(dynamic value) => (value as num?)?.toDouble();
 int? parseInt(dynamic value) => (value as num?)?.toInt();
+
+TileMode parseTileMode(String? mode) {
+  switch (mode) {
+    case 'repeated': return TileMode.repeated;
+    case 'mirrored': return TileMode.mirror;
+    default:         return TileMode.clamp;
+  }
+}

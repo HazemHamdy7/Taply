@@ -10,16 +10,18 @@ import 'rectangle_painter.dart';
 import 'circle/circle_painter.dart';
 import 'line/line_painter.dart';
 import 'path/path_painter.dart';
+import 'gradient/gradient_painter.dart';
+import 'image/image_painter.dart';
 
-/// Renders all 4 element types (rect, circle, line, path) on a single canvas
-/// with labels. Returns a String with performance results.
+/// Renders all 6 element types (rect, circle, line, path, gradient, image) on
+/// a single canvas. Returns a String with performance results.
 String runPaintPlayground() {
   final buffer = StringBuffer();
   buffer.writeln('=== Paint Playground - Combined Demo ===');
   buffer.writeln('');
 
-  const canvasW = 600.0;
-  const canvasH = 500.0;
+  const canvasW = 900.0;
+  const canvasH = 700.0;
 
   final recorder = PictureRecorder();
   final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, canvasW, canvasH));
@@ -183,6 +185,111 @@ String runPaintPlayground() {
   final pathResult = pathPainter.paint(pathCtx);
   buffer.writeln('Path: ${pathResult.duration.inMicroseconds}us');
 
+  // -----------------------------------------------------------------------
+  // 5. Gradient
+  // -----------------------------------------------------------------------
+  final gradNode = RenderPaintNode(
+    id: 'gradient', type: 'gradient',
+    x: 20, y: 240, width: 260, height: 200,
+    properties: {
+      'gradientKind': 'linear',
+      'gradientColors': ['#FF6F00', '#FFB74D'],
+      'angle': 135,
+      'borderRadius': 16,
+    },
+  );
+
+  final gradCtx = PaintContext(
+    canvas: canvas,
+    document: ThemeDocument(
+      metadata: ThemeMetadata(id: 'playground', name: 'Playground'),
+    ),
+    renderTree: RenderTree(
+      canvasWidth: canvasW, canvasHeight: canvasH,
+      viewportWidth: canvasW, viewportHeight: canvasH,
+      layoutMode: LayoutMode.centered,
+      scaleFactor: 1.0,
+      root: RenderGroup(id: 'root', children: [gradNode]),
+    ),
+    renderNode: gradNode,
+    viewportWidth: canvasW, viewportHeight: canvasH,
+    scaleFactor: 1.0,
+  );
+
+  final gradPainter = GradientPainter();
+  gradPainter.prepare(gradCtx);
+  final gradResult = gradPainter.paint(gradCtx);
+  buffer.writeln('Gradient: ${gradResult.duration.inMicroseconds}us');
+
+  // -----------------------------------------------------------------------
+  // 6. Image (placeholder)
+  // -----------------------------------------------------------------------
+  final imgNode = RenderPaintNode(
+    id: 'image', type: 'image',
+    x: 320, y: 240, width: 260, height: 200,
+    color: '#C8E6C9',
+    properties: {
+      'borderRadius': 16,
+      'borderWidth': 3,
+      'borderColor': '#2E7D32',
+    },
+  );
+
+  final imgCtx = PaintContext(
+    canvas: canvas,
+    document: ThemeDocument(
+      metadata: ThemeMetadata(id: 'playground', name: 'Playground'),
+    ),
+    renderTree: RenderTree(
+      canvasWidth: canvasW, canvasHeight: canvasH,
+      viewportWidth: canvasW, viewportHeight: canvasH,
+      layoutMode: LayoutMode.centered,
+      scaleFactor: 1.0,
+      root: RenderGroup(id: 'root', children: [imgNode]),
+    ),
+    renderNode: imgNode,
+    viewportWidth: canvasW, viewportHeight: canvasH,
+    scaleFactor: 1.0,
+  );
+
+  final imgPainter = ImagePainter();
+  imgPainter.prepare(imgCtx);
+  final imgResult = imgPainter.paint(imgCtx);
+  buffer.writeln('Image: ${imgResult.duration.inMicroseconds}us');
+
+  // -----------------------------------------------------------------------
+  // 7. Circle with styling
+  // -----------------------------------------------------------------------
+  final circle2Node = RenderPaintNode(
+    id: 'circle2', type: 'circle',
+    x: 620, y: 20, width: 260, height: 180,
+    color: '#AB47BC',
+    strokeWidth: 2,
+    strokeColor: '#6A1B9A',
+  );
+
+  final circle2Ctx = PaintContext(
+    canvas: canvas,
+    document: ThemeDocument(
+      metadata: ThemeMetadata(id: 'playground', name: 'Playground'),
+    ),
+    renderTree: RenderTree(
+      canvasWidth: canvasW, canvasHeight: canvasH,
+      viewportWidth: canvasW, viewportHeight: canvasH,
+      layoutMode: LayoutMode.centered,
+      scaleFactor: 1.0,
+      root: RenderGroup(id: 'root', children: [circle2Node]),
+    ),
+    renderNode: circle2Node,
+    viewportWidth: canvasW, viewportHeight: canvasH,
+    scaleFactor: 1.0,
+  );
+
+  final circle2Painter = CirclePainter();
+  circle2Painter.prepare(circle2Ctx);
+  final circle2Result = circle2Painter.paint(circle2Ctx);
+  buffer.writeln('Circle2: ${circle2Result.duration.inMicroseconds}us');
+
   recorder.endRecording();
 
   buffer.writeln('');
@@ -192,6 +299,8 @@ String runPaintPlayground() {
   buffer.writeln('Circles: ${circlePainter.metrics}');
   buffer.writeln('Lines: ${linePainter.metrics}');
   buffer.writeln('Paths: ${pathPainter.metrics}');
+  buffer.writeln('Gradients: ${gradPainter.metrics}');
+  buffer.writeln('Images: ${imgPainter.metrics}');
 
   return buffer.toString();
 }
