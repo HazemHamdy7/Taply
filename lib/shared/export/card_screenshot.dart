@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:business_card/features/business_card/domain/entities/business_card.dart';
-import 'package:business_card/shared/export/card_canvas_renderer.dart';
+import 'package:business_card/shared/export/card_engine_renderer.dart';
 
 class CardScreenshotService {
   CardScreenshotService._();
 
   /// Renders the card directly to a PNG image at the target width.
-  /// Uses pure canvas rendering — no overlay, no RepaintBoundary.
+  /// Uses the Theme Engine render pipeline for paint layers and canvas
+  /// rendering for widget layers.
   static Future<Uint8List?> renderHiRes({
     required BuildContext context,
     required BusinessCard card,
     double targetWidth = 1080,
   }) {
-    return CardCanvasRenderer.render(card: card, targetWidth: targetWidth);
+    return CardEngineHiResRenderer.render(card: card, targetWidth: targetWidth);
   }
 
   /// Saves PNG bytes to a temp file and returns the File

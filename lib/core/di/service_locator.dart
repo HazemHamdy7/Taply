@@ -22,6 +22,7 @@ import 'package:business_card/features/scanned_cards/data/repositories/scanned_c
 import 'package:business_card/features/scanned_cards/domain/repositories/scanned_card_repository.dart';
 import 'package:business_card/features/scanned_cards/presentation/cubit/scanned_card_cubit.dart';
 import 'package:business_card/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:business_card/shared/integration/template_theme_loader.dart';
 import 'package:business_card/shared/template_engine/template_loader.dart';
 
 final sl = GetIt.instance;
@@ -38,6 +39,7 @@ Future<void> initDependencies() async {
 Future<void> _initTemplates() async {
   try {
     await TemplateLoader.loadAll();
+    await TemplateThemeLoader.loadAll();
   } catch (_) {}
 }
 
