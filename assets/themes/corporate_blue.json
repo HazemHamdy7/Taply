@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "id": "corporate_blue",
+    "name": "Corporate Blue",
+    "specVersion": "2.0.0",
+    "description": "A professional corporate blue business card theme with gradient background and accent panel",
+    "author": "Theme Engine",
+    "tags": ["corporate", "professional", "blue", "business"],
+    "created": "2026-06-14",
+    "modified": "2026-06-14"
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "kind": "paint",
+        "id": "bg",
+        "type": "rect",
+        "transform": { "x": 0, "y": 0 },
+        "properties": { "width": 1000, "height": 600 },
+        "gradient": { "kind": "linear", "colors": ["#0D47A1", "#1565C0"], "angle": 45 },
+        "zIndex": 0
+      },
+      {
+        "kind": "paint",
+        "id": "accent_panel",
+        "type": "rect",
+        "transform": { "x": 680, "y": 0 },
+        "properties": { "width": 320, "height": 600 },
+        "color": "#1565C0",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "accent_circle",
+        "type": "circle",
+        "transform": { "x": 720, "y": 80 },
+        "properties": { "width": 240, "height": 240 },
+        "color": "#1E88E5",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "accent_circle_small",
+        "type": "circle",
+        "transform": { "x": 750, "y": 350 },
+        "properties": { "width": 180, "height": 180 },
+        "color": "#1E88E5",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "divider_top",
+        "type": "rect",
+        "transform": { "x": 40, "y": 230 },
+        "properties": { "width": 280, "height": 2 },
+        "color": "#FFFFFF",
+        "zIndex": 2
+      },
+      {
+        "kind": "paint",
+        "id": "divider_bottom",
+        "type": "rect",
+        "transform": { "x": 40, "y": 470 },
+        "properties": { "width": 580, "height": 1 },
+        "color": "#64B5F6",
+        "zIndex": 2
+      },
+      {
+        "kind": "paint",
+        "id": "name",
+        "type": "text",
+        "transform": { "x": 40, "y": 100 },
+        "properties": {
+          "width": 500,
+          "height": 50,
+          "text": "Jane Smith",
+          "fontSize": 42,
+          "color": "#FFFFFF",
+          "fontWeight": "bold"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "title",
+        "type": "text",
+        "transform": { "x": 40, "y": 160 },
+        "properties": {
+          "width": 400,
+          "height": 36,
+          "text": "Chief Executive Officer",
+          "fontSize": 22,
+          "color": "#90CAF9",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "company",
+        "type": "text",
+        "transform": { "x": 40, "y": 260 },
+        "properties": {
+          "width": 400,
+          "height": 36,
+          "text": "Smith & Associates Consulting",
+          "fontSize": 20,
+          "color": "#FFFFFF",
+          "fontWeight": "bold"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "email",
+        "type": "text",
+        "transform": { "x": 40, "y": 330 },
+        "properties": {
+          "width": 500,
+          "height": 28,
+          "text": "jane.smith@smith-consulting.com",
+          "fontSize": 16,
+          "color": "#BBDEFB",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "phone",
+        "type": "text",
+        "transform": { "x": 40, "y": 365 },
+        "properties": {
+          "width": 500,
+          "height": 28,
+          "text": "+1 (555) 123-4567",
+          "fontSize": 16,
+          "color": "#BBDEFB",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "website",
+        "type": "text",
+        "transform": { "x": 40, "y": 400 },
+        "properties": {
+          "width": 500,
+          "height": 28,
+          "text": "www.smith-consulting.com",
+          "fontSize": 16,
+          "color": "#BBDEFB",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "address",
+        "type": "text",
+        "transform": { "x": 40, "y": 495 },
+        "properties": {
+          "width": 600,
+          "height": 24,
+          "text": "200 Park Avenue, Suite 1500, New York, NY 10166",
+          "fontSize": 14,
+          "color": "#90CAF9",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}

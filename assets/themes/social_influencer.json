@@ -1,0 +1,194 @@
+{
+  "metadata": {
+    "id": "social_influencer",
+    "name": "Social Influencer",
+    "specVersion": "2.0.0",
+    "description": "A vibrant, youthful business card theme inspired by Instagram and social media aesthetics",
+    "author": "Theme Engine",
+    "tags": ["social", "influencer", "vibrant", "instagram", "modern"]
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "variables": {},
+  "assets": {},
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "id": "bg",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 0,
+        "transform": { "x": 0, "y": 0 },
+        "properties": {
+          "width": 1000,
+          "height": 600,
+          "gradient": {
+            "kind": "linear",
+            "colors": ["#FF0080", "#7928CA"],
+            "angle": 135
+          }
+        }
+      },
+      {
+        "id": "deco-circle-1",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 80, "y": 60 },
+        "properties": {
+          "width": 180,
+          "height": 180,
+          "color": "#FFFFFF",
+          "opacity": 0.06
+        }
+      },
+      {
+        "id": "deco-circle-2",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 750, "y": 400 },
+        "properties": {
+          "width": 250,
+          "height": 250,
+          "color": "#FFFFFF",
+          "opacity": 0.05
+        }
+      },
+      {
+        "id": "deco-circle-3",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": -40, "y": 420 },
+        "properties": {
+          "width": 140,
+          "height": 140,
+          "color": "#FFFFFF",
+          "opacity": 0.04
+        }
+      },
+      {
+        "id": "deco-circle-4",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 820, "y": 50 },
+        "properties": {
+          "width": 100,
+          "height": 100,
+          "color": "#FFFFFF",
+          "opacity": 0.07
+        }
+      },
+      {
+        "id": "deco-circle-5",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 500, "y": 30 },
+        "properties": {
+          "width": 60,
+          "height": 60,
+          "color": "#FFFFFF",
+          "opacity": 0.08
+        }
+      },
+      {
+        "id": "name",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 500, "y": 140 },
+        "properties": {
+          "width": 800,
+          "height": 80,
+          "text": "Alex Rivera",
+          "fontSize": 64,
+          "color": "#FFFFFF",
+          "fontWeight": "800",
+          "textAlign": "center"
+        }
+      },
+      {
+        "id": "tagline",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 500, "y": 215 },
+        "properties": {
+          "width": 800,
+          "height": 50,
+          "text": "#CreateYourReality",
+          "fontSize": 28,
+          "color": "#FFD700",
+          "fontWeight": "700",
+          "textAlign": "center"
+        }
+      },
+      {
+        "id": "stats",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 500, "y": 315 },
+        "properties": {
+          "width": 800,
+          "height": 40,
+          "text": "1.2M Followers  ·  500K Subscribers  ·  10M Likes",
+          "fontSize": 22,
+          "color": "#FFFFFF",
+          "fontWeight": "600",
+          "textAlign": "center",
+          "opacity": 0.85
+        }
+      },
+      {
+        "id": "email",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 500, "y": 410 },
+        "properties": {
+          "width": 800,
+          "height": 40,
+          "text": "alex@influencer.com",
+          "fontSize": 20,
+          "color": "#FFFFFF",
+          "fontWeight": "400",
+          "textAlign": "center",
+          "opacity": 0.65
+        }
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}
+

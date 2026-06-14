@@ -1,0 +1,303 @@
+{
+  "metadata": {
+    "id": "creative_gradient",
+    "name": "Creative Gradient",
+    "specVersion": "2.0.0",
+    "description": "A vibrant purple-blue gradient theme with geometric decorative elements for a modern artsy feel",
+    "author": "Theme Engine"
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "kind": "paint",
+        "id": "bg",
+        "type": "rect",
+        "zIndex": 0,
+        "transform": {
+          "x": 0,
+          "y": 0
+        },
+        "properties": {
+          "width": 1000,
+          "height": 600
+        },
+        "gradient": {
+          "kind": "linear",
+          "colors": ["#667eea", "#764ba2"],
+          "angle": 135
+        }
+      },
+      {
+        "kind": "paint",
+        "id": "deco_diamond_large",
+        "type": "rect",
+        "zIndex": 1,
+        "opacity": 0.08,
+        "transform": {
+          "x": 680,
+          "y": -60
+        },
+        "properties": {
+          "width": 400,
+          "height": 400
+        },
+        "rotation": 45,
+        "color": "#ffffff"
+      },
+      {
+        "kind": "paint",
+        "id": "deco_diamond_medium",
+        "type": "rect",
+        "zIndex": 1,
+        "opacity": 0.12,
+        "transform": {
+          "x": -100,
+          "y": 100
+        },
+        "properties": {
+          "width": 280,
+          "height": 280
+        },
+        "rotation": 30,
+        "color": "#ffffff"
+      },
+      {
+        "kind": "paint",
+        "id": "deco_circle_1",
+        "type": "circle",
+        "zIndex": 1,
+        "opacity": 0.06,
+        "transform": {
+          "x": 750,
+          "y": 400
+        },
+        "properties": {
+          "width": 300,
+          "height": 300
+        },
+        "color": "#ffffff"
+      },
+      {
+        "kind": "paint",
+        "id": "deco_diamond_small",
+        "type": "rect",
+        "zIndex": 1,
+        "opacity": 0.15,
+        "transform": {
+          "x": 50,
+          "y": -80
+        },
+        "properties": {
+          "width": 160,
+          "height": 160
+        },
+        "rotation": 60,
+        "color": "#ffffff"
+      },
+      {
+        "kind": "paint",
+        "id": "deco_circle_2",
+        "type": "circle",
+        "zIndex": 1,
+        "opacity": 0.1,
+        "transform": {
+          "x": 750,
+          "y": 50
+        },
+        "properties": {
+          "width": 120,
+          "height": 120
+        },
+        "color": "#ffffff"
+      },
+      {
+        "kind": "paint",
+        "id": "deco_diamond_tiny",
+        "type": "rect",
+        "zIndex": 1,
+        "opacity": 0.2,
+        "transform": {
+          "x": 860,
+          "y": 480
+        },
+        "properties": {
+          "width": 60,
+          "height": 60
+        },
+        "rotation": 45,
+        "color": "#ffffff"
+      },
+      {
+        "kind": "paint",
+        "id": "deco_accent_line",
+        "type": "rect",
+        "zIndex": 2,
+        "opacity": 0.15,
+        "transform": {
+          "x": 80,
+          "y": 280
+        },
+        "properties": {
+          "width": 80,
+          "height": 4
+        },
+        "color": "#ffffff"
+      },
+      {
+        "kind": "paint",
+        "id": "text_name",
+        "type": "text",
+        "zIndex": 3,
+        "transform": {
+          "x": 80,
+          "y": 160
+        },
+        "properties": {
+          "width": 600,
+          "height": 70,
+          "text": "Alexandra Chen",
+          "fontSize": 52,
+          "fontWeight": "700",
+          "color": "#ffffff",
+          "fontFamily": "Inter, sans-serif"
+        },
+        "shadow": {
+          "color": "#000000",
+          "offsetX": 2,
+          "offsetY": 4,
+          "blur": 12
+        }
+      },
+      {
+        "kind": "paint",
+        "id": "text_subtitle",
+        "type": "text",
+        "zIndex": 3,
+        "transform": {
+          "x": 80,
+          "y": 242
+        },
+        "properties": {
+          "width": 600,
+          "height": 36,
+          "text": "Creative Director & Visual Artist",
+          "fontSize": 22,
+          "fontWeight": "300",
+          "color": "#E6FFFFFF",
+          "fontFamily": "Inter, sans-serif",
+          "letterSpacing": 3
+        },
+        "shadow": {
+          "color": "rgba(0,0,0,0.2)",
+          "offsetX": 1,
+          "offsetY": 2,
+          "blur": 8
+        }
+      },
+      {
+        "kind": "paint",
+        "id": "text_tagline",
+        "type": "text",
+        "zIndex": 3,
+        "transform": {
+          "x": 80,
+          "y": 300
+        },
+        "properties": {
+          "width": 600,
+          "height": 28,
+          "text": "crafting visual stories · brand identity · digital art",
+          "fontSize": 14,
+          "fontWeight": "400",
+          "color": "#FFFFFF",
+          "fontFamily": "Inter, sans-serif",
+          "letterSpacing": 2
+        }
+      },
+      {
+        "kind": "paint",
+        "id": "text_website",
+        "type": "text",
+        "zIndex": 3,
+        "transform": {
+          "x": 80,
+          "y": 440
+        },
+        "properties": {
+          "width": 400,
+          "height": 24,
+          "text": "alexandrachendesign.com",
+          "fontSize": 16,
+          "fontWeight": "500",
+          "color": "#FFFFFF",
+          "fontFamily": "Inter, sans-serif"
+        }
+      },
+      {
+        "kind": "paint",
+        "id": "text_social_1",
+        "type": "text",
+        "zIndex": 3,
+        "transform": {
+          "x": 80,
+          "y": 478
+        },
+        "properties": {
+          "width": 400,
+          "height": 22,
+          "text": "@alexchen.art",
+          "fontSize": 15,
+          "fontWeight": "400",
+          "color": "#FFFFFF",
+          "fontFamily": "Inter, sans-serif"
+        }
+      },
+      {
+        "kind": "paint",
+        "id": "text_social_2",
+        "type": "text",
+        "zIndex": 3,
+        "transform": {
+          "x": 80,
+          "y": 510
+        },
+        "properties": {
+          "width": 400,
+          "height": 22,
+          "text": "linkedin.com/in/alexchen",
+          "fontSize": 15,
+          "fontWeight": "400",
+          "color": "#FFFFFF",
+          "fontFamily": "Inter, sans-serif"
+        }
+      },
+      {
+        "kind": "paint",
+        "id": "deco_line_vertical",
+        "type": "rect",
+        "zIndex": 2,
+        "opacity": 0.2,
+        "transform": {
+          "x": 60,
+          "y": 160
+        },
+        "properties": {
+          "width": 2,
+          "height": 370
+        },
+        "color": "#ffffff"
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}
+

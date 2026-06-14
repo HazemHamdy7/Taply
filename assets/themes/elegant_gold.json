@@ -1,0 +1,590 @@
+{
+  "metadata": {
+    "id": "elegant_gold",
+    "name": "Elegant Gold",
+    "description": "A warm, vintage-inspired theme with ornate gold accents and classic serif typography. Features decorative corner flourishes, layered borders, and a luxurious cream palette.",
+    "author": "Theme Engine",
+    "specVersion": "2.0.0",
+    "version": "1.0.0",
+    "tags": ["elegant", "gold", "vintage", "luxury", "classic", "formal"]
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "variables": {},
+  "assets": {},
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "id": "bg",
+        "kind": "paint",
+        "type": "rect",
+        "zIndex": 0,
+        "transform": { "x": 0, "y": 0 },
+        "properties": { "width": 1000, "height": 600 },
+        "color": "#FFF8E1"
+      },
+      {
+        "id": "border-outer-top",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 30, "y": 40 },
+        "properties": { "width": 940, "height": 2 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "border-outer-bottom",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 30, "y": 558 },
+        "properties": { "width": 940, "height": 2 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "border-outer-left",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 30, "y": 40 },
+        "properties": { "width": 2, "height": 520 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "border-outer-right",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 968, "y": 40 },
+        "properties": { "width": 2, "height": 520 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "border-inner-top",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 70, "y": 65 },
+        "properties": { "width": 860, "height": 1.5 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "border-inner-bottom",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 70, "y": 533 },
+        "properties": { "width": 860, "height": 1.5 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "tl-circle-outer",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 40, "y": 40 },
+        "properties": { "width": 30, "height": 30 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "tl-circle-inner",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 49, "y": 49 },
+        "properties": { "width": 12, "height": 12 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "tl-dot-right",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 76, "y": 49 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "tl-dot-down",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 49, "y": 76 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "tl-line-right",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 65, "y": 54 },
+        "properties": { "width": 20, "height": 2 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "tl-line-down",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 54, "y": 65 },
+        "properties": { "width": 2, "height": 20 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "tr-circle-outer",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 930, "y": 40 },
+        "properties": { "width": 30, "height": 30 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "tr-circle-inner",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 939, "y": 49 },
+        "properties": { "width": 12, "height": 12 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "tr-dot-left",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 918, "y": 49 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "tr-dot-down",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 939, "y": 76 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "tr-line-left",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 915, "y": 54 },
+        "properties": { "width": 20, "height": 2 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "tr-line-down",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 944, "y": 65 },
+        "properties": { "width": 2, "height": 20 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "bl-circle-outer",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 40, "y": 530 },
+        "properties": { "width": 30, "height": 30 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "bl-circle-inner",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 49, "y": 539 },
+        "properties": { "width": 12, "height": 12 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "bl-dot-right",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 76, "y": 545 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "bl-dot-up",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 49, "y": 518 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "bl-line-right",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 65, "y": 544 },
+        "properties": { "width": 20, "height": 2 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "bl-line-up",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 54, "y": 525 },
+        "properties": { "width": 2, "height": 20 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "br-circle-outer",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 930, "y": 530 },
+        "properties": { "width": 30, "height": 30 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "br-circle-inner",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 939, "y": 539 },
+        "properties": { "width": 12, "height": 12 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "br-dot-left",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 918, "y": 545 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "br-dot-up",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 939, "y": 518 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "br-line-left",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 915, "y": 544 },
+        "properties": { "width": 20, "height": 2 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "br-line-up",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 944, "y": 525 },
+        "properties": { "width": 2, "height": 20 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "crown-top-bar",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 475, "y": 97 },
+        "properties": { "width": 50, "height": 1.5 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "crown-circle-outer",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 494, "y": 104 },
+        "properties": { "width": 12, "height": 12 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "crown-circle-inner",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 497, "y": 107 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "crown-dot-left",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 484, "y": 108 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "crown-dot-right",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 510, "y": 108 },
+        "properties": { "width": 6, "height": 6 },
+        "color": "#C5A55A"
+      },
+      {
+        "id": "name-dot-left",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 83, "y": 198 },
+        "properties": { "width": 8, "height": 8 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "name-dot-right",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 909, "y": 198 },
+        "properties": { "width": 8, "height": 8 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "divider-line",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 350, "y": 365 },
+        "properties": { "width": 300, "height": 1.5 },
+        "color": "#D4A017"
+      },
+      {
+        "id": "divider-dot-left",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 345, "y": 360 },
+        "properties": { "width": 10, "height": 10 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "divider-dot-center",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 495, "y": 360 },
+        "properties": { "width": 10, "height": 10 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "divider-dot-right",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 645, "y": 360 },
+        "properties": { "width": 10, "height": 10 },
+        "color": "#FFD700"
+      },
+      {
+        "id": "text-name",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 100, "y": 175 },
+        "properties": {
+          "width": 800,
+          "height": 55,
+          "text": "Alexander Harrington",
+          "fontSize": 44,
+          "color": "#1A0F0A",
+          "fontWeight": "bold"
+        }
+      },
+      {
+        "id": "text-title",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 200, "y": 250 },
+        "properties": {
+          "width": 600,
+          "height": 28,
+          "text": "Chief Executive Officer",
+          "fontSize": 20,
+          "color": "#C5A55A",
+          "fontWeight": "normal"
+        }
+      },
+      {
+        "id": "text-company",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 250, "y": 298 },
+        "properties": {
+          "width": 500,
+          "height": 34,
+          "text": "Harrington & Co.",
+          "fontSize": 26,
+          "color": "#1A0F0A",
+          "fontWeight": "normal"
+        }
+      },
+      {
+        "id": "text-email",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 300, "y": 420 },
+        "properties": {
+          "width": 400,
+          "height": 24,
+          "text": "alexander@harrington.com",
+          "fontSize": 16,
+          "color": "#5C4033",
+          "fontWeight": "normal"
+        }
+      },
+      {
+        "id": "text-phone",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 300, "y": 450 },
+        "properties": {
+          "width": 400,
+          "height": 24,
+          "text": "+1 (555) 123-4567",
+          "fontSize": 16,
+          "color": "#5C4033",
+          "fontWeight": "normal"
+        }
+      },
+      {
+        "id": "text-address",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 275, "y": 478 },
+        "properties": {
+          "width": 450,
+          "height": 22,
+          "text": "123 Park Avenue, New York, NY 10001",
+          "fontSize": 14,
+          "color": "#5C4033",
+          "fontWeight": "normal"
+        }
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}
+

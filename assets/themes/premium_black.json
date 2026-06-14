@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "id": "premium_black",
+    "name": "Premium Black",
+    "specVersion": "2.0.0",
+    "description": "Dark background with gold and amber accents, a luxurious business card theme",
+    "author": "Theme Engine",
+    "themeVersion": "1.0.0",
+    "tags": ["premium", "black", "gold", "luxury", "dark"],
+    "colorScheme": "dark"
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "variables": {
+    "colors": {
+      "swatches": [
+        {"id": "gold", "color": "#FFD700"},
+        {"id": "goldDark", "color": "#C8A951"},
+        {"id": "goldMuted", "color": "#B8860B"}
+      ]
+    },
+    "opacity": 1.0
+  },
+  "assets": {},
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "kind": "paint",
+        "id": "bg",
+        "type": "rect",
+        "transform": {"x": 0, "y": 0},
+        "properties": {"width": 1000, "height": 600},
+        "color": "#0D0D1A",
+        "zIndex": 0
+      },
+      {
+        "kind": "paint",
+        "id": "bg_secondary",
+        "type": "rect",
+        "transform": {"x": 15, "y": 15},
+        "properties": {"width": 970, "height": 570},
+        "color": "#1A1A2E",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "gold_strip",
+        "type": "rect",
+        "transform": {"x": 0, "y": 0},
+        "properties": {"width": 10, "height": 600},
+        "color": "#FFD700",
+        "zIndex": 2
+      },
+      {
+        "kind": "paint",
+        "id": "gold_divider_top",
+        "type": "rect",
+        "transform": {"x": 40, "y": 250},
+        "properties": {"width": 500, "height": 2},
+        "color": "#C8A951",
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "gold_divider_bottom",
+        "type": "rect",
+        "transform": {"x": 40, "y": 420},
+        "properties": {"width": 500, "height": 1},
+        "color": "#B8860B",
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "deco_circle_large",
+        "type": "circle",
+        "transform": {"x": 750, "y": 100},
+        "properties": {"width": 200, "height": 200},
+        "color": "#FFD700",
+        "opacity": 0.06,
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "deco_circle_medium",
+        "type": "circle",
+        "transform": {"x": 810, "y": 350},
+        "properties": {"width": 120, "height": 120},
+        "color": "#C8A951",
+        "opacity": 0.05,
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "deco_circle_small",
+        "type": "circle",
+        "transform": {"x": 680, "y": 420},
+        "properties": {"width": 60, "height": 60},
+        "color": "#FFD700",
+        "opacity": 0.08,
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "name_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 100},
+        "properties": {
+          "width": 600, "height": 55,
+          "text": "ALEXANDER REID",
+          "fontSize": 44,
+          "color": "#F5F5F5",
+          "fontWeight": "bold"
+        },
+        "zIndex": 5
+      },
+      {
+        "kind": "paint",
+        "id": "title_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 165},
+        "properties": {
+          "width": 600, "height": 35,
+          "text": "Chief Strategy Officer",
+          "fontSize": 22,
+          "color": "#FFD700",
+          "fontWeight": "300"
+        },
+        "zIndex": 5
+      },
+      {
+        "kind": "paint",
+        "id": "company_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 200},
+        "properties": {
+          "width": 600, "height": 30,
+          "text": "AURELIAN GROUP",
+          "fontSize": 16,
+          "color": "#C8A951",
+          "fontWeight": "600"
+        },
+        "zIndex": 5
+      },
+      {
+        "kind": "paint",
+        "id": "email_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 280},
+        "properties": {
+          "width": 500, "height": 30,
+          "text": "alexander.reid@aurelian.co",
+          "fontSize": 16,
+          "color": "#D4AF37",
+          "fontWeight": "300"
+        },
+        "zIndex": 5
+      },
+      {
+        "kind": "paint",
+        "id": "phone_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 320},
+        "properties": {
+          "width": 500, "height": 30,
+          "text": "+1 (212) 555-0198",
+          "fontSize": 16,
+          "color": "#D4AF37",
+          "fontWeight": "300"
+        },
+        "zIndex": 5
+      },
+      {
+        "kind": "paint",
+        "id": "website_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 360},
+        "properties": {
+          "width": 500, "height": 30,
+          "text": "www.aurelian.co",
+          "fontSize": 16,
+          "color": "#D4AF37",
+          "fontWeight": "300"
+        },
+        "zIndex": 5
+      },
+      {
+        "kind": "paint",
+        "id": "tagline_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 440},
+        "properties": {
+          "width": 450, "height": 80,
+          "text": "Strategic vision meets operational excellence. Building tomorrow's enterprise today.",
+          "fontSize": 13,
+          "color": "#B8860B",
+          "fontWeight": "300",
+          "maxLines": 3,
+          "lineHeight": 1.5
+        },
+        "zIndex": 5
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}

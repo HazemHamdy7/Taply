@@ -1,37 +1,47 @@
+import 'dart:io' show File;
+
 import '../interfaces/theme_loader_interface.dart';
 import '../models/theme_document.dart';
+import '../parser/theme_parser.dart';
 
-/// Default implementation of [IThemeLoader].
-///
-/// Loads themes from the app bundle, file system, and network.
 class ThemeLoader implements IThemeLoader {
+  final ThemeParser parser;
+
+  ThemeLoader({ThemeParser? parser}) : parser = parser ?? ThemeParser();
+
   @override
-  Future<ThemeDocument> load(String themeId) {
-    throw UnimplementedError('ThemeLoader.load');
+  Future<ThemeDocument> load(String themeId) async {
+    throw UnimplementedError(
+      'ThemeLoader.load not implemented. Use loadFromString or loadFromFile instead.',
+    );
   }
 
   @override
-  Future<ThemeDocument> loadFromString(String jsonString) {
-    throw UnimplementedError('ThemeLoader.loadFromString');
+  Future<ThemeDocument> loadFromString(String jsonString) async {
+    return parser.parseString(jsonString);
   }
 
   @override
-  Future<ThemeDocument> loadFromFile(String filePath) {
-    throw UnimplementedError('ThemeLoader.loadFromFile');
+  Future<ThemeDocument> loadFromFile(String filePath) async {
+    final file = File(filePath);
+    final content = await file.readAsString();
+    return parser.parseString(content);
   }
 
   @override
-  Future<ThemeDocument> loadFromUrl(String url) {
-    throw UnimplementedError('ThemeLoader.loadFromUrl');
+  Future<ThemeDocument> loadFromUrl(String url) async {
+    throw UnimplementedError('ThemeLoader.loadFromUrl not implemented.');
   }
 
   @override
-  Future<ThemeDocument> loadFromBundle(String assetPath) {
-    throw UnimplementedError('ThemeLoader.loadFromBundle');
+  Future<ThemeDocument> loadFromBundle(String assetPath) async {
+    throw UnimplementedError(
+      'ThemeLoader.loadFromBundle not implemented in non-Flutter context.',
+    );
   }
 
   @override
-  Future<List<String>> listAvailable() {
-    throw UnimplementedError('ThemeLoader.listAvailable');
+  Future<List<String>> listAvailable() async {
+    return [];
   }
 }

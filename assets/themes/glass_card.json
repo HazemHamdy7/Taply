@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "id": "glass_card",
+    "name": "Glass Card",
+    "specVersion": "2.0.0",
+    "author": "Theme Engine",
+    "themeVersion": "1.0.0",
+    "description": "A modern glass-morphism business card with frosted glass effect, soft gradient background, and subtle blue-purple accents.",
+    "tags": ["glass", "modern", "frosted", "minimalist", "light", "elegant"],
+    "colorScheme": "light"
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "variables": {},
+  "assets": {},
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "id": "bg",
+        "kind": "paint",
+        "type": "rect",
+        "properties": {"width": 1000, "height": 600},
+        "gradient": {"kind": "linear", "colors": ["#E8EAF6", "#F5F5F5"], "angle": 135},
+        "transform": {"x": 0, "y": 0},
+        "zIndex": 0
+      },
+      {
+        "id": "deco_circle_1",
+        "kind": "paint",
+        "type": "circle",
+        "properties": {"width": 200, "height": 200},
+        "color": "#7C4DFF",
+        "opacity": 0.08,
+        "transform": {"x": 70, "y": 50},
+        "zIndex": 1
+      },
+      {
+        "id": "deco_circle_2",
+        "kind": "paint",
+        "type": "circle",
+        "properties": {"width": 280, "height": 280},
+        "color": "#448AFF",
+        "opacity": 0.06,
+        "transform": {"x": 760, "y": 380},
+        "zIndex": 1
+      },
+      {
+        "id": "deco_circle_3",
+        "kind": "paint",
+        "type": "circle",
+        "properties": {"width": 110, "height": 110},
+        "color": "#7C4DFF",
+        "opacity": 0.05,
+        "transform": {"x": 680, "y": 60},
+        "zIndex": 1
+      },
+      {
+        "id": "card_body",
+        "kind": "paint",
+        "type": "rect",
+        "properties": {"width": 700, "height": 420},
+        "color": "#FFFFFF",
+        "opacity": 0.15,
+        "strokeWidth": 1.5,
+        "strokeColor": "#FFFFFF",
+        "transform": {"x": 150, "y": 90},
+        "zIndex": 2
+      },
+      {
+        "id": "name_text",
+        "kind": "paint",
+        "type": "text",
+        "properties": {
+          "width": 500, "height": 50,
+          "text": "Alex Morgan",
+          "fontSize": 42,
+          "color": "#1A1A2E",
+          "fontWeight": "bold"
+        },
+        "transform": {"x": 220, "y": 150},
+        "zIndex": 5
+      },
+      {
+        "id": "role_text",
+        "kind": "paint",
+        "type": "text",
+        "properties": {
+          "width": 500, "height": 30,
+          "text": "Senior Product Designer",
+          "fontSize": 20,
+          "color": "#5C6BC0",
+          "fontWeight": "600"
+        },
+        "transform": {"x": 220, "y": 205},
+        "zIndex": 5
+      },
+      {
+        "id": "company_text",
+        "kind": "paint",
+        "type": "text",
+        "properties": {
+          "width": 500, "height": 25,
+          "text": "Design Studio",
+          "fontSize": 16,
+          "color": "#78909C",
+          "fontWeight": "normal"
+        },
+        "transform": {"x": 220, "y": 240},
+        "zIndex": 5
+      },
+      {
+        "id": "divider_line",
+        "kind": "paint",
+        "type": "rect",
+        "properties": {"width": 180, "height": 2},
+        "color": "#5C6BC0",
+        "opacity": 0.3,
+        "transform": {"x": 220, "y": 275},
+        "zIndex": 3
+      },
+      {
+        "id": "email_text",
+        "kind": "paint",
+        "type": "text",
+        "properties": {
+          "width": 500, "height": 25,
+          "text": "alex@design.studio",
+          "fontSize": 15,
+          "color": "#455A64",
+          "fontWeight": "normal"
+        },
+        "transform": {"x": 220, "y": 315},
+        "zIndex": 5
+      },
+      {
+        "id": "phone_text",
+        "kind": "paint",
+        "type": "text",
+        "properties": {
+          "width": 500, "height": 25,
+          "text": "+1 (555) 123-4567",
+          "fontSize": 15,
+          "color": "#455A64",
+          "fontWeight": "normal"
+        },
+        "transform": {"x": 220, "y": 345},
+        "zIndex": 5
+      },
+      {
+        "id": "accent_dot",
+        "kind": "paint",
+        "type": "circle",
+        "properties": {"width": 10, "height": 10},
+        "color": "#7C4DFF",
+        "opacity": 0.8,
+        "transform": {"x": 745, "y": 140},
+        "zIndex": 4
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}

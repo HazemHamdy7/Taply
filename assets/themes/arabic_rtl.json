@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "id": "arabic_rtl",
+    "name": "Arabic RTL",
+    "specVersion": "2.0.0",
+    "description": "A right-to-left Arabic business card theme with dark background, gold geometric accents, and teal highlights",
+    "author": "Theme Engine",
+    "tags": ["arabic", "rtl", "gold", "dark", "elegant", "middle-east"],
+    "created": "2026-06-14",
+    "modified": "2026-06-14"
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "kind": "paint",
+        "id": "bg",
+        "type": "rect",
+        "transform": { "x": 0, "y": 0 },
+        "properties": { "width": 1000, "height": 600 },
+        "color": "#1B1F3B",
+        "zIndex": 0
+      },
+      {
+        "kind": "paint",
+        "id": "bg_inner",
+        "type": "rect",
+        "transform": { "x": 20, "y": 20 },
+        "properties": { "width": 960, "height": 560 },
+        "color": "#22264A",
+        "zIndex": 0
+      },
+      {
+        "kind": "paint",
+        "id": "gold_vertical_bar",
+        "type": "rect",
+        "transform": { "x": 380, "y": 60 },
+        "properties": { "width": 4, "height": 480 },
+        "color": "#C5A55A",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "deco_circle_large",
+        "type": "circle",
+        "transform": { "x": 60, "y": 80 },
+        "properties": { "width": 220, "height": 220 },
+        "color": "#C5A55A",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "deco_circle_medium",
+        "type": "circle",
+        "transform": { "x": 110, "y": 340 },
+        "properties": { "width": 120, "height": 120 },
+        "color": "#C5A55A",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "deco_circle_small",
+        "type": "circle",
+        "transform": { "x": 280, "y": 460 },
+        "properties": { "width": 40, "height": 40 },
+        "color": "#2ECC71",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "deco_diamond",
+        "type": "rect",
+        "transform": { "x": 170, "y": 180 },
+        "properties": { "width": 60, "height": 60 },
+        "color": "#2ECC71",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "deco_horizontal_line_top",
+        "type": "rect",
+        "transform": { "x": 60, "y": 60 },
+        "properties": { "width": 280, "height": 2 },
+        "color": "#C5A55A",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "deco_horizontal_line_bottom",
+        "type": "rect",
+        "transform": { "x": 60, "y": 538 },
+        "properties": { "width": 280, "height": 2 },
+        "color": "#C5A55A",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "name",
+        "type": "text",
+        "transform": { "x": 440, "y": 130 },
+        "properties": {
+          "width": 480,
+          "height": 70,
+          "text": "أحمد محمد",
+          "fontSize": 48,
+          "color": "#C5A55A",
+          "fontWeight": "bold",
+          "textDirection": "rtl"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "title",
+        "type": "text",
+        "transform": { "x": 440, "y": 210 },
+        "properties": {
+          "width": 480,
+          "height": 40,
+          "text": "مهندس برمجيات",
+          "fontSize": 26,
+          "color": "#2ECC71",
+          "fontWeight": "500",
+          "textDirection": "rtl"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "company",
+        "type": "text",
+        "transform": { "x": 440, "y": 260 },
+        "properties": {
+          "width": 480,
+          "height": 36,
+          "text": "شركة التقنية",
+          "fontSize": 22,
+          "color": "#C5A55A",
+          "fontWeight": "600",
+          "textDirection": "rtl"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "divider_gold",
+        "type": "rect",
+        "transform": { "x": 780, "y": 320 },
+        "properties": { "width": 140, "height": 2 },
+        "color": "#C5A55A",
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "phone",
+        "type": "text",
+        "transform": { "x": 440, "y": 350 },
+        "properties": {
+          "width": 480,
+          "height": 30,
+          "text": "+966 55 123 4567",
+          "fontSize": 16,
+          "color": "#8892B0",
+          "fontWeight": "normal",
+          "textDirection": "rtl"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "email",
+        "type": "text",
+        "transform": { "x": 440, "y": 390 },
+        "properties": {
+          "width": 480,
+          "height": 30,
+          "text": "ahmed@example.com",
+          "fontSize": 16,
+          "color": "#8892B0",
+          "fontWeight": "normal",
+          "textDirection": "rtl"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "address",
+        "type": "text",
+        "transform": { "x": 440, "y": 440 },
+        "properties": {
+          "width": 480,
+          "height": 30,
+          "text": "الرياض، المملكة العربية السعودية",
+          "fontSize": 14,
+          "color": "#7F8C8D",
+          "fontWeight": "normal",
+          "textDirection": "rtl"
+        },
+        "zIndex": 3
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}

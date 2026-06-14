@@ -32,6 +32,13 @@ class PaintNodeHandler extends NodeHandler {
   @override
   RenderNode handle(SceneNode node, RenderContext context) {
     final paint = node as PaintNode;
+
+    // Extract width/height from properties if present, else from transform
+    final w = paint.properties['width'];
+    final h = paint.properties['height'];
+    final width = (w is num) ? w.toDouble() : paint.transform.scaleX;
+    final height = (h is num) ? h.toDouble() : paint.transform.scaleY;
+
     return RenderPaintNode(
       id: paint.id,
       type: paint.type,
@@ -41,8 +48,8 @@ class PaintNodeHandler extends NodeHandler {
       zIndex: paint.zIndex,
       x: paint.transform.x,
       y: paint.transform.y,
-      width: paint.transform.scaleX,
-      height: paint.transform.scaleY,
+      width: width,
+      height: height,
       rotation: paint.transform.rotation,
       scaleX: paint.transform.scaleX,
       scaleY: paint.transform.scaleY,
@@ -64,6 +71,13 @@ class WidgetNodeHandler extends NodeHandler {
   @override
   RenderNode handle(SceneNode node, RenderContext context) {
     final widget = node as WidgetNode;
+
+    // Extract width/height from properties if present, else from transform
+    final w = widget.properties['width'];
+    final h = widget.properties['height'];
+    final width = (w is num) ? w.toDouble() : widget.transform.scaleX;
+    final height = (h is num) ? h.toDouble() : widget.transform.scaleY;
+
     return RenderWidgetNode(
       id: widget.id,
       type: widget.type,
@@ -73,8 +87,8 @@ class WidgetNodeHandler extends NodeHandler {
       zIndex: widget.zIndex,
       x: widget.transform.x,
       y: widget.transform.y,
-      width: widget.transform.scaleX,
-      height: widget.transform.scaleY,
+      width: width,
+      height: height,
       rotation: widget.transform.rotation,
       scaleX: widget.transform.scaleX,
       scaleY: widget.transform.scaleY,

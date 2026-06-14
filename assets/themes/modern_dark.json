@@ -1,0 +1,322 @@
+{
+  "metadata": {
+    "id": "modern_dark",
+    "name": "Modern Dark",
+    "specVersion": "2.0.0",
+    "author": "Theme Engine",
+    "themeVersion": "1.0.0",
+    "description": "A sleek, modern dark theme with vibrant cyan and magenta neon accents, designed for tech companies and modern professionals.",
+    "tags": ["dark", "modern", "neon", "tech", "professional"],
+    "colorScheme": "dark"
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "variables": {},
+  "assets": {},
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "id": "bg",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 0,
+        "transform": { "x": 0, "y": 0 },
+        "properties": {
+          "width": 1000,
+          "height": 600,
+          "color": "#121212"
+        }
+      },
+      {
+        "id": "top-bar",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 0, "y": 0 },
+        "properties": {
+          "width": 1000,
+          "height": 4,
+          "color": "#00BCD4"
+        }
+      },
+      {
+        "id": "accent-line",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 60, "y": 80 },
+        "properties": {
+          "width": 4,
+          "height": 440,
+          "color": "#00BCD4"
+        }
+      },
+      {
+        "id": "accent-line-glow",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 63, "y": 80 },
+        "properties": {
+          "width": 2,
+          "height": 440,
+          "color": "#00BCD4",
+          "opacity": 0.25
+        }
+      },
+      {
+        "id": "circle-1",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 830, "y": 60 },
+        "properties": {
+          "width": 220,
+          "height": 220,
+          "color": "#00BCD4",
+          "opacity": 0.04
+        }
+      },
+      {
+        "id": "circle-2",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 760, "y": 380 },
+        "properties": {
+          "width": 160,
+          "height": 160,
+          "color": "#E040FB",
+          "opacity": 0.05
+        }
+      },
+      {
+        "id": "circle-3",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 120, "y": 540 },
+        "properties": {
+          "width": 90,
+          "height": 90,
+          "color": "#00BCD4",
+          "opacity": 0.03
+        }
+      },
+      {
+        "id": "circle-4",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 1,
+        "transform": { "x": 40, "y": 40 },
+        "properties": {
+          "width": 140,
+          "height": 140,
+          "color": "#E040FB",
+          "opacity": 0.04
+        }
+      },
+      {
+        "id": "name",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 90, "y": 130 },
+        "properties": {
+          "width": 500,
+          "height": 60,
+          "text": "ALEXANDRA CHEN",
+          "fontSize": 42,
+          "color": "#FFFFFF",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "id": "title",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 90, "y": 200 },
+        "properties": {
+          "width": 500,
+          "height": 36,
+          "text": "Senior Product Designer",
+          "fontSize": 24,
+          "color": "#00BCD4",
+          "fontWeight": "500"
+        }
+      },
+      {
+        "id": "company",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 90, "y": 244 },
+        "properties": {
+          "width": 500,
+          "height": 28,
+          "text": "NEXUS INNOVATION LABS",
+          "fontSize": 15,
+          "color": "#78909C",
+          "fontWeight": "400",
+          "letterSpacing": 3
+        }
+      },
+      {
+        "id": "divider",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 2,
+        "transform": { "x": 90, "y": 300 },
+        "properties": {
+          "width": 60,
+          "height": 3,
+          "color": "#00BCD4"
+        }
+      },
+      {
+        "id": "email",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 90, "y": 340 },
+        "properties": {
+          "width": 400,
+          "height": 24,
+          "text": "alexandra.chen@nexus.io",
+          "fontSize": 15,
+          "color": "#B0BEC5",
+          "fontWeight": "400"
+        }
+      },
+      {
+        "id": "phone",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 90, "y": 372 },
+        "properties": {
+          "width": 400,
+          "height": 24,
+          "text": "+1 (555) 234-5678",
+          "fontSize": 15,
+          "color": "#B0BEC5",
+          "fontWeight": "400"
+        }
+      },
+      {
+        "id": "website",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 90, "y": 404 },
+        "properties": {
+          "width": 400,
+          "height": 24,
+          "text": "www.nexusinnovation.io",
+          "fontSize": 15,
+          "color": "#00BCD4",
+          "fontWeight": "400"
+        }
+      },
+      {
+        "id": "location",
+
+        "kind": "paint",
+
+        "type": "text",
+        "zIndex": 3,
+        "transform": { "x": 90, "y": 436 },
+        "properties": {
+          "width": 400,
+          "height": 24,
+          "text": "San Francisco, CA",
+          "fontSize": 15,
+          "color": "#B0BEC5",
+          "fontWeight": "400"
+        }
+      },
+      {
+        "id": "accent-dot-1",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 2,
+        "transform": { "x": 86, "y": 126 },
+        "properties": {
+          "width": 8,
+          "height": 8,
+          "color": "#00BCD4"
+        }
+      },
+      {
+        "id": "accent-dot-2",
+
+        "kind": "paint",
+
+        "type": "circle",
+        "zIndex": 2,
+        "transform": { "x": 880, "y": 520 },
+        "properties": {
+          "width": 6,
+          "height": 6,
+          "color": "#E040FB"
+        }
+      },
+      {
+        "id": "bottom-bar",
+
+        "kind": "paint",
+
+        "type": "rect",
+        "zIndex": 1,
+        "transform": { "x": 0, "y": 596 },
+        "properties": {
+          "width": 1000,
+          "height": 4,
+          "color": "#E040FB"
+        }
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}
+

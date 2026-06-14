@@ -1,37 +1,37 @@
 import '../interfaces/cache_interface.dart';
 import '../models/theme_document.dart';
 
-/// Default implementation of [IThemeCache].
-///
-/// An in-memory LRU-style cache for parsed [ThemeDocument] objects.
 class ThemeCache implements IThemeCache {
+  final Map<String, ThemeDocument> _cache = {};
+  final int maxSize;
+
+  ThemeCache({this.maxSize = 50});
+
   @override
-  ThemeDocument? get(String themeId) {
-    throw UnimplementedError('ThemeCache.get');
-  }
+  ThemeDocument? get(String themeId) => _cache[themeId];
 
   @override
   void set(String themeId, ThemeDocument theme) {
-    throw UnimplementedError('ThemeCache.set');
+    if (_cache.length >= maxSize) {
+      final firstKey = _cache.keys.first;
+      _cache.remove(firstKey);
+    }
+    _cache[themeId] = theme;
   }
 
   @override
   void remove(String themeId) {
-    throw UnimplementedError('ThemeCache.remove');
+    _cache.remove(themeId);
   }
 
   @override
   void clear() {
-    throw UnimplementedError('ThemeCache.clear');
+    _cache.clear();
   }
 
   @override
-  bool contains(String themeId) {
-    throw UnimplementedError('ThemeCache.contains');
-  }
+  bool contains(String themeId) => _cache.containsKey(themeId);
 
   @override
-  int get count {
-    throw UnimplementedError('ThemeCache.count');
-  }
+  int get count => _cache.length;
 }

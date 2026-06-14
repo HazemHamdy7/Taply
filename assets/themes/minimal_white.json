@@ -1,0 +1,257 @@
+{
+  "metadata": {
+    "id": "minimal_white",
+    "name": "Minimal White",
+    "specVersion": "2.0.0",
+    "author": "Theme Engine",
+    "themeVersion": "1.0.0",
+    "description": "Clean minimal white business card with subtle gray accents",
+    "tags": ["minimal", "white", "clean", "professional"],
+    "colorScheme": "light"
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "variables": {
+    "colors": {
+      "swatches": [
+        {"id": "bg", "color": "#FFFFFF"},
+        {"id": "textPrimary", "color": "#1A1A2E"},
+        {"id": "textSecondary", "color": "#666680"},
+        {"id": "accent", "color": "#4A4A5A"},
+        {"id": "divider", "color": "#E0E0E8"},
+        {"id": "subtle", "color": "#F5F5F8"}
+      ]
+    },
+    "opacity": 1.0
+  },
+  "assets": {},
+  "scene": {
+    "id": "main",
+    "label": "Main Scene",
+    "nodes": [
+      {
+        "kind": "paint",
+        "id": "bg",
+        "type": "rect",
+        "transform": {"x": 0, "y": 0},
+        "properties": {"width": 1000, "height": 600},
+        "color": "#FFFFFF",
+        "zIndex": 0
+      },
+      {
+        "kind": "paint",
+        "id": "bg_subtle",
+        "type": "rect",
+        "transform": {"x": 20, "y": 20},
+        "properties": {"width": 960, "height": 560},
+        "color": "#F8F8FA",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "accent_line",
+        "type": "rect",
+        "transform": {"x": 40, "y": 100},
+        "properties": {"width": 300, "height": 3},
+        "color": "#4A4A5A",
+        "zIndex": 2
+      },
+      {
+        "kind": "paint",
+        "id": "divider_line",
+        "type": "rect",
+        "transform": {"x": 40, "y": 320},
+        "properties": {"width": 920, "height": 1},
+        "color": "#E0E0E8",
+        "zIndex": 2
+      },
+      {
+        "kind": "paint",
+        "id": "accent_dot",
+        "type": "circle",
+        "transform": {"x": 40, "y": 60},
+        "properties": {"width": 12, "height": 12},
+        "color": "#4A4A5A",
+        "zIndex": 2
+      },
+      {
+        "kind": "paint",
+        "id": "bottom_line",
+        "type": "rect",
+        "transform": {"x": 40, "y": 540},
+        "properties": {"width": 200, "height": 2},
+        "color": "#4A4A5A",
+        "zIndex": 2
+      },
+      {
+        "kind": "paint",
+        "id": "info_bg",
+        "type": "rect",
+        "transform": {"x": 40, "y": 345},
+        "properties": {"width": 440, "height": 175},
+        "color": "#F0F0F5",
+        "zIndex": 1
+      },
+      {
+        "kind": "paint",
+        "id": "name_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 130},
+        "properties": {
+          "width": 500, "height": 50,
+          "text": "John Anderson",
+          "fontSize": 36,
+          "color": "#1A1A2E",
+          "fontWeight": "bold"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "title_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 185},
+        "properties": {
+          "width": 500, "height": 30,
+          "text": "Senior Product Designer",
+          "fontSize": 18,
+          "color": "#666680",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "company_text",
+        "type": "text",
+        "transform": {"x": 40, "y": 220},
+        "properties": {
+          "width": 500, "height": 30,
+          "text": "Design Studio Inc.",
+          "fontSize": 16,
+          "color": "#4A4A5A",
+          "fontWeight": "600"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "email_text",
+        "type": "text",
+        "transform": {"x": 55, "y": 360},
+        "properties": {
+          "width": 400, "height": 25,
+          "text": "john@designstudio.com",
+          "fontSize": 14,
+          "color": "#1A1A2E",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "phone_text",
+        "type": "text",
+        "transform": {"x": 55, "y": 395},
+        "properties": {
+          "width": 400, "height": 25,
+          "text": "+1 (555) 123-4567",
+          "fontSize": 14,
+          "color": "#1A1A2E",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "web_text",
+        "type": "text",
+        "transform": {"x": 55, "y": 430},
+        "properties": {
+          "width": 400, "height": 25,
+          "text": "www.designstudio.com",
+          "fontSize": 14,
+          "color": "#666680",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "location_text",
+        "type": "text",
+        "transform": {"x": 55, "y": 465},
+        "properties": {
+          "width": 400, "height": 25,
+          "text": "San Francisco, CA",
+          "fontSize": 14,
+          "color": "#666680",
+          "fontWeight": "normal"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "tagline_text",
+        "type": "text",
+        "transform": {"x": 520, "y": 345},
+        "properties": {
+          "width": 440, "height": 80,
+          "text": "Design is not just what it looks like and feels like. Design is how it works.",
+          "fontSize": 13,
+          "color": "#666680",
+          "fontWeight": "300",
+          "maxLines": 5,
+          "lineHeight": 1.5
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "email_icon",
+        "type": "text",
+        "transform": {"x": 40, "y": 360},
+        "properties": {
+          "width": 15, "height": 25,
+          "text": "✉",
+          "fontSize": 12,
+          "color": "#4A4A5A"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "phone_icon",
+        "type": "text",
+        "transform": {"x": 40, "y": 395},
+        "properties": {
+          "width": 15, "height": 25,
+          "text": "✆",
+          "fontSize": 12,
+          "color": "#4A4A5A"
+        },
+        "zIndex": 3
+      },
+      {
+        "kind": "paint",
+        "id": "web_icon",
+        "type": "text",
+        "transform": {"x": 40, "y": 430},
+        "properties": {
+          "width": 15, "height": 25,
+          "text": "⌂",
+          "fontSize": 14,
+          "color": "#666680"
+        },
+        "zIndex": 3
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}

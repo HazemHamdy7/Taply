@@ -70,13 +70,20 @@ class ThemeEngine {
         variableResolver = variableResolver ?? VariableResolver(),
         validator = validator ?? ThemeValidator();
 
+  bool _initialized = false;
+
   /// Initializes the engine. Must be called once before use.
-  Future<void> initialize() {
-    throw UnimplementedError('ThemeEngine.initialize');
+  Future<void> initialize() async {
+    if (_initialized) return;
+    _initialized = true;
   }
 
+  /// Returns whether the engine has been initialized.
+  bool get isInitialized => _initialized;
+
   /// Disposes the engine and releases resources.
-  Future<void> dispose() {
-    throw UnimplementedError('ThemeEngine.dispose');
+  Future<void> dispose() async {
+    cache.clear();
+    _initialized = false;
   }
 }

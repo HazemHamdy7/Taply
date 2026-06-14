@@ -1,0 +1,292 @@
+{
+  "metadata": {
+    "id": "orange_luxury",
+    "name": "Orange Luxury",
+    "specVersion": "2.0.0",
+    "description": "Dark warm background with orange and gold accents, an elegant luxury business card",
+    "author": "Theme Engine",
+    "themeVersion": "1.0.0",
+    "tags": ["orange", "luxury", "dark", "warm", "elegant"],
+    "colorScheme": "dark"
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "cornerRadius": 24,
+    "layoutMode": "centered"
+  },
+  "variables": {},
+  "assets": {},
+  "scene": {
+    "id": "main",
+    "nodes": [
+      {
+        "id": "bg", "kind": "paint", "type": "rect",
+        "zIndex": 0,
+        "properties": {"width": 1000, "height": 600},
+        "transform": {"x": 0, "y": 0},
+        "color": "#1A0F0A"
+      },
+      {
+        "id": "accent_top", "kind": "paint", "type": "rect",
+        "zIndex": 0,
+        "properties": {"width": 1000, "height": 8},
+        "transform": {"x": 0, "y": 0},
+        "color": "#FF6F00"
+      },
+      {
+        "id": "accent_bottom", "kind": "paint", "type": "rect",
+        "zIndex": 0,
+        "properties": {"width": 1000, "height": 8},
+        "transform": {"x": 0, "y": 592},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "glow_top", "kind": "paint", "type": "rect",
+        "zIndex": 0,
+        "properties": {"width": 600, "height": 300},
+        "transform": {"x": 200, "y": 0},
+        "color": "#2D1A0E"
+      },
+      {
+        "id": "glow_right", "kind": "paint", "type": "rect",
+        "zIndex": 0,
+        "properties": {"width": 400, "height": 600},
+        "transform": {"x": 600, "y": 0},
+        "color": "#1F1209"
+      },
+      {
+        "id": "corner_tl", "kind": "paint", "type": "rect",
+        "zIndex": 1,
+        "properties": {"width": 3, "height": 40},
+        "transform": {"x": 40, "y": 40},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "corner_tl2", "kind": "paint", "type": "rect",
+        "zIndex": 1,
+        "properties": {"width": 40, "height": 3},
+        "transform": {"x": 40, "y": 40},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "corner_tr", "kind": "paint", "type": "rect",
+        "zIndex": 1,
+        "properties": {"width": 3, "height": 40},
+        "transform": {"x": 957, "y": 40},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "corner_tr2", "kind": "paint", "type": "rect",
+        "zIndex": 1,
+        "properties": {"width": 40, "height": 3},
+        "transform": {"x": 920, "y": 40},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "corner_bl", "kind": "paint", "type": "rect",
+        "zIndex": 1,
+        "properties": {"width": 3, "height": 40},
+        "transform": {"x": 40, "y": 520},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "corner_bl2", "kind": "paint", "type": "rect",
+        "zIndex": 1,
+        "properties": {"width": 40, "height": 3},
+        "transform": {"x": 40, "y": 557},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "corner_br", "kind": "paint", "type": "rect",
+        "zIndex": 1,
+        "properties": {"width": 3, "height": 40},
+        "transform": {"x": 957, "y": 520},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "corner_br2", "kind": "paint", "type": "rect",
+        "zIndex": 1,
+        "properties": {"width": 40, "height": 3},
+        "transform": {"x": 920, "y": 557},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "accent_circle_large", "kind": "paint", "type": "circle",
+        "zIndex": 1,
+        "properties": {"width": 120, "height": 120},
+        "transform": {"x": 830, "y": 60},
+        "color": "#E65100",
+        "opacity": 0.3
+      },
+      {
+        "id": "accent_circle_small", "kind": "paint", "type": "circle",
+        "zIndex": 1,
+        "properties": {"width": 50, "height": 50},
+        "transform": {"x": 800, "y": 130},
+        "color": "#FF6F00",
+        "opacity": 0.4
+      },
+      {
+        "id": "divider_1", "kind": "paint", "type": "rect",
+        "zIndex": 2,
+        "properties": {"width": 80, "height": 3},
+        "transform": {"x": 60, "y": 160},
+        "color": "#FF6F00"
+      },
+      {
+        "id": "divider_2", "kind": "paint", "type": "rect",
+        "zIndex": 2,
+        "properties": {"width": 50, "height": 2},
+        "transform": {"x": 60, "y": 330},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "gold_bar", "kind": "paint", "type": "rect",
+        "zIndex": 2,
+        "properties": {"width": 4, "height": 100},
+        "transform": {"x": 520, "y": 380},
+        "color": "#FF8F00"
+      },
+      {
+        "id": "text_name", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 500, "height": 55,
+          "text": "ALEXANDRA REED", "fontSize": 48, "color": "#FF8F00", "fontWeight": "700"
+        },
+        "transform": {"x": 60, "y": 60}
+      },
+      {
+        "id": "text_title", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 400, "height": 30,
+          "text": "CREATIVE DIRECTOR", "fontSize": 20, "color": "#FFD6B0", "fontWeight": "400"
+        },
+        "transform": {"x": 60, "y": 115}
+      },
+      {
+        "id": "text_company", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 400, "height": 25,
+          "text": "LUXE BRAND STUDIO", "fontSize": 16, "color": "#BF8C5C", "fontWeight": "600"
+        },
+        "transform": {"x": 60, "y": 190}
+      },
+      {
+        "id": "text_tagline", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 450, "height": 40,
+          "text": "Crafting identities that leave a lasting impression.",
+          "fontSize": 13, "color": "#8A6E50", "fontWeight": "300", "maxLines": 2
+        },
+        "transform": {"x": 60, "y": 220}
+      },
+      {
+        "id": "text_contact_heading", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 200, "height": 20,
+          "text": "CONTACT", "fontSize": 12, "color": "#FF6F00", "fontWeight": "600"
+        },
+        "transform": {"x": 60, "y": 290}
+      },
+      {
+        "id": "text_email", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 400, "height": 22,
+          "text": "alexandra@luxebrand.co", "fontSize": 14, "color": "#E0C9A8", "fontWeight": "400"
+        },
+        "transform": {"x": 60, "y": 320}
+      },
+      {
+        "id": "text_phone", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 400, "height": 22,
+          "text": "+1 (555) 123-4567", "fontSize": 14, "color": "#E0C9A8", "fontWeight": "400"
+        },
+        "transform": {"x": 60, "y": 350}
+      },
+      {
+        "id": "text_website", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 400, "height": 22,
+          "text": "www.luxebrand.studio", "fontSize": 14, "color": "#E0C9A8", "fontWeight": "400"
+        },
+        "transform": {"x": 60, "y": 380}
+      },
+      {
+        "id": "text_phone_label", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 20, "height": 22,
+          "text": "P", "fontSize": 14, "color": "#FF6F00", "fontWeight": "700"
+        },
+        "transform": {"x": 60, "y": 440}
+      },
+      {
+        "id": "text_phone_value", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 400, "height": 22,
+          "text": "+1 (555) 987-6543", "fontSize": 14, "color": "#E0C9A8", "fontWeight": "400"
+        },
+        "transform": {"x": 85, "y": 440}
+      },
+      {
+        "id": "text_email_label", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 20, "height": 22,
+          "text": "E", "fontSize": 14, "color": "#FF6F00", "fontWeight": "700"
+        },
+        "transform": {"x": 60, "y": 470}
+      },
+      {
+        "id": "text_email_value", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 400, "height": 22,
+          "text": "hello@luxebrand.studio", "fontSize": 14, "color": "#E0C9A8", "fontWeight": "400"
+        },
+        "transform": {"x": 85, "y": 470}
+      },
+      {
+        "id": "text_web_label", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 20, "height": 22,
+          "text": "W", "fontSize": 14, "color": "#FF6F00", "fontWeight": "700"
+        },
+        "transform": {"x": 60, "y": 500}
+      },
+      {
+        "id": "text_web_value", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 400, "height": 22,
+          "text": "luxebrand.studio", "fontSize": 14, "color": "#E0C9A8", "fontWeight": "400"
+        },
+        "transform": {"x": 85, "y": 500}
+      },
+      {
+        "id": "text_right_tag", "kind": "paint", "type": "text",
+        "zIndex": 3,
+        "properties": {
+          "width": 100, "height": 18,
+          "text": "EST. 2026", "fontSize": 11, "color": "#5A4030", "fontWeight": "400"
+        },
+        "transform": {"x": 870, "y": 540}
+      }
+    ]
+  },
+  "components": {},
+  "animations": [],
+  "states": []
+}
