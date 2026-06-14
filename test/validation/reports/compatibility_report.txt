@@ -9,7 +9,7 @@ TEMPLATE COMPATIBILITY SCORES
   black_orange_premium:
     Score: 100.0%
     Nodes: 5 total, 4 painted, 0 skipped, 1 recovered, 0 failed
-    Time: 43ms
+    Time: 36ms
     Warnings: 1
       - Recovered from exception in rect node "paint_1": FormatException: Invalid radix-16 number (at character 1)
 transparent
@@ -30,7 +30,7 @@ transparent
   champagne_gold_prestige:
     Score: 100.0%
     Nodes: 11 total, 9 painted, 0 skipped, 2 recovered, 0 failed
-    Time: 7ms
+    Time: 12ms
     Warnings: 4
       - Recovered from exception in rect node "paint_0": Invalid argument(s): "colors" must have length 2 if "colorStops" is omitted.
       - Recovered from exception in rect node "paint_1": FormatException: Invalid radix-16 number (at character 1)
@@ -49,7 +49,7 @@ transparent
   forest_emerald:
     Score: 100.0%
     Nodes: 16 total, 14 painted, 0 skipped, 2 recovered, 0 failed
-    Time: 17ms
+    Time: 20ms
     Warnings: 5
       - Recovered from exception in rect node "paint_0": Invalid argument(s): "colors" must have length 2 if "colorStops" is omitted.
       - Recovered from exception in rect node "paint_1": FormatException: Invalid radix-16 number (at character 1)

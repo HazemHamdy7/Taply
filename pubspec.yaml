@@ -56,6 +56,12 @@ dependencies:
   meta: ^1.11.0
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
+  taply_theme_engine:
+    path: packages/taply_theme_engine
+  taply_theme_runtime:
+    path: packages/taply_theme_runtime
+  taply_theme_widgets:
+    path: packages/taply_theme_widgets
 
 dev_dependencies:
   flutter_test:

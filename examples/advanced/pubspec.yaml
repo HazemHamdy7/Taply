@@ -1,0 +1,17 @@
+name: advanced_example
+description: Advanced example with custom painters.
+publish_to: none
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  taply_theme_engine:
+    path: ../../packages/taply_theme_engine
+  taply_theme_widgets:
+    path: ../../packages/taply_theme_widgets
+
+flutter:
+  uses-material-design: true

@@ -25,8 +25,8 @@ STRESS TEST
   Templates: 8
   Renders per template: 1250
   Crashes: 0
-  Elapsed: 4s
-  Avg per render: 474us
+  Elapsed: 3s
+  Avg per render: 335us
 
 VERDICT
 ──────────────────────────────────────────────────────────────────────

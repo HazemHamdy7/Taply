@@ -1,0 +1,26 @@
+name: taply_theme_engine
+description: Taply Theme Engine — Core theme rendering engine for digital business cards.
+version: 1.0.0
+homepage: https://taply.app
+repository: https://github.com/taplyapp/taply_theme_engine
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  meta: ^1.11.0
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.13
+
+platforms:
+  android:
+  ios:
+  web:

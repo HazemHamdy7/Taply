@@ -1,0 +1,19 @@
+name: runtime_example
+description: Example using runtime data binding.
+publish_to: none
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  taply_theme_engine:
+    path: ../../packages/taply_theme_engine
+  taply_theme_runtime:
+    path: ../../packages/taply_theme_runtime
+  taply_theme_widgets:
+    path: ../../packages/taply_theme_widgets
+
+flutter:
+  uses-material-design: true

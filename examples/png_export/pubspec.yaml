@@ -1,0 +1,17 @@
+name: png_export_example
+description: Example showing PNG export with CardScreenshotService.
+publish_to: none
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  taply_theme_engine:
+    path: ../../packages/taply_theme_engine
+  taply_theme_widgets:
+    path: ../../packages/taply_theme_widgets
+
+flutter:
+  uses-material-design: true

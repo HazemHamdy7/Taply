@@ -1,0 +1,25 @@
+name: taply_theme_runtime
+description: Taply Theme Runtime — Data binding and runtime engine for digital business card themes.
+version: 1.0.0
+homepage: https://taply.app
+repository: https://github.com/taplyapp/taply_theme_runtime
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  taply_theme_engine:
+    path: ../taply_theme_engine
+  meta: ^1.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+platforms:
+  android:
+  ios:
+  web:
