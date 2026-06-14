@@ -1,0 +1,33 @@
+======================================================================
+          ENGINE HARDENING REPORT
+          Generated: 2026-06-14
+======================================================================
+
+HARDENING MEASURES APPLIED
+──────────────────────────────────────────────────────────────────────
+  1. RectanglePainter: degenerate rect check (w<=0 || h<=0)
+  2. RectanglePainter: NaN/Infinity rect dimension protection
+  3. RectanglePainter: borderRadius clamped to min(w,h)/2
+  4. CirclePainter: radius <= 0 / NaN / Infinity check
+  5. CirclePainter: cx/cy NaN/Infinity check
+  6. CirclePainter: rotation/scale NaN protection
+  7. PathPainter: empty commands list check
+  8. PathPainter: NaN/Infinity coordinate sanitization
+  9. PathPainter: rotation/scale NaN protection
+  10. UnsupportedPainter: fallback for unknown node types
+  11. PaintEngine recovery mode: catch+recover instead of fail
+  12. PaintMetrics: recoveredNodes + warnings tracking
+
+STRESS TEST
+──────────────────────────────────────────────────────────────────────
+  Target renders: 10000
+  Actual renders: 10000
+  Templates: 8
+  Renders per template: 1250
+  Crashes: 0
+  Elapsed: 4s
+  Avg per render: 474us
+
+VERDICT
+──────────────────────────────────────────────────────────────────────
+  Engine hardening validated - 0 crashes.✅

@@ -64,6 +64,12 @@ class PathPainter extends BasePainter {
     }
 
     _path.reset();
+    if (options.commands.isEmpty) {
+      _diagnostics.recordSkipped('Empty commands');
+      _metrics.recordPath();
+      return PaintResult(success: true, duration: sw.elapsed, elementType: 'path',
+        warnings: ['Empty path commands']);
+    }
     _buildPath(options.commands);
 
     canvas.save();
@@ -93,20 +99,22 @@ class PathPainter extends BasePainter {
     }
   }
 
+  double _sanitize(double v) => v.isNaN || v.isInfinite ? 0.0 : v;
+
   void _buildPath(List<PathCommand> commands) {
     for (final cmd in commands) {
       switch (cmd) {
         case PathMoveTo(:final x, :final y):
-          _path.moveTo(x, y);
+          _path.moveTo(_sanitize(x), _sanitize(y));
           _metrics.recordSegment();
         case PathLineTo(:final x, :final y):
-          _path.lineTo(x, y);
+          _path.lineTo(_sanitize(x), _sanitize(y));
           _metrics.recordSegment();
         case PathCubicTo(:final controlX1, :final controlY1, :final controlX2, :final controlY2, :final x, :final y):
-          _path.cubicTo(controlX1, controlY1, controlX2, controlY2, x, y);
+          _path.cubicTo(_sanitize(controlX1), _sanitize(controlY1), _sanitize(controlX2), _sanitize(controlY2), _sanitize(x), _sanitize(y));
           _metrics.recordSegment();
         case PathQuadraticTo(:final controlX, :final controlY, :final x, :final y):
-          _path.quadraticBezierTo(controlX, controlY, x, y);
+          _path.quadraticBezierTo(_sanitize(controlX), _sanitize(controlY), _sanitize(x), _sanitize(y));
           _metrics.recordSegment();
         case PathClose():
           _path.close();
@@ -117,13 +125,18 @@ class PathPainter extends BasePainter {
   }
 
   void _applyTransform(Canvas canvas, PathPaintOptions o) {
-    if (o.rotation == 0 && o.scaleX == 1 && o.scaleY == 1) return;
+    final r = o.rotation;
+    final sx = o.scaleX;
+    final sy = o.scaleY;
+    if ((r == 0 || r.isNaN || r.isInfinite) &&
+        (sx == 1 || sx.isNaN || sx.isInfinite) &&
+        (sy == 1 || sy.isNaN || sy.isInfinite)) return;
     final bounds = o.computePaintBounds();
     final cx = bounds.center.dx;
     final cy = bounds.center.dy;
     canvas.translate(cx, cy);
-    if (o.rotation != 0) canvas.rotate(o.rotation);
-    if (o.scaleX != 1 || o.scaleY != 1) canvas.scale(o.scaleX, o.scaleY);
+    if (r != 0 && !r.isNaN && !r.isInfinite) canvas.rotate(r);
+    if ((sx != 1 || sy != 1) && !sx.isNaN && !sx.isInfinite && !sy.isNaN && !sy.isInfinite) canvas.scale(sx, sy);
     canvas.translate(-cx, -cy);
     _diagnostics.recordOperation('canvas.transform');
   }

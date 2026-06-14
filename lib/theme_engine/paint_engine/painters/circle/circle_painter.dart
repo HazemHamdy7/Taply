@@ -62,6 +62,22 @@ class CirclePainter extends BasePainter {
       return PaintResult(success: true, duration: sw.elapsed, elementType: 'circle');
     }
 
+    final radius = options.radius;
+    if (radius <= 0 || radius.isNaN || radius.isInfinite) {
+      _diagnostics.recordSkipped('Invalid radius: $radius');
+      _metrics.recordCircle(0);
+      return PaintResult(success: true, duration: sw.elapsed, elementType: 'circle',
+        warnings: ['Invalid circle radius: $radius']);
+    }
+
+    if (options.cx.isNaN || options.cy.isNaN ||
+        options.cx.isInfinite || options.cy.isInfinite) {
+      _diagnostics.recordSkipped('Invalid center: (${options.cx}, ${options.cy})');
+      _metrics.recordCircle(0);
+      return PaintResult(success: true, duration: sw.elapsed, elementType: 'circle',
+        warnings: ['Invalid circle center: (${options.cx}, ${options.cy})']);
+    }
+
     canvas.save();
     _diagnostics.recordOperation('canvas.save');
     try {
@@ -71,7 +87,7 @@ class CirclePainter extends BasePainter {
       _drawStroke(canvas, options);
       if (options.debugPaint) _drawDebug(canvas, options);
 
-      _metrics.recordCircle(options.radius * options.radius * 3.14159);
+      _metrics.recordCircle(radius * radius * 3.14159);
       sw.stop();
       _metrics.recordDuration(sw.elapsed);
       return PaintResult(
@@ -90,10 +106,15 @@ class CirclePainter extends BasePainter {
   }
 
   void _applyTransform(Canvas canvas, CirclePaintOptions o) {
-    if (o.rotation == 0 && o.scaleX == 1 && o.scaleY == 1) return;
+    final r = o.rotation;
+    final sx = o.scaleX;
+    final sy = o.scaleY;
+    if ((r == 0 || r.isNaN || r.isInfinite) &&
+        (sx == 1 || sx.isNaN || sx.isInfinite) &&
+        (sy == 1 || sy.isNaN || sy.isInfinite)) return;
     canvas.translate(o.cx, o.cy);
-    if (o.rotation != 0) canvas.rotate(o.rotation);
-    if (o.scaleX != 1 || o.scaleY != 1) canvas.scale(o.scaleX, o.scaleY);
+    if (r != 0 && !r.isNaN && !r.isInfinite) canvas.rotate(r);
+    if ((sx != 1 || sy != 1) && !sx.isNaN && !sx.isInfinite && !sy.isNaN && !sy.isInfinite) canvas.scale(sx, sy);
     canvas.translate(-o.cx, -o.cy);
     _diagnostics.recordOperation('canvas.transform');
   }

@@ -1,0 +1,24 @@
+======================================================================
+          RECOVERY REPORT
+          Generated: 2026-06-14
+======================================================================
+
+RECOVERY MODE VALIDATION
+──────────────────────────────────────────────────────────────────────
+  Total nodes processed: 69
+  Total hard failures: 0
+  Total recovery events: 10
+  Recovery coverage: 100.0%
+
+RECOVERY MECHANISMS
+──────────────────────────────────────────────────────────────────────
+  1. Painter resolution failure -> UnsupportedPainter fallback
+  2. Painter.paint() returns !success -> recorded as recovery
+  3. Painter.paint() throws exception -> caught, recorded as recovery
+  4. Degenerate geometry -> skipped with warning (not failure)
+  5. NaN/Infinity coordinates -> sanitized to 0.0
+  6. Oversized border radius -> clamped to min dimension / 2
+
+VERDICT
+──────────────────────────────────────────────────────────────────────
+  Recovery mode fully operational - 0 unrecoverable failures.✅

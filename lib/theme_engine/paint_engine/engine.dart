@@ -6,7 +6,6 @@ import '../renderer/render_tree.dart';
 import 'base_painter.dart';
 import 'paint_cache.dart';
 import 'paint_context.dart';
-import 'paint_exception.dart';
 import 'paint_metrics.dart';
 import 'paint_registry.dart';
 import 'paint_request.dart';
@@ -115,8 +114,9 @@ class PaintEngine {
     BasePainter? painter;
     try {
       painter = resolver.requireResolve(node);
-    } on PaintException {
+    } catch (e) {
       metrics.recordFailure();
+      metrics.addWarning('Failed to resolve painter for type "${node.type}": $e');
       return;
     }
 
@@ -151,8 +151,14 @@ class PaintEngine {
       if (result.success) {
         cache.set(node.id, result.paintBounds);
         metrics.extendBounds(result.paintBounds);
+        if (result.hasWarnings || result.hasDiagnostics) {
+          for (final w in result.warnings) {
+            metrics.addWarning(w);
+          }
+        }
       } else {
-        metrics.recordFailure();
+        metrics.recordRecovery();
+        metrics.addWarning('Recovered from ${node.type} node "${node.id}": ${result.diagnostics.isNotEmpty ? result.diagnostics.first : "unknown error"}');
       }
     } catch (e) {
       stopwatch.stop();
@@ -160,7 +166,8 @@ class PaintEngine {
         stopwatch.elapsed,
         elementType: node.type,
       );
-      metrics.recordFailure();
+      metrics.recordRecovery();
+      metrics.addWarning('Recovered from exception in ${node.type} node "${node.id}": $e');
     }
   }
 

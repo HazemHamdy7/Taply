@@ -1,0 +1,102 @@
+======================================================================
+          COMPATIBILITY REPORT
+          Generated: 2026-06-14
+======================================================================
+
+TEMPLATE COMPATIBILITY SCORES
+──────────────────────────────────────────────────────────────────────
+
+  black_orange_premium:
+    Score: 100.0%
+    Nodes: 5 total, 4 painted, 0 skipped, 1 recovered, 0 failed
+    Time: 43ms
+    Warnings: 1
+      - Recovered from exception in rect node "paint_1": FormatException: Invalid radix-16 number (at character 1)
+transparent
+^
+
+
+  blue_gold_luxury:
+    Score: 100.0%
+    Nodes: 7 total, 5 painted, 0 skipped, 2 recovered, 0 failed
+    Time: 3ms
+    Warnings: 2
+      - Recovered from exception in rect node "paint_0": Invalid argument(s): "colors" must have length 2 if "colorStops" is omitted.
+      - Recovered from exception in rect node "paint_1": FormatException: Invalid radix-16 number (at character 1)
+transparent
+^
+
+
+  champagne_gold_prestige:
+    Score: 100.0%
+    Nodes: 11 total, 9 painted, 0 skipped, 2 recovered, 0 failed
+    Time: 7ms
+    Warnings: 4
+      - Recovered from exception in rect node "paint_0": Invalid argument(s): "colors" must have length 2 if "colorStops" is omitted.
+      - Recovered from exception in rect node "paint_1": FormatException: Invalid radix-16 number (at character 1)
+transparent
+^
+
+      - Empty path commands
+      - Empty path commands
+
+  dark_green_fold:
+    Score: 100.0%
+    Nodes: 2 total, 2 painted, 0 skipped, 0 recovered, 0 failed
+    Time: 0ms
+    Warnings: 0
+
+  forest_emerald:
+    Score: 100.0%
+    Nodes: 16 total, 14 painted, 0 skipped, 2 recovered, 0 failed
+    Time: 17ms
+    Warnings: 5
+      - Recovered from exception in rect node "paint_0": Invalid argument(s): "colors" must have length 2 if "colorStops" is omitted.
+      - Recovered from exception in rect node "paint_1": FormatException: Invalid radix-16 number (at character 1)
+transparent
+^
+
+      - Empty path commands
+      - Empty path commands
+      - Empty path commands
+
+  navy_silver_professional:
+    Score: 100.0%
+    Nodes: 14 total, 12 painted, 0 skipped, 2 recovered, 0 failed
+    Time: 0ms
+    Warnings: 4
+      - Recovered from exception in rect node "paint_0": Invalid argument(s): "colors" must have length 2 if "colorStops" is omitted.
+      - Recovered from exception in rect node "paint_1": FormatException: Invalid radix-16 number (at character 1)
+transparent
+^
+
+      - Empty path commands
+      - Empty path commands
+
+  real_estate_gold:
+    Score: 100.0%
+    Nodes: 6 total, 6 painted, 0 skipped, 0 recovered, 0 failed
+    Time: 0ms
+    Warnings: 2
+      - Empty path commands
+      - Empty path commands
+
+  rose_gold_elegance:
+    Score: 100.0%
+    Nodes: 8 total, 7 painted, 0 skipped, 1 recovered, 0 failed
+    Time: 0ms
+    Warnings: 1
+      - Recovered from exception in rect node "paint_0": Invalid argument(s): "colors" must have length 2 if "colorStops" is omitted.
+
+SUMMARY
+──────────────────────────────────────────────────────────────────────
+  Total nodes processed: 69
+  Total failed: 0
+  Total recovered: 10
+  Min score: 100.0%
+  Avg score: 100.0%
+  Templates: 8
+
+VERDICT
+──────────────────────────────────────────────────────────────────────
+  All templates pass with 0 hard failures. Engine is hardened.✅

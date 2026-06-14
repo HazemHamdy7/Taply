@@ -1,4 +1,4 @@
-import 'dart:math' show pi, cos, sin, max;
+import 'dart:math' show pi, cos, sin, max, min;
 import 'dart:typed_data' show Float64List;
 import 'dart:ui' show
     Canvas,
@@ -379,12 +379,13 @@ class RectanglePaintOptions {
     borderRadiusBR > 0 || borderRadiusBL > 0;
 
   RRect toRRect() {
+    final maxR = min(rect.width, rect.height) / 2;
     return RRect.fromRectAndCorners(
       rect,
-      topLeft: Radius.circular(borderRadiusTL),
-      topRight: Radius.circular(borderRadiusTR),
-      bottomRight: Radius.circular(borderRadiusBR),
-      bottomLeft: Radius.circular(borderRadiusBL),
+      topLeft: Radius.circular(borderRadiusTL > maxR ? maxR : borderRadiusTL),
+      topRight: Radius.circular(borderRadiusTR > maxR ? maxR : borderRadiusTR),
+      bottomRight: Radius.circular(borderRadiusBR > maxR ? maxR : borderRadiusBR),
+      bottomLeft: Radius.circular(borderRadiusBL > maxR ? maxR : borderRadiusBL),
     );
   }
 
@@ -765,6 +766,15 @@ class RectanglePainter extends BasePainter {
 
     final rect = options.rect;
 
+    if (rect.width <= 0 || rect.height <= 0 ||
+        rect.width.isNaN || rect.height.isNaN ||
+        rect.width.isInfinite || rect.height.isInfinite) {
+      _metrics.recordRect(0);
+      _diagnostics.recordSkipped('Degenerate rect: ${rect.width}x${rect.height}');
+      return PaintResult(success: true, duration: sw.elapsed, elementType: 'rect',
+        warnings: ['Degenerate rect skipped: ${rect.width}x${rect.height}']);
+    }
+
     canvas.save();
     _diagnostics.recordOperation('canvas.save');
 
@@ -785,9 +795,9 @@ class RectanglePainter extends BasePainter {
         duration: sw.elapsed,
         paintBounds: options.computePaintBounds(),
         elementType: 'rect',
-        diagnostics: _diagnostics.hasErrors
-            ? List<String>.from(_diagnostics.errors)
-            : const [],
+        warnings: _diagnostics.hasWarnings
+            ? List<String>.from(_diagnostics.warnings)
+            : [],
       );
     } catch (e) {
       sw.stop();
