@@ -49,12 +49,31 @@ class TemplateToThemeConverter {
     );
   }
 
+  static const _enginePaintTypes = {'rect', 'circle', 'line', 'path'};
+
+  static final Set<String> _skippedTypes = {};
+
+  static Set<String> get skippedTypes => Set.unmodifiable(_skippedTypes);
+
+  static void clearSkippedTypes() => _skippedTypes.clear();
+
   static SceneNode? _convertPaintLayer(
     Map<String, dynamic> layer,
     int index,
   ) {
-    final type = _str(layer['type']);
-    if (type == null) return null;
+    final rawType = _str(layer['type']);
+    if (rawType == null) return null;
+
+    // Map legacy types to engine types
+    String type;
+    if (rawType == 'rrect') {
+      type = 'rect';
+    } else if (_enginePaintTypes.contains(rawType)) {
+      type = rawType;
+    } else {
+      _skippedTypes.add(rawType);
+      return null;
+    }
 
     final id = 'paint_$index';
     final x = _num(layer['x']) ?? 0;
@@ -63,7 +82,9 @@ class TemplateToThemeConverter {
     final h = _num(layer['h']);
     final stroke = _str(layer['stroke']);
     final strokeWidth = _num(layer['strokeWidth']);
-    final fill = layer['fill'] as Map<String, dynamic>?;
+    final fillRaw = layer['fill'];
+    final fill = (fillRaw is Map<String, dynamic>) ? fillRaw
+        : (fillRaw is String ? <String, dynamic>{'colors': [fillRaw]} : null);
     final br = _num(layer['br']);
 
     final props = <String, dynamic>{};
@@ -108,20 +129,6 @@ class TemplateToThemeConverter {
       }
     }
 
-    if (type == 'rect' || type == 'rrect') {
-      return SceneNode.paint(
-        id: id,
-        type: 'rect',
-        name: type,
-        transform: Transform(x: x, y: y),
-        color: color,
-        gradient: gradient,
-        strokeColor: stroke,
-        strokeWidth: strokeWidth,
-        properties: props,
-      );
-    }
-
     if (type == 'line') {
       props['x1'] = _num(layer['x1']) ?? x;
       props['y1'] = _num(layer['y1']) ?? y;
@@ -139,17 +146,45 @@ class TemplateToThemeConverter {
       );
     }
 
-    props['type'] = type;
-    for (final key in {'x1', 'y1', 'x2', 'y2', 'cx', 'cy', 'size', 'left', 'top', 'count', 'spacing', 'startY', 'fade', 'height'}) {
-      if (layer.containsKey(key)) {
-        props[key] = layer[key];
+    if (type == 'circle') {
+      props['cx'] = _num(layer['cx']) ?? x;
+      props['cy'] = _num(layer['cy']) ?? y;
+      final s = _num(layer['size']);
+      if (s != null) props['size'] = s;
+      return SceneNode.paint(
+        id: id,
+        type: 'circle',
+        name: 'circle',
+        transform: Transform(x: x, y: y),
+        color: color,
+        strokeColor: stroke,
+        strokeWidth: strokeWidth,
+        properties: props,
+      );
+    }
+
+    if (type == 'path') {
+      for (final key in {'x1', 'y1', 'x2', 'y2', 'cx', 'cy', 'size', 'left', 'top', 'count', 'spacing', 'startY', 'fade', 'height'}) {
+        if (layer.containsKey(key)) {
+          props[key] = layer[key];
+        }
       }
+      return SceneNode.paint(
+        id: id,
+        type: 'path',
+        name: 'path',
+        transform: Transform(x: x, y: y),
+        color: color,
+        strokeColor: stroke,
+        strokeWidth: strokeWidth,
+        properties: props,
+      );
     }
 
     return SceneNode.paint(
       id: id,
-      type: type,
-      name: type,
+      type: 'rect',
+      name: rawType,
       transform: Transform(x: x, y: y),
       color: color,
       gradient: gradient,

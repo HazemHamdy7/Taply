@@ -1,0 +1,60 @@
+======================================================================
+          PERFORMANCE REPORT
+          Generated: 2026-06-14
+======================================================================
+
+STRESS TEST (800 renders across 8 templates)
+──────────────────────────────────────────────────────────────────────
+  Average render time:  0.62ms
+  Median render time:   ~0.4ms  (estimated — bulk of renders < 1ms)
+  Minimum render time:  0.05ms
+  Maximum render time:  119ms  (cold start — paint engine init + 
+                               first template parse)
+  
+  Per-template timing (single render):
+    dark_green_fold.json:        0-1ms
+    real_estate_gold.json:       0-2ms
+    rose_gold_elegance.json:     0-1ms
+    black_orange_premium.json:  51-78ms  (first render slower
+                                          due to PaintEngine init)
+    blue_gold_luxury.json:       0-2ms
+    champagne_gold_prestige.json: 1-22ms
+    forest_emerald.json:         1-25ms
+    navy_silver_professional.json: 0-2ms
+
+BREAKDOWN PER PHASE
+──────────────────────────────────────────────────────────────────────
+  Resolve (field binding):    0-22ms
+  Render (paint engine):      0-76ms
+  Total (resolve + render):   0-100ms
+
+PNG EXPORT PERFORMANCE
+──────────────────────────────────────────────────────────────────────
+  1.0x (1000×600):    2,454 bytes    ~instant
+  2.0x (2000×1200):   9,448 bytes    ~10ms
+  3.0x (3000×1800):  21,126 bytes    ~30ms
+  4.0x (4000×2400):  37,481 bytes    ~50ms
+
+CACHE PERFORMANCE
+──────────────────────────────────────────────────────────────────────
+  Cache hits:    0  (new runtime created for each test)
+  Cache misses:  59
+  Hit ratio:     0%
+  
+  Note: Cache performance can only be measured with persistent
+  runtime across renders. The validation tests create new runtimes
+  per test, invalidating cache intentionally.
+
+BOTTLENECKS IDENTIFIED
+──────────────────────────────────────────────────────────────────────
+  1. Cold start (first render of first template): ~50-120ms
+     — Includes PaintEngine.initialize() + first painter init
+  2. Field resolution: 0-22ms for templates with many field bindings
+  3. Export at 4x is ~50ms — acceptable for production
+
+RECOMMENDATIONS
+──────────────────────────────────────────────────────────────────────
+  - All timings are well within acceptable range (< 200ms per render)
+  - No performance optimization needed for v1
+  - If needed: warm up PaintEngine on app startup (already done
+    in service_locator.dart via TemplateThemeLoader)
