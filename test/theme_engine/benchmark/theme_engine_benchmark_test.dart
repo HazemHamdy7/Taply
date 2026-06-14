@@ -5,10 +5,8 @@ import 'dart:ui' show PictureRecorder, Canvas;
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:business_card/theme_engine/paint_engine/paint_engine.dart';
-import 'package:business_card/theme_engine/paint_engine/paint_metrics.dart';
 import 'package:business_card/theme_engine/parser/theme_parser.dart';
 import 'package:business_card/theme_engine/renderer/render_pipeline.dart';
-import 'package:business_card/theme_engine/renderer/render_tree.dart';
 import 'package:business_card/theme_engine/models/theme_document.dart';
 
 const _themeDir = 'assets/themes';
